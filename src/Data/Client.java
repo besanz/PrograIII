@@ -62,4 +62,10 @@ public class Client extends User implements IBasket{
     public int selectedElements(){
         return this.basket.size();
     }
+
+	@Override
+	public String toString() {
+		return "Client [basket=" + basket + "]";
+	}
+    
 }
