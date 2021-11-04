@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * @author Beñat
  */
 
-public class Client extends User implements IBasket{
+public class Client extends User{
 
     private ArrayList<Product> basket;
     /**
@@ -62,4 +62,10 @@ public class Client extends User implements IBasket{
     public int selectedElements(){
         return this.basket.size();
     }
+
+	@Override
+	public String toString() {
+		return "Client [basket=" + basket + "]";
+	}
+    
 }
