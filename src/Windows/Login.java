@@ -35,7 +35,7 @@ public class Login extends JFrame {
      */
     public Login() {
         setTitle("AranaBanana");
-        getContentPane().setBackground(Color.BLACK);
+        getContentPane().setBackground(Color.GREEN);
         initialize();
     }
 
@@ -45,7 +45,7 @@ public class Login extends JFrame {
     private void initialize() {
         this.setTitle("AranaBanana");
         this.setResizable(true);
-        this.setBounds(100, 100, 700, 500);
+        this.setBounds(100, 100, 503, 383);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setLayout(null);
         getContentPane().setLayout(null);

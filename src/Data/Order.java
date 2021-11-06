@@ -1,10 +1,12 @@
 package Data;
 
-public class Order {
+public class Order{
 	
 	private int id;
 
+
 	public Order(int id) {
+
 		
 		this.id = id;
 	}
