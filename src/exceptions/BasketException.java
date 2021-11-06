@@ -2,6 +2,10 @@ package exceptions;
 
 public class BasketException extends Exception {
 
+    /**
+     * @author Benat
+     */
+
     private static final long serialVersionUID = 2L;
 
     public BasketException(final String message) {

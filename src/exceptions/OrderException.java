@@ -2,6 +2,10 @@ package exceptions;
 
 public class OrderException extends Exception {
 
+    /**
+     * @author Benat
+     */
+
     private static final long serialVersionUID = 3L;
 
     public OrderException(final String message) {

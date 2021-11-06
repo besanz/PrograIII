@@ -2,6 +2,10 @@ package exceptions;
 
 public class ShopException extends Exception {
 
+    /**
+     * @author Jon Ander
+     */
+    
     private static final long serialVersionUID = 5L;
 
     public ShopException(final String message) {
