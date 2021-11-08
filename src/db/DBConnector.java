@@ -85,11 +85,11 @@ public class DBConnector
      * @param id
      * @param name
      * @param password
-     * @isAdmin 
+     * @parama isAdmin
      */
-    public void insertUser(int id,String name,int price )
+    public void insertUser(int id,String name,String password,boolean isAdmin )
     {
-        String sql = "INSERT INTO Product(id,name,price) VALUES(?,?)";
+        String sql = "INSERT INTO User(id,name,password,isAdmin) VALUES(?,?,?,?)";
 
         try
                 (
@@ -99,7 +99,9 @@ public class DBConnector
         {
             pstmt.setInt(1,id);
             pstmt.setString(2,name);
-            pstmt.setInt(3,price);
+            pstmt.setString(3,password);
+            int myInt = isAdmin ? 1:0;
+            pstmt.setInt(4,myInt);
             pstmt.executeUpdate();
         }
         catch (SQLException e)
@@ -109,18 +111,113 @@ public class DBConnector
     }
 
     /**
-     * @author el arana;
+     * @author JON ANDER ARANA;
      */
-    public static void Connect()
+    /**
+     * Insert a new row into the Basket table
+     *
+     * @param id
+     * @param quantity
+     * @param idUser
+     * @param idProduct
+     */
+    public void insertBasket(int id ,int quantity , int idUser,int idProduct)
     {
-
-        DBConnector app = new DBConnector();
-
-        // insert three new rows
-        app.insertProduct(51,"Envoy", 3000);
-
-    }
-
+    	String sql = "INSERT INTO BASKET(id,quantity,idUser,idProduct)VALUES(?,?,?,?)";
+    	
+        try
+        (
+                Connection conn = this.connect();
+                PreparedStatement pstmt = conn.prepareStatement(sql)
+        )
+{
+    pstmt.setInt(1,id);
+    pstmt.setInt(2,quantity);
+    pstmt.setInt(3,idUser);
+    pstmt.setInt(4,idProduct);
+    pstmt.executeUpdate();
 }
+catch (SQLException e)
+{
+    System.out.println(e.getMessage());}
+
+    	
+    }
+        /**
+         * @author JON ANDER ARANA;
+         */
+        /**
+         * Insert a new row into the Basket table
+         *
+         * @param id
+         * @param totalpaid
+         * @param idUser
+         */
+        public void insertOrderRecord(int id ,int totalpaid , int idUser)
+        {
+        	String sql = "INSERT INTO OrderRecord(id,totalpaid,idUser)VALUES(?,?,?)";
+        	
+            try
+            (
+                    Connection conn = this.connect();
+                    PreparedStatement pstmt = conn.prepareStatement(sql)
+            )
+    {
+        pstmt.setInt(1,id);
+        pstmt.setInt(2,totalpaid);
+        pstmt.setInt(3,idUser);
+        pstmt.executeUpdate();
+    }
+    catch (SQLException e)
+    {
+        System.out.println(e.getMessage());
+
+        	
+        }
+            
+}
+
+        /**
+         * @author JON ANDER ARANA;
+         */
+        /**
+         * Insert a new row into the Basket table
+         *
+         * @param id
+         * @param Quantity Order
+         * @param idOrder
+         * @param idUser
+         * @param PricePerProduct
+         */
+        public void insertOrderDetail(int id ,int quantityOrder , int idOrder,int idUser, int PricePerProduct)
+        {
+        	String sql = "INSERT INTO OrderDetail(id,quantityOrder,idOrder,idUser,PricePerProduct)VALUES(?,?,?,?,?)";
+        	
+        	 try
+             (
+                     Connection conn = this.connect();
+                     PreparedStatement pstmt = conn.prepareStatement(sql)
+             )
+     {
+         pstmt.setInt(1,id);
+         pstmt.setInt(2,quantityOrder);
+         pstmt.setInt(3,idOrder);
+         pstmt.setInt(4,idUser);
+         pstmt.setInt(5,PricePerProduct);
+         pstmt.executeUpdate();
+     }
+     catch (SQLException e)
+     {
+         System.out.println(e.getMessage());
+
+         	
+         }
+             
+        	
+        }
+        
+       
+}
+    
 	
 
