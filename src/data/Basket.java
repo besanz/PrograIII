@@ -5,6 +5,33 @@ import exceptions.BasketException;
 public class Basket {
 
     private int idBasket;
+    private int quantity;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * @Author Beñat

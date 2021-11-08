@@ -5,33 +5,51 @@ package data;
 
 public class User {
 
-    private String userName;
+    private int idUser;
+    private String name;
+    private String username;
     private String password;
     private boolean isAdmin;
 
     /**
      *
-     * @param userName
+     * @param idUser
+     * @param name
+     * @param username
      * @param password
      * @param isAdmin
      */
 
-    public User(String userName, String password, boolean isAdmin){
-        this.userName = userName;
+    public User(int idUser, String name, String username, String password, boolean isAdmin) {
+        this.idUser = idUser;
+        this.name = name;
+        this.username = username;
         this.password = password;
         this.isAdmin = isAdmin;
     }
 
-    public User() {
-
+    public int getIdUser() {
+        return idUser;
     }
 
-    public String getUserName() {
-        return userName;
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -49,5 +67,4 @@ public class User {
     public void setAdmin(boolean admin) {
         isAdmin = admin;
     }
-
 }

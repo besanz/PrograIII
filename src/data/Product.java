@@ -6,31 +6,28 @@ package data;
 
 public class Product {
 
+    private int idProduct;
     private String name;
-    private static int idAutoInc = 1;
-    private int id;
     private double price;
 
     /**
-     *
+     * @param idProduct
      * @param name
-     * @param id
      * @param price
      */
 
-
-    public Product(String name, int id, int price){
+    public Product(int idProduct, String name, double price) {
+        this.idProduct = idProduct;
         this.name = name;
-        this.id = idAutoInc++;
         this.price = price;
     }
 
-    public double getPrice() {
-        return price;
+    public int getIdProduct() {
+        return idProduct;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setIdProduct(int idProduct) {
+        this.idProduct = idProduct;
     }
 
     public String getName() {
@@ -41,14 +38,11 @@ public class Product {
         this.name = name;
     }
 
-    public int getId() {
-        return id;
+    public double getPrice() {
+        return price;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setPrice(double price) {
+        this.price = price;
     }
-
-
-
 }
