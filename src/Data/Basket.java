@@ -1,13 +1,5 @@
 package Data;
-<<<<<<< HEAD
-<<<<<<< HEAD
-//guten
-=======
 
->>>>>>> 72c11619988a0ceab44e6e51422cfb8dadb4288f
-=======
-
->>>>>>> 72c11619988a0ceab44e6e51422cfb8dadb4288f
 import exceptions.BasketException;
 
 import java.util.ArrayList;
