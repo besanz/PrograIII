@@ -45,9 +45,9 @@ public class DBConnector
      * @param name
      * @param price
      */
-    public void insertProduct(int id,String name,int price )
+    public void insertProduct(int id,String name,int price)
     {
-        String sql = "INSERT INTO Product(id,name,price) VALUES(?,?)";
+        String sql = "INSERT INTO Product(id,name,price) VALUES(?,?,?)";
 
         try
                 (
