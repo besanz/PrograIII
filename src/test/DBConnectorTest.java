@@ -1,6 +1,6 @@
-package Test;
+package test;
 
-import DB.DBConnector;
+import db.DBConnector;
 import junit.framework.TestCase;
 
 public class DBConnectorTest extends TestCase {

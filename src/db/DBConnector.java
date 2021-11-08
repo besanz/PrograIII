@@ -1,4 +1,4 @@
-package DB;
+package db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -109,9 +109,9 @@ public class DBConnector
     }
 
     /**
-     * @param args the command line arguments
+     * @author el arana;
      */
-    public static void main(String[] args)
+    public static void Connect()
     {
 
         DBConnector app = new DBConnector();

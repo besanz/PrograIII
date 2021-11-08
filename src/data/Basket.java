@@ -1,40 +1,10 @@
-package Data;
+package data;
 
 import exceptions.BasketException;
 
-import java.util.ArrayList;
-
 public class Basket {
 
-    private int id;
-    private final ArrayList<Product>products;
-    private int amount;
-
-    public Basket(int id, ArrayList<Product> products, int amount) {
-        this.id = id;
-        this.products = products;
-        this.amount = amount;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public ArrayList<Product> getProducts() {
-        return products;
-    }
-
-    public int getAmount() {
-        return amount;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
+    private int idBasket;
 
     /**
      * @Author Beñat
@@ -44,11 +14,11 @@ public class Basket {
      *
      * NOT FINISHED!
      *
-     * @param product
      * @throws BasketException
      */
-
+/*
     public void addProducts(final Product product) throws BasketException {
+        ArrayList<Product> products = new ArrayList<Product>();
         if (product != null) {
             int currentAmount = this.products.size();
             currentAmount += currentAmount;
@@ -57,7 +27,7 @@ public class Basket {
             throw new BasketException("You cannot add Null objects to Basket!");
         }
     }
-
+*/
     /**
      * @author Beñat
      *
@@ -70,7 +40,7 @@ public class Basket {
      * @throws BasketException
      */
 
-
+/*
     public void removeProducts(final Product product) throws BasketException {
         if (product != null) {
             int currentAmount = this.products.size();
@@ -79,6 +49,6 @@ public class Basket {
             throw new BasketException("Cannot remove %d instances of product as there are only %d instances!");
         }
     }
-
+*/
 
 }

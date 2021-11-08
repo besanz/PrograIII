@@ -1,6 +1,6 @@
-package Extra;
+package extra;
 
-import Data.Product;
+import data.Product;
 
 public interface iProduct {
 

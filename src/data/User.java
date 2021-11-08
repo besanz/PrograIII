@@ -1,9 +1,7 @@
-package Data;
+package data;
 /**
  * @author Beñat;
  */
-
-import java.util.Objects;
 
 public class User {
 
