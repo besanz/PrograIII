@@ -6,7 +6,7 @@ public class BasketException extends Exception {
      * @author Benat
      */
 
-    private static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = 1L;
 
     public BasketException(final String message) {
         super(message);

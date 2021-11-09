@@ -1,16 +1,7 @@
 package test;
 
-import db.DBConnector;
-import junit.framework.TestCase;
 
-public class DBConnectorTest extends TestCase {
-    private static DBConnector connector;
+public class DBConnectorTest {
 
-    protected void setUp() throws Exception {
-        super.setUp();
-    }
 
-    protected void tearDown() throws Exception {
-        super.tearDown();
-    }
 }

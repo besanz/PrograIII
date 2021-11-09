@@ -13,6 +13,7 @@ public class Login extends JFrame {
 
     private JTextField txtUser;
     private JPasswordField txtPass;
+    private JButton btnRegister;
 
     /**
      * Launch the application.
@@ -34,7 +35,7 @@ public class Login extends JFrame {
      * Create the application.
      */
     public Login() {
-        setTitle("AranaBanana");
+        setTitle("Login");
         getContentPane().setBackground(Color.GREEN);
         initialize();
     }
@@ -43,8 +44,8 @@ public class Login extends JFrame {
      * Initialize the contents of the frame.
      */
     private void initialize() {
-        this.setTitle("AranaBanana");
-        this.setResizable(true);
+        this.setTitle("BTC -- 100'000$");
+        this.setResizable(false);
         this.setBounds(100, 100, 503, 383);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setLayout(null);
@@ -76,12 +77,21 @@ public class Login extends JFrame {
         btnNewButton.setBounds(176, 198, 205, 29);
         this.getContentPane().add(btnNewButton);
 
+        btnRegister = new JButton("Sign Up");
+        btnRegister.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Register r = new Register();
+                r.setVisible(true);
+            }
+        });
+        btnRegister.setBounds(176, 243, 205, 29);
+        this.getContentPane().add(btnRegister);
     }
 
     /**
      * Method to login into main window.
      */
-    private void login(){
+    private void login() {
 
         if(this.txtUser.getText().equals("admin") && this.txtPass.getText().equals("admin")){
 

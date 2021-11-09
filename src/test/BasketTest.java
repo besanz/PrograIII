@@ -1,6 +1,6 @@
 package test;
 
-import data.Basket;
+import windows.Basket;
 import org.junit.*;
 import org.junit.Test;
 
@@ -9,9 +9,15 @@ public class BasketTest {
         Basket basket;
 
         @Before
-        public void setUp(){
-            basket = new Basket();
+        public void setUp() {
+                basket = new Basket();
         }
+
+        @After
+        public void tearDown() {
+                basket = null;
+        }
+
 
         @Test
         public void addOneItemToBasket() {

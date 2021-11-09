@@ -1,35 +1,18 @@
-package data;
+package windows;
 
-import exceptions.BasketException;
+import data.Product;
+import data.User;
 
-public class Basket {
+import javax.swing.*;
 
-    private int idBasket;
-    private int quantity;
-
-
+public class Basket extends JDialog {
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 
 
@@ -78,4 +61,4 @@ public class Basket {
     }
 */
 
-}
+
