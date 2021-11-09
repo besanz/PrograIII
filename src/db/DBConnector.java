@@ -44,10 +44,11 @@ public class DBConnector
      * @param id
      * @param name
      * @param price
+     * @param stock
      */
-    public void insertProduct(int id,String name,int price)
+    public void insertProduct(int id,String name,int price,int stock)
     {
-        String sql = "INSERT INTO Product(id,name,price) VALUES(?,?,?)";
+        String sql = "INSERT INTO Product(id,name,price,stock) VALUES(?,?,?,?)";
 
         try
                 (
@@ -58,6 +59,7 @@ public class DBConnector
             pstmt.setInt(1,id);
             pstmt.setString(2,name);
             pstmt.setInt(3,price);
+            pstmt.setInt(4,stock);
             pstmt.executeUpdate();
         }
         catch (SQLException e)
@@ -75,7 +77,7 @@ public class DBConnector
         DBConnector app = new DBConnector();
 
         // insert three new rows
-        app.insertProduct(51,"Envoy", 3000);
+        app.insertProduct(51,"Envoy", 3000,9345);
 
     }
     
@@ -109,40 +111,7 @@ public class DBConnector
             System.out.println(e.getMessage());
         }
     }
-
-    /**
-     * @author JON ANDER ARANA;
-     */
-    /**
-     * Insert a new row into the Basket table
-     *
-     * @param id
-     * @param quantity
-     * @param idUser
-     * @param idProduct
-     */
-    public void insertBasket(int id ,int quantity , int idUser,int idProduct)
-    {
-    	String sql = "INSERT INTO BASKET(id,quantity,idUser,idProduct)VALUES(?,?,?,?)";
-    	
-        try
-        (
-                Connection conn = this.connect();
-                PreparedStatement pstmt = conn.prepareStatement(sql)
-        )
-{
-    pstmt.setInt(1,id);
-    pstmt.setInt(2,quantity);
-    pstmt.setInt(3,idUser);
-    pstmt.setInt(4,idProduct);
-    pstmt.executeUpdate();
-}
-catch (SQLException e)
-{
-    System.out.println(e.getMessage());}
-
-    	
-    }
+   
         /**
          * @author JON ANDER ARANA;
          */
@@ -155,7 +124,7 @@ catch (SQLException e)
          */
         public void insertOrderRecord(int id ,int totalpaid , int idUser)
         {
-        	String sql = "INSERT INTO OrderRecord(id,totalpaid,idUser)VALUES(?,?,?)";
+        	String sql = "INSERT INTO Order(id,totalpaid,idUser)VALUES(?,?,?)";
         	
             try
             (
@@ -183,15 +152,15 @@ catch (SQLException e)
         /**
          * Insert a new row into the Basket table
          *
-         * @param id
-         * @param Quantity Order
+         * @param idProduct
          * @param idOrder
-         * @param idUser
-         * @param PricePerProduct
+         * @param quantityProduct
+         * @param date
+         * @param 
          */
-        public void insertOrderDetail(int id ,int quantityOrder , int idOrder,int idUser, int PricePerProduct)
+        public void insertOrderProduct(int idProduct ,int idO , int quantityProduct,int orderDate)
         {
-        	String sql = "INSERT INTO OrderDetail(id,quantityOrder,idOrder,idUser,PricePerProduct)VALUES(?,?,?,?,?)";
+        	String sql = "INSERT INTO ORDERPRODUCT(idProduct,idO,quantityOrder,orderDate)VALUES(?,?,?,?)";
         	
         	 try
              (
@@ -199,11 +168,10 @@ catch (SQLException e)
                      PreparedStatement pstmt = conn.prepareStatement(sql)
              )
      {
-         pstmt.setInt(1,id);
-         pstmt.setInt(2,quantityOrder);
-         pstmt.setInt(3,idOrder);
-         pstmt.setInt(4,idUser);
-         pstmt.setInt(5,PricePerProduct);
+         pstmt.setInt(1,idProduct);
+         pstmt.setInt(2,idO);
+         pstmt.setInt(3,quantityProduct);
+         pstmt.setInt(4,orderDate);
          pstmt.executeUpdate();
      }
      catch (SQLException e)
@@ -220,4 +188,3 @@ catch (SQLException e)
 }
     
 	
-

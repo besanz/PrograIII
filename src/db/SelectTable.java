@@ -40,7 +40,7 @@ public class SelectTable
      */
     public void selectAll()
     {
-        String sql = "SELECT id, Name, Price FROM Product";
+        String sql = "SELECT id, Name, Price,Stocks FROM Product";
 
         try
                 (
@@ -57,7 +57,8 @@ public class SelectTable
                         (
                                 rs.getInt("id") +  "\t" +
                                 rs.getString("Name") + "\t" +
-                                rs.getInt("Price")
+                                rs.getInt("Price") + "\t" +
+                                rs.getInt("Stock")
                         );
             }
         } catch (SQLException e)
@@ -118,7 +119,7 @@ public class SelectTable
   
     public void selectAll3()
     {
-        String sql = "SELECT idOrderDetail, QuantityProduct, idO,idP,PricePerProduct FROM OrderDetail";
+        String sql = "SELECT idOrder, totalpaid,idUser FROM OrderRecord";
 
         try
                 (
@@ -133,11 +134,9 @@ public class SelectTable
             {
                 System.out.println
                         (
-                                rs.getInt("idOrderDetail") +  "\t" +
-                                rs.getInt("QuantityProduct") + "\t" +
-                                rs.getInt("idO")+ "\t" + 
-                                rs.getInt("idP")+ "\t" + 
-                                rs.getInt("PricePerProduct")
+                                rs.getInt("idOrder") +  "\t" +
+                                rs.getInt("totalpaid") + "\t" +
+                                rs.getInt("idUser")
                         );
             }
         } catch (SQLException e)
@@ -154,7 +153,7 @@ public class SelectTable
   
     public void selectAll4()
     {
-        String sql = "SELECT idOrder, totalgastado,idUser FROM OrderRecord";
+        String sql = "SELECT idProduct,idO,quantityProduct,OrderDate FROM ORDERPRODUCT";
 
         try
                 (
@@ -169,9 +168,10 @@ public class SelectTable
             {
                 System.out.println
                         (
-                                rs.getInt("idOrder") +  "\t" +
-                                rs.getInt("totalgastado") + "\t" +
-                                rs.getInt("idUser")
+                                rs.getInt("idProduct") +  "\t" +
+                                rs.getInt("idO") + "\t" +
+                                rs.getInt("quantityProduct")+ "\t"+
+                                rs.getInt("OrderDate")
                             
                         );
             }
@@ -186,34 +186,4 @@ public class SelectTable
     * @author JON ANDER ARANA
     * @param select all rows in table
     */
-  
-    public void selectAll5()
-    {
-        String sql = "SELECT idBasket,quantity, idUser,idProduct FROM BASKET";
-
-        try
-                (
-                        Connection conn = this.connect();
-                        Statement stmt  = conn.createStatement();
-                        ResultSet rs    = stmt.executeQuery(sql)
-                )
-        {
-
-            // loop through the result set
-            while (rs.next())
-            {
-                System.out.println
-                        (
-                                rs.getInt("idBasket") +  "\t" +
-                                rs.getInt("quantity") + "\t" +
-                                rs.getInt("idUser")+ "\t" + 
-                                rs.getInt("idProduct")
-                              
-                        );
-            }
-        } catch (SQLException e)
-        {
-            System.out.println(e.getMessage());
-        }
-    }
 }
