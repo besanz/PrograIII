@@ -63,7 +63,8 @@ public class Register extends JDialog {
         JButton btnNewButton = new JButton("Sign Up");
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                addUser();dispose();
+                addUser();
+                dispose();
             }
         });
         btnNewButton.setBounds(138, 273, 146, 26);

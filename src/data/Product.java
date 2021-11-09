@@ -48,12 +48,15 @@ public class Product {
     public void setPrice(double price) {
         this.price = price;
     }
-    public int getstock() {
+
+    public int getStock() {
         return stock;
     }
 
-    public void setstock(int stock) {
+    public void setStock(int stock) {
         this.stock = stock;
     }
+
+
     
 }

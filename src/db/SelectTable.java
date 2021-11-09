@@ -75,41 +75,8 @@ public class SelectTable
         SelectTable app = new SelectTable();
         app.selectAll();
     }
-    
-    /**
-    *
-    * @author JON ANDER ARANA
-    * @param select all rows in table
-    */
-  
-    public void selectAll2()
-    {
-        String sql = "SELECT id, Name, password,IsAdmin FROM User";
 
-        try
-                (
-                        Connection conn = this.connect();
-                        Statement stmt  = conn.createStatement();
-                        ResultSet rs    = stmt.executeQuery(sql)
-                )
-        {
 
-            // loop through the result set
-            while (rs.next())
-            {
-                System.out.println
-                        (
-                                rs.getInt("id") +  "\t" +
-                                rs.getString("Name") + "\t" +
-                                rs.getString("password")+ "\t" + 
-                                rs.getInt("IsAdmin")
-                        );
-            }
-        } catch (SQLException e)
-        {
-            System.out.println(e.getMessage());
-        }
-    }
     /**
     *
     * @author JON ANDER ARANA
@@ -186,34 +153,6 @@ public class SelectTable
     * @author JON ANDER ARANA
     * @param select all rows in table
     */
-  
-    public void selectAll5()
-    {
-        String sql = "SELECT idBasket,quantity, idUser,idProduct FROM BASKET";
 
-        try
-                (
-                        Connection conn = this.connect();
-                        Statement stmt  = conn.createStatement();
-                        ResultSet rs    = stmt.executeQuery(sql)
-                )
-        {
 
-            // loop through the result set
-            while (rs.next())
-            {
-                System.out.println
-                        (
-                                rs.getInt("idBasket") +  "\t" +
-                                rs.getInt("quantity") + "\t" +
-                                rs.getInt("idUser")+ "\t" + 
-                                rs.getInt("idProduct")
-                              
-                        );
-            }
-        } catch (SQLException e)
-        {
-            System.out.println(e.getMessage());
-        }
-    }
 }

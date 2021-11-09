@@ -37,7 +37,7 @@ public class User {
     }
 
     public String getName() {
-        return name;
+        return getName();
     }
 
     public void setName(String name) {

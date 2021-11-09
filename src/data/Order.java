@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Order extends User {
 	
-	private int 
+	private int price;
 
     public Order(int idUser, String name, String username, String password, boolean isAdmin) {
 		super(idUser, name, username, password, isAdmin);
