@@ -17,6 +17,9 @@ public class Register extends JDialog {
     /**
      * Create the dialog.
      */
+    public void setVisible(){
+    	
+    };
     public Register() {
         this.setModal(true);
         setTitle("Register");

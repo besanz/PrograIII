@@ -7,6 +7,7 @@ package windows;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.Window;
 
 
 public class Login extends JFrame {
@@ -68,14 +69,15 @@ public class Login extends JFrame {
         lblNewLabel_1.setBounds(50, 159, 111, 20);
         this.getContentPane().add(lblNewLabel_1);
 
-        JButton btnNewButton = new JButton("Log In");
-        btnNewButton.addActionListener(new ActionListener() {
+        JButton btnLogIn = new JButton("Log In");
+        btnLogIn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 login();
             }
         });
-        btnNewButton.setBounds(176, 198, 205, 29);
-        this.getContentPane().add(btnNewButton);
+        
+        btnLogIn.setBounds(176, 198, 205, 29);
+        this.getContentPane().add(btnLogIn);
 
         btnRegister = new JButton("Sign Up");
         btnRegister.addActionListener(new ActionListener() {
@@ -84,6 +86,8 @@ public class Login extends JFrame {
                 r.setVisible(true);
             }
         });
+      
+            
         btnRegister.setBounds(176, 243, 205, 29);
         this.getContentPane().add(btnRegister);
     }

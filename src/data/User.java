@@ -25,7 +25,11 @@ public class User {
         this.isAdmin = isAdmin;
     }
 
-    public int getIdUser() {
+    public User(int idUser) {
+		this.idUser=idUser;
+	}
+
+	public int getIdUser() {
         return idUser;
     }
 
@@ -57,4 +61,11 @@ public class User {
     public void setAdmin(boolean admin) {
         isAdmin = admin;
     }
+
+	@Override
+	public String toString() {
+		return "User [idUser=" + idUser + ", username=" + username + ", password=" + password + ", isAdmin=" + isAdmin
+				+ "]";
+	}
+    
 }

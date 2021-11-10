@@ -8,7 +8,7 @@ public class Product {
 
     private int idProduct;
     private String name;
-    private double price;
+    private int price;
     private int stock;
 
     /**
@@ -18,7 +18,7 @@ public class Product {
      * @param stock
      */
 
-    public Product(int idProduct, String name, double price,int stock) {
+    public Product(int idProduct, String name, int price,int stock) {
         this.idProduct = idProduct;
         this.name = name;
         this.price = price;
@@ -45,7 +45,7 @@ public class Product {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

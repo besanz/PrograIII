@@ -1,18 +1,17 @@
 package db;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
-import data.User;
+import data.Product;
 
-public class SelectUser {
-
-    /**
-     * @auhor Benat
-     * @return
-     */
-
-    private static Connection connect()
+public class SelectOrderProduct {
+	
+	private static Connection connect()
     {
         // SQLite connection string
         String name = "BaseDeDatos.db";
@@ -31,14 +30,14 @@ public class SelectUser {
     }
 
     /**
-     * @author Benat
+     * @author JON ANDER ARANA
      * Receiving users from database
      */
 
-    public static ArrayList<User> selectUser()
+    public static ArrayList<Product> selectProduct()
     {
-        String sql = "SELECT id, Name, password,IsAdmin FROM User";
-        ArrayList<User> users = new ArrayList<User>();
+        String sql = "INSERT INTO Product id,name,Price,stock ";
+        ArrayList<Product> products = new ArrayList<Product>();
 
         try
                 (
@@ -50,19 +49,17 @@ public class SelectUser {
 
             while (rs.next())
             {
-            	boolean esAdmin=false;
-                if (rs.getInt("IsAdmin")==1){
-                	esAdmin=true;
-                }
-                        User u = new User ( rs.getInt("id"),rs.getString("Name"),rs.getString("password"), esAdmin);
-                        users.add(u);
+                       Product p = new Product( rs.getInt("id"),rs.getString("Name"),rs.getInt("Price"),rs.getInt("Stock"));
+                        products.add(p);
                        
             }
         } catch (SQLException e)
         {
             System.out.println(e.getMessage());
         }
-        return users;
+        return products;
     }
    
+
+
 }

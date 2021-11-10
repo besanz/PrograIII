@@ -71,15 +71,7 @@ public class DBConnector
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args)
-    {
-
-        DBConnector app = new DBConnector();
-
-        // insert three new rows
-        app.insertProduct(51,"Envoy", 3000,9345);
-
-    }
+   
     
     /**
      * Insert a new row into the warehouses table
@@ -89,7 +81,7 @@ public class DBConnector
      * @param password
      * @parama isAdmin
      */
-    public void insertUser(int id,String name,String password,boolean isAdmin )
+    public void insertUser(int id,String name,String password,int isAdmin )
     {
         String sql = "INSERT INTO User(id,name,password,isAdmin) VALUES(?,?,?,?)";
 
@@ -102,14 +94,20 @@ public class DBConnector
             pstmt.setInt(1,id);
             pstmt.setString(2,name);
             pstmt.setString(3,password);
-            int myInt = isAdmin ? 1:0;
-            pstmt.setInt(4,myInt);
+            pstmt.setInt(4,isAdmin);
             pstmt.executeUpdate();
         }
         catch (SQLException e)
         {
             System.out.println(e.getMessage());
         }
+    }
+  public static void main(String[] args)
+    {
+
+        DBConnector app = new DBConnector();
+       app.insertUser(11,"Adnan", "Adnan",0);
+
     }
    
         /**
@@ -122,9 +120,9 @@ public class DBConnector
          * @param totalpaid
          * @param idUser
          */
-        public void insertOrderRecord(int id ,int totalpaid , int idUser)
+        public void insertOrderRecord(int idOrder ,int totalpaid , int idUser)
         {
-        	String sql = "INSERT INTO Order(id,totalpaid,idUser)VALUES(?,?,?)";
+        	String sql = "INSERT INTO OrderRecord(idOrder,totalpaid,idUser)VALUES(?,?,?)";
         	
             try
             (
@@ -132,7 +130,7 @@ public class DBConnector
                     PreparedStatement pstmt = conn.prepareStatement(sql)
             )
     {
-        pstmt.setInt(1,id);
+        pstmt.setInt(1,idOrder);
         pstmt.setInt(2,totalpaid);
         pstmt.setInt(3,idUser);
         pstmt.executeUpdate();
@@ -145,7 +143,7 @@ public class DBConnector
         }
             
 }
-
+      
         /**
          * @author JON ANDER ARANA;
          */
@@ -184,7 +182,6 @@ public class DBConnector
         	
         }
         
-       
-}
+      }
     
 	

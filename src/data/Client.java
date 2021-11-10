@@ -8,8 +8,8 @@ public class Client extends User implements iBasket {
 
     private ArrayList<Product> basket;
 
-    public Client(int idUser, String name, String username, String password, boolean isAdmin) {
-        super(idUser, name, username, password, isAdmin);
+    public Client(int idUser, String username, String password, boolean isAdmin) {
+        super(idUser,username, password, isAdmin);
         this.basket = new ArrayList<>();
     }
 

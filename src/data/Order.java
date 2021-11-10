@@ -4,21 +4,27 @@ import java.util.ArrayList;
 
 public class Order extends User {
 	
-	private int price;
+	private int idOrder;
 	private int totalPaid;
 
-	public Order(int idUser, String username, String password, boolean isAdmin, int price, int totalPaid) {
+	public Order(int idUser, String username, String password, boolean isAdmin, int idOrder, int totalPaid) {
 		super(idUser, username, password, isAdmin);
-		this.price = price;
+		this.idOrder = idOrder;
 		this.totalPaid = totalPaid;
 	}
 
-	public int getPrice() {
-		return price;
+	public Order(int idOrder,  int totalpaid, int idUser) {
+		super(idUser);
+		this.idOrder=idOrder;
+		this.totalPaid=totalpaid;
 	}
 
-	public void setPrice(int price) {
-		this.price = price;
+	public int getidOrder() {
+		return idOrder;
+	}
+
+	public void idOrder(int idOrder) {
+		this.idOrder = idOrder;
 	}
 
 	public int getTotalPaid() {
