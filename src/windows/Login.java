@@ -96,6 +96,8 @@ public class Login extends JFrame {
         if(this.txtUser.getText().equals("admin") && this.txtPass.getText().equals("admin")){
 
             JOptionPane.showMessageDialog(this, "Welcome!" );
+            MainWindow mw = new MainWindow();
+            mw.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(this, "Error 303" );
         }

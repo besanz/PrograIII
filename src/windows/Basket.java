@@ -3,11 +3,8 @@ package windows;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTable;
-import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -17,7 +14,7 @@ import java.awt.event.ActionEvent;
  *
  */
 
-public class Basket extends JFrame {
+public class Basket extends JDialog {
 
 	private JPanel contentPane;
 	private JTable table;
@@ -42,7 +39,7 @@ public class Basket extends JFrame {
 	 * Create the frame.
 	 */
 	public Basket() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 597);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
