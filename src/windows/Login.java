@@ -98,6 +98,7 @@ public class Login extends JFrame {
             JOptionPane.showMessageDialog(this, "Welcome!" );
             MainWindow mw = new MainWindow();
             mw.setVisible(true);
+            this.dispose();
         }else{
             JOptionPane.showMessageDialog(this, "Error 303" );
         }

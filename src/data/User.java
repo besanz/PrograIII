@@ -6,7 +6,6 @@ package data;
 public class User {
 
     private int idUser;
-    private String name;
     private String username;
     private String password;
     private boolean isAdmin;
@@ -14,15 +13,13 @@ public class User {
     /**
      *
      * @param idUser
-     * @param name
      * @param username
      * @param password
      * @param isAdmin
      */
 
-    public User(int idUser, String name, String username, String password, boolean isAdmin) {
+    public User(int idUser, String username, String password, boolean isAdmin) {
         this.idUser = idUser;
-        this.name = name;
         this.username = username;
         this.password = password;
         this.isAdmin = isAdmin;
@@ -36,13 +33,6 @@ public class User {
         this.idUser = idUser;
     }
 
-    public String getName() {
-        return getName();
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getUsername() {
         return username;

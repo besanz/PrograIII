@@ -11,6 +11,8 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 
 /**
@@ -25,21 +27,6 @@ public class MainWindow extends JFrame {
 	private JTable table;
 	private JTextField txtFilter;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainWindow frame = new MainWindow();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -73,6 +60,13 @@ public class MainWindow extends JFrame {
 		JButton btnBasket = new JButton("Basket");
 		btnBasket.setBounds(252, 448, 115, 29);
 		contentPane.add(btnBasket);
+		btnBasket.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Basket r = new Basket();
+				r.setVisible(true);
+			}
+		});
+
 
 		JLabel lblSelectedElements = new JLabel("New label");
 		lblSelectedElements.setBounds(384, 452, 29, 20);
