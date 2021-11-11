@@ -8,30 +8,25 @@ import java.sql.SQLException;
 
 /**
  *
- * @author sqlitetutorial.net
  * @author JON ANDER ARANA
  */
-public class DBConnector
-{
+public class DBConnector {
 
     /**
      * Connect to the test.db database
      *
      * @return the Connection object
      */
-    private Connection connect()
-    {
+    private Connection connect() {
         // SQLite connection string
         String name = "BaseDeDatos.db";
-        String url = "jdbc:sqlite:"+name;
+        String url = "jdbc:sqlite:" + name;
 
         Connection conn = null;
 
-        try
-        {
+        try {
             conn = DriverManager.getConnection(url);
-        } catch (SQLException e)
-        {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
 
@@ -46,69 +41,52 @@ public class DBConnector
      * @param price
      * @param stock
      */
-    public void insertProduct(int id,String name,int price,int stock)
-    {
+    public void insertProduct(int id, String name, int price, int stock) {
         String sql = "INSERT INTO Product(id,name,price,stock) VALUES(?,?,?,?)";
 
         try
                 (
                         Connection conn = this.connect();
                         PreparedStatement pstmt = conn.prepareStatement(sql)
-                )
-        {
-            pstmt.setInt(1,id);
-            pstmt.setString(2,name);
-            pstmt.setInt(3,price);
-            pstmt.setInt(4,stock);
+                ) {
+            pstmt.setInt(1, id);
+            pstmt.setString(2, name);
+            pstmt.setInt(3, price);
+            pstmt.setInt(4, stock);
             pstmt.executeUpdate();
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
 
     /**
-     * @param args the command line arguments
-     */
-   
-    
-    /**
-     * Insert a new row into the warehouses table
-     *
-     * @param id
-     * @param name
+     * @param idUser
+     * @param username
      * @param password
-     * @parama isAdmin
+     * @param isAdmin
+     * @author Benat
+     * Inserting user to the database
      */
-    public void insertUser(int id,String name,String password,int isAdmin )
-    {
-        String sql = "INSERT INTO User(id,name,password,isAdmin) VALUES(?,?,?,?)";
+
+    public void insertUser(int idUser, String username, String password, boolean isAdmin) {
+        String sql = "INSERT INTO User(id, Name, password,IsAdmin) VALUES(?,?,?,?)";
 
         try
                 (
                         Connection conn = this.connect();
                         PreparedStatement pstmt = conn.prepareStatement(sql)
-                )
-        {
-            pstmt.setInt(1,id);
-            pstmt.setString(2,name);
-            pstmt.setString(3,password);
-            pstmt.setInt(4,isAdmin);
+                ) {
+            pstmt.setInt(1, idUser);
+            pstmt.setString(2, username);
+            pstmt.setString(3, password);
+            pstmt.setBoolean(2, isAdmin);
             pstmt.executeUpdate();
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
-  public static void main(String[] args)
-    {
 
-        DBConnector app = new DBConnector();
-       app.insertUser(11,"Adnan", "Adnan",0);
 
-    }
    
         /**
          * @author JON ANDER ARANA;
@@ -181,7 +159,7 @@ public class DBConnector
              
         	
         }
-        
+
       }
     
 	
