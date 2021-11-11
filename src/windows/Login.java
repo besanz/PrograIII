@@ -5,8 +5,13 @@ package windows;
  */
 
 import javax.swing.*;
+
+import data.User;
+import db.SelectUser;
+
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import java.awt.Window;
 
 
@@ -72,7 +77,21 @@ public class Login extends JFrame {
         JButton btnLogIn = new JButton("Log In");
         btnLogIn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                login();
+            	
+            	boolean UserSelect=false;
+            	ArrayList<User> userslist=SelectUser.selectUser();
+            	String UserTxt=txtUser.getText();
+				String passwordTxt= txtPass.getText();
+				
+				for( User a: userslist){
+					 if(a.getUsername().equals(UserTxt)&& a.getPassword().equals(passwordTxt)){
+						 MainWindow w = new MainWindow();
+						 w.setVisible(true);
+						 dispose();
+			 }else{
+							 JOptionPane.showMessageDialog(Login.this, "User does not exist");
+						 }
+					 }
             }
         });
         
@@ -92,23 +111,7 @@ public class Login extends JFrame {
         this.getContentPane().add(btnRegister);
     }
 
-    /**
-     * Method to login into main window.
-     */
-    private void login() {
-
-        if(this.txtUser.getText().equals("admin") && this.txtPass.getText().equals("admin")){
-
-            JOptionPane.showMessageDialog(this, "Welcome!" );
-            MainWindow mw = new MainWindow();
-            mw.setVisible(true);
-            this.dispose();
-        }else{
-            JOptionPane.showMessageDialog(this, "Error 303" );
-        }
-
-
-    }
+   
 
 
 }

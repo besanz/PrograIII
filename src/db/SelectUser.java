@@ -64,5 +64,11 @@ public class SelectUser {
         }
         return users;
     }
+
+    public static void main(String[]args){
+    	ArrayList<User> u= SelectUser.selectUser();
+    	System.out.println(u);
+    }
+    
    
 }

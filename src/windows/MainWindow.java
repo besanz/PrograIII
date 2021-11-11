@@ -69,7 +69,7 @@ public class MainWindow extends JFrame {
 
 
 		JLabel lblSelectedElements = new JLabel("New label");
-		lblSelectedElements.setBounds(384, 452, 29, 20);
+		lblSelectedElements.setBounds(384, 452, 86, 20);
 		contentPane.add(lblSelectedElements);
 	}
 }

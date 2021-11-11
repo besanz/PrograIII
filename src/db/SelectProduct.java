@@ -37,7 +37,7 @@ public class SelectProduct {
 
 	    public static ArrayList<Product> selectProduct()
 	    {
-	        String sql = "INSERT INTO Product id,name,Price,stock ";
+	        String sql = "Selecct id,name,Price,stock from Product ";
 	        ArrayList<Product> products = new ArrayList<Product>();
 
 	        try
