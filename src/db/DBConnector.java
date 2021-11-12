@@ -6,10 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 
-/**
- *
- * @author JON ANDER ARANA
- */
 public class DBConnector {
 
     /**
@@ -143,23 +139,21 @@ public class DBConnector {
                      Connection conn = this.connect();
                      PreparedStatement pstmt = conn.prepareStatement(sql)
              )
-     {
+         {
          pstmt.setInt(1,idProduct);
          pstmt.setInt(2,idO);
          pstmt.setInt(3,quantityProduct);
          pstmt.setInt(4,orderDate);
          pstmt.executeUpdate();
-     }
-     catch (SQLException e)
-     {
+         }
+         catch (SQLException e)
+         {
          System.out.println(e.getMessage());
 
          	
-         }
-             
-        	
+              }
         }
 
-      }
+}
     
 	
