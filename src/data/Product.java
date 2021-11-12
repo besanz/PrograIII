@@ -1,5 +1,8 @@
 package data;
 
+
+
+
 /**
  * @author Beñat
  */
@@ -56,6 +59,14 @@ public class Product {
     public void setStock(int stock) {
         this.stock = stock;
     }
+    public static int sumarPrecio(int a , int b){
+    	int result = a+b;
+    	return result;
+    }
+    public static double sumPrice(Product p1 , Product p2){
+		return p1.getPrice()+p2.getPrice();
+	}
+	
 
 
     

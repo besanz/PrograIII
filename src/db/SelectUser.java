@@ -44,9 +44,10 @@ public class SelectUser {
                 (
                         Connection conn = connect();
                         Statement stmt  = conn.createStatement();
+        				ResultSet rs    = stmt.executeQuery(sql);
                 )
         {
-        	ResultSet rs    = stmt.executeQuery(sql);
+        	
 
             while (rs.next())
             {
@@ -56,6 +57,7 @@ public class SelectUser {
                 }
                         User u = new User ( rs.getInt("id"),rs.getString("Name"),rs.getString("password"), esAdmin);
                         users.add(u);
+                
                        
             }
         } catch (SQLException e)

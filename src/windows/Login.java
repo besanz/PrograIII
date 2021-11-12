@@ -84,7 +84,7 @@ public class Login extends JFrame {
 				String passwordTxt= txtPass.getText();
 				
 				for( User a: userslist){
-					 if(a.getUsername().equals(UserTxt)&& a.getPassword().equals(passwordTxt)){
+					 if(UserTxt.equals(a.getUsername())&& passwordTxt.equals(a.getPassword())){
 						 MainWindow w = new MainWindow();
 						 w.setVisible(true);
 						 dispose();
