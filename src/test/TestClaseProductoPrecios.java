@@ -22,4 +22,13 @@ public class TestClaseProductoPrecios extends TestCase {
 		assertEquals(34,sum,0.0);
 	}
 
+	/**
+	 * @author Benat
+	 * testing junit
+	 */
+	public void testRestPrice(){
+		double rest = Product.restPrice(p2, p1);
+		assertEquals(26, rest, 0.0);
+	}
+
 }
