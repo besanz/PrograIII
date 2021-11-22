@@ -28,6 +28,12 @@ public class Product {
         this.stock=stock;
     }
 
+    public static double restPrice(Product p2, Product p1) {
+        double rest;
+        rest = p2.getPrice() - p1.getPrice();
+        return rest;
+    }
+
     public int getIdProduct() {
         return idProduct;
     }
