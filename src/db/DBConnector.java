@@ -13,7 +13,7 @@ public class DBConnector {
      *
      * @return the Connection object
      */
-    private Connection connect() {
+    private static Connection connect() {
         // SQLite connection string
         String name = "BaseDeDatos.db";
         String url = "jdbc:sqlite:" + name;
@@ -64,18 +64,18 @@ public class DBConnector {
      * Inserting user to the database
      */
 
-    public void insertUser(int idUser, String username, String password, boolean isAdmin) {
+    public static void insertUser(int idUser, String username, String password, int isAdmin) {
         String sql = "INSERT INTO User(id, Name, password,IsAdmin) VALUES(?,?,?,?)";
 
         try
                 (
-                        Connection conn = this.connect();
+                        Connection conn = connect();
                         PreparedStatement pstmt = conn.prepareStatement(sql)
                 ) {
             pstmt.setInt(1, idUser);
             pstmt.setString(2, username);
             pstmt.setString(3, password);
-            pstmt.setBoolean(2, isAdmin);
+            pstmt.setInt(4, isAdmin);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
