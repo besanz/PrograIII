@@ -1,5 +1,8 @@
 package windows;
 
+import data.Product;
+import db.SelectProduct;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -13,7 +16,9 @@ import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JLabel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -42,6 +47,7 @@ public class MainWindow extends JFrame {
 		table = new JTable();
 		table.setBounds(67, 85, 518, 347);
 		contentPane.add(table);
+
 
 		JComboBox orderBy = new JComboBox();
 		orderBy.setBounds(447, 43, 138, 26);
@@ -72,4 +78,10 @@ public class MainWindow extends JFrame {
 		lblSelectedElements.setBounds(384, 452, 86, 20);
 		contentPane.add(lblSelectedElements);
 	}
+	String sql = "Selecct id,name,Price,stock from Product ";
+
+	DefaultTableModel  tbl = new DefaultTableModel();
+
+	ArrayList<Product> productArrayList= SelectProduct.selectProduct(sql);
+
 }

@@ -15,6 +15,7 @@ public class DBConnector {
      */
     private static Connection connect() {
         // SQLite connection string
+
         String name = "BaseDeDatos.db";
         String url = "jdbc:sqlite:" + name;
 

@@ -93,9 +93,4 @@ public class Register extends JDialog {
         btnBack.setBounds(138, 315, 146, 26);
         contentPanel.add(btnBack);
     }
-
-    public void addUser(){
-
-
-    }
 }
