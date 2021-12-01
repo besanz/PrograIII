@@ -26,6 +26,17 @@ public class User {
      */
     private boolean isAdmin;
 
+    public boolean isItAdmin(){
+        boolean goodAdmin;
+        if (this.getUsername().equalsIgnoreCase("Admin") && this.getPassword().equalsIgnoreCase("Admin")){
+            goodAdmin =true;
+        }
+        else{
+            goodAdmin=false;
+        }
+        return goodAdmin;
+    }
+
     /**
      *Constructor to create an instance of the object.
      * @param idUser
