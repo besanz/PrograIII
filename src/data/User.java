@@ -124,5 +124,11 @@ public class User {
 		return "User [idUser=" + idUser + ", username=" + username + ", password=" + password + ", isAdmin=" + isAdmin
 				+ "]";
 	}
+
+    public static void Password (User u){
+        if ( u.getPassword().equals(" ")){
+            u= null;
+        }
+    }
     
 }
