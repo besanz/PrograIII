@@ -91,10 +91,8 @@ public class Login extends JFrame {
 					}
 				}
 				if (!userSelect) {
-					Register r = new Register();
-					r.setVisible(true);
-					dispose();
-					//JOptionPane.showMessageDialog(Login.this, "User does not exist");
+					
+					JOptionPane.showMessageDialog(Login.this, "User does not exist");
 				}
 
 			}
