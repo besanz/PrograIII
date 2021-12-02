@@ -96,47 +96,17 @@ public class MainWindow extends JFrame {
 		scrollPane.setViewportView(list);
 		contentPane.add(scrollPane);
 		
-		JButton btnPrice = new JButton("Price");
-		btnPrice.addActionListener(new ActionListener() {
+		JButton btnInformation = new JButton("Information");
+		btnInformation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Product selec=(Product)list.getSelectedValue();
-				JOptionPane.showMessageDialog(MainWindow.this, selec.getPrice());
+				Product pro = (Product) list.getSelectedValue();
+				ProductInfo window = new ProductInfo(pro);
+				window.setVisible(true);
+				dispose();
 			}
 		});
-		btnPrice.setBounds(470, 202, 115, 29);
-		contentPane.add(btnPrice);
-		
-		JButton btnQuantity = new JButton("Quantity");
-		btnQuantity.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Product selec=(Product)list.getSelectedValue();
-				JOptionPane.showMessageDialog(MainWindow.this, selec.getStock());
-
-				
-			}
-		});
-		btnQuantity.setBounds(470, 247, 115, 29);
-		contentPane.add(btnQuantity);
-		
-		JButton btnLogo = new JButton("Logo");
-		btnLogo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				
-			}
-		});
-		btnLogo.setBounds(470, 292, 115, 29);
-		contentPane.add(btnLogo);
-		
-		JButton btnId = new JButton("Id");
-		btnId.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Product selec=(Product)list.getSelectedValue();
-				JOptionPane.showMessageDialog(MainWindow.this, selec.getIdProduct());
-			}
-		});
-		btnId.setBounds(470, 159, 115, 29);
-		contentPane.add(btnId);
+		btnInformation.setBounds(462, 159, 138, 29);
+		contentPane.add(btnInformation);
 		
 		
 		
