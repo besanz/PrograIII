@@ -72,6 +72,11 @@ public class Product {
     public static double sumPrice(Product p1 , Product p2){
 		return p1.getPrice()+p2.getPrice();
 	}
+
+	@Override
+	public String toString() {
+		return "Product [idProduct=" + idProduct + ", name=" + name + ", price=" + price + ", stock=" + stock + "]";
+	}
 	
 
 

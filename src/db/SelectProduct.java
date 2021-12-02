@@ -38,7 +38,7 @@ public class SelectProduct {
 
 	    public static ArrayList<Product> selectProduct(String sql)
 	    {
-	        String s = "Selecct id,name,Price,stock from Product ";
+	        String s = "Select id,name,Price,stock from Product ";
 	        ArrayList<Product> products = new ArrayList<Product>();
 
 	        try
