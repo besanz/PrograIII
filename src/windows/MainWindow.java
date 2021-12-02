@@ -12,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -19,17 +20,17 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JList;
 
 /**
  *
- * @author Benat;
+ * @author JON ANDER ARANA;
  *
  */
 
 public class MainWindow extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table;
 	private JTextField txtFilter;
 
 
@@ -43,10 +44,12 @@ public class MainWindow extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		
 
-		table = new JTable();
-		table.setBounds(67, 85, 518, 347);
-		contentPane.add(table);
+		ArrayList<Product> selectProduct = db.SelectProduct.selectProduct(sql);
+		JList list = new JList();
+		DefaultListModel<Product>model=new DefaultListModel<Product>();
 
 
 		JComboBox orderBy = new JComboBox();
@@ -77,11 +80,19 @@ public class MainWindow extends JFrame {
 		JLabel lblSelectedElements = new JLabel("New label");
 		lblSelectedElements.setBounds(384, 452, 86, 20);
 		contentPane.add(lblSelectedElements);
+		
+		DefaultListModel<Product>model1=new DefaultListModel<Product>();
+		for(Product a: selectProduct)
+		{
+		model1.addElement(a);
+		}
+		list.setModel(model1);
+		list.setBounds(67, 152, 432, 216);
+		contentPane.add(list);
 	}
 	String sql = "Selecct id,name,Price,stock from Product ";
 
 	DefaultTableModel  tbl = new DefaultTableModel();
 
 	ArrayList<Product> productArrayList= SelectProduct.selectProduct(sql);
-
 }
