@@ -57,11 +57,12 @@ public class ProductInfo extends JFrame {
 		
 		String id = p.getIdProduct()+"";
 		JLabel lblId2 = new JLabel(id);
-		lblId2.setBounds(309, 177, 69, 20);
+		lblId2.setBounds(323, 177, 69, 20);
 		contentPane.add(lblId2);
 		
-		JLabel lblNPrice2 = new JLabel("New label");
-		lblNPrice2.setBounds(309, 270, 69, 20);
+		String price = p.getPrice()+"";
+		JLabel lblNPrice2 = new JLabel(price);
+		lblNPrice2.setBounds(333, 270, 69, 20);
 		contentPane.add(lblNPrice2);
 	}
 }
