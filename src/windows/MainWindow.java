@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -48,7 +50,6 @@ public class MainWindow extends JFrame {
 		
 
 		ArrayList<Product> selectProduct = db.SelectProduct.selectProduct(sql);
-		JList list = new JList();
 		DefaultListModel<Product>model=new DefaultListModel<Product>();
 
 
@@ -86,9 +87,60 @@ public class MainWindow extends JFrame {
 		{
 		model1.addElement(a);
 		}
+		JList list = new JList();
 		list.setModel(model1);
-		list.setBounds(67, 152, 432, 216);
-		contentPane.add(list);
+		list.setBounds(15, 161, 432, 216);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(15, 161, 432, 216);
+		scrollPane.setViewportView(list);
+		contentPane.add(scrollPane);
+		
+		JButton btnPrice = new JButton("Price");
+		btnPrice.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Product selec=(Product)list.getSelectedValue();
+				JOptionPane.showMessageDialog(MainWindow.this, selec.getPrice());
+			}
+		});
+		btnPrice.setBounds(470, 202, 115, 29);
+		contentPane.add(btnPrice);
+		
+		JButton btnQuantity = new JButton("Quantity");
+		btnQuantity.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Product selec=(Product)list.getSelectedValue();
+				JOptionPane.showMessageDialog(MainWindow.this, selec.getStock());
+
+				
+			}
+		});
+		btnQuantity.setBounds(470, 247, 115, 29);
+		contentPane.add(btnQuantity);
+		
+		JButton btnLogo = new JButton("Logo");
+		btnLogo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
+		btnLogo.setBounds(470, 292, 115, 29);
+		contentPane.add(btnLogo);
+		
+		JButton btnId = new JButton("Id");
+		btnId.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Product selec=(Product)list.getSelectedValue();
+				JOptionPane.showMessageDialog(MainWindow.this, selec.getIdProduct());
+			}
+		});
+		btnId.setBounds(470, 159, 115, 29);
+		contentPane.add(btnId);
+		
+		
+		
+		
 	}
 	String sql = "Selecct id,name,Price,stock from Product ";
 
