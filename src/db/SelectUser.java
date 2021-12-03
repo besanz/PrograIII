@@ -37,7 +37,7 @@ public class SelectUser {
 
     public static ArrayList<User> selectUser()
     {
-        String sql = "SELECT id, Name, password,IsAdmin FROM User";
+        String sql = "SELECT id, Name, password, IsAdmin FROM User";
         ArrayList<User> users = new ArrayList<User>();
 
         try
@@ -52,7 +52,7 @@ public class SelectUser {
             while (rs.next())
             {
             	boolean esAdmin=false;
-                if (rs.getInt("IsAdmin")==1){
+                if (rs.getInt("IsAdmin") == 1){
                 	esAdmin=true;
                 }
                         User u = new User ( rs.getInt("id"),rs.getString("Name"),rs.getString("password"), esAdmin);

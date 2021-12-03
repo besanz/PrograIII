@@ -11,7 +11,7 @@ import data.User;
 import javax.swing.JLabel;
 import java.awt.Font;
 
-public class Users extends JFrame {
+public class UsersWindow extends JFrame {
 
 	private JPanel contentPane;
 
@@ -23,7 +23,7 @@ public class Users extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Users(User u) {
+	public UsersWindow(User u) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 819, 687);
 		contentPane = new JPanel();

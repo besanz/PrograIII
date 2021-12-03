@@ -28,6 +28,7 @@ public class Register extends JDialog {
         setTitle("Register");
         setBounds(100, 100, 337, 433);
         getContentPane().setLayout(new BorderLayout());
+        getContentPane().setBackground(Color.BLUE);
         contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
         getContentPane().add(contentPanel, BorderLayout.CENTER);
         contentPanel.setLayout(null);
