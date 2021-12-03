@@ -1,5 +1,8 @@
 package windows;
 
+/**
+ * @author JON ANDER ARANA
+ */
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -76,7 +79,7 @@ public class Register extends JDialog {
             	
             	db.DBConnector.insertUser(idUser, name, Password, Admin);
             	
-            	MainWindow w = new MainWindow();
+            	MainWindow w = new MainWindow(null);
 				w.setVisible(true);
                 
             }

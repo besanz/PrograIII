@@ -11,6 +11,7 @@ import data.Product;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import java.awt.Font;
 
 public class ProductInfo extends JFrame {
 
@@ -20,7 +21,9 @@ public class ProductInfo extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	
+	/**
+	 * @author JON ANDER ARANA
+	 */
 
 	/**
 	 * Create the frame.
@@ -34,35 +37,41 @@ public class ProductInfo extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblInformation = new JLabel("INFORMATION");
-		lblInformation.setBounds(289, 65, 126, 20);
+		lblInformation.setFont(new Font("Verdana", Font.BOLD, 27));
+		lblInformation.setBounds(289, 65, 267, 20);
 		contentPane.add(lblInformation);
 		
-		JLabel lblId = new JLabel("id");
-		lblId.setBounds(331, 141, 123, 20);
+		JLabel lblId = new JLabel("Id of the product:");
+		lblId.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 25));
+		lblId.setBounds(45, 137, 359, 20);
 		contentPane.add(lblId);
 		label.setBounds(447, 312, 145, 41);
 		contentPane.add(label);
 		
-		JLabel lblPrice = new JLabel("Price");
-		lblPrice.setBounds(323, 231, 69, 20);
+		JLabel lblPrice = new JLabel("Current Price");
+		lblPrice.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 25));
+		lblPrice.setBounds(45, 223, 176, 20);
 		contentPane.add(lblPrice);
 		
 		JLabel lblPicture = new JLabel("Picture");
-		lblPicture.setBounds(323, 334, 69, 20);
+		lblPicture.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 25));
+		lblPicture.setBounds(45, 312, 119, 20);
 		contentPane.add(lblPicture);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(269, 382, 146, 94);
+		panel.setBounds(300, 317, 146, 94);
 		contentPane.add(panel);
 		
 		String id = p.getIdProduct()+"";
 		JLabel lblId2 = new JLabel(id);
-		lblId2.setBounds(323, 177, 69, 20);
+		lblId2.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		lblId2.setBounds(363, 140, 69, 20);
 		contentPane.add(lblId2);
 		
 		String price = p.getPrice()+"";
 		JLabel lblNPrice2 = new JLabel(price);
-		lblNPrice2.setBounds(333, 270, 69, 20);
+		lblNPrice2.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		lblNPrice2.setBounds(354, 226, 176, 20);
 		contentPane.add(lblNPrice2);
 	}
 }

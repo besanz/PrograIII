@@ -73,7 +73,7 @@ public class Login extends JFrame {
 
 				for (User a : userslist) {
 					if (UserTxt.equals(a.getUsername()) && passwordTxt.equals(a.getPassword())) {
-						MainWindow w = new MainWindow();
+						MainWindow w = new MainWindow(a);
 						w.setVisible(true);
 						dispose();
 						userSelect = true;
