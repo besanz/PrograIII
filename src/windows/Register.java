@@ -1,8 +1,5 @@
 package windows;
 
-/**
- * @author JON ANDER ARANA
- */
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -28,9 +25,9 @@ public class Register extends JDialog {
         setTitle("Register");
         setBounds(100, 100, 337, 433);
         getContentPane().setLayout(new BorderLayout());
-        getContentPane().setBackground(Color.BLUE);
         contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
         getContentPane().add(contentPanel, BorderLayout.CENTER);
+        getContentPane().setBackground(Color.ORANGE);
         contentPanel.setLayout(null);
 
         JLabel lblNewLabel = new JLabel("idUser:");
@@ -80,7 +77,7 @@ public class Register extends JDialog {
             	
             	db.DBConnector.insertUser(idUser, name, Password, Admin);
             	
-            	MainWindow w = new MainWindow(null);
+            	MainWindow w = new MainWindow();
 				w.setVisible(true);
                 
             }

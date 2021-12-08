@@ -3,6 +3,7 @@ package db;
 import java.sql.*;
 import java.util.ArrayList;
 
+import data.Client;
 import data.User;
 
 public class SelectUser {
@@ -37,7 +38,7 @@ public class SelectUser {
 
     public static ArrayList<User> selectUser()
     {
-        String sql = "SELECT id, Name, password, IsAdmin FROM User";
+        String sql = "SELECT id, Name, password,IsAdmin FROM User";
         ArrayList<User> users = new ArrayList<User>();
 
         try
@@ -52,11 +53,13 @@ public class SelectUser {
             while (rs.next())
             {
             	boolean esAdmin=false;
-                if (rs.getInt("IsAdmin") == 1){
+                if (rs.getInt("IsAdmin")==1){
                 	esAdmin=true;
+                	users.add(new User ( rs.getInt("id"),rs.getString("Name"),rs.getString("password"), esAdmin));
+                }else{
+                	users.add((User)new Client(rs.getInt("id"),rs.getString("Name"),rs.getString("password"), esAdmin));
                 }
-                        User u = new User ( rs.getInt("id"),rs.getString("Name"),rs.getString("password"), esAdmin);
-                        users.add(u);
+                        
                 
                        
             }

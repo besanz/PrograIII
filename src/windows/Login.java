@@ -30,7 +30,7 @@ public class Login extends JFrame {
 	 */
 	public Login() {
 		setTitle("Login");
-		getContentPane().setBackground(Color.GREEN);
+		getContentPane().setBackground(Color.ORANGE);
 		initialize();
 	}
 
@@ -38,8 +38,8 @@ public class Login extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		this.setTitle("BTC -- 100'000$");
-		this.setResizable(false);
+		this.setTitle("");
+		this.setResizable(true);
 		this.setBounds(100, 100, 503, 383);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(null);
@@ -72,11 +72,15 @@ public class Login extends JFrame {
 				String passwordTxt = txtPass.getText();
 
 				for (User a : userslist) {
-					if (UserTxt.equals(a.getUsername()) && passwordTxt.equals(a.getPassword())) {
+					if (UserTxt.equals(a.getUsername()) && passwordTxt.equals(a.getPassword())) {	
+						
+						JOptionPane.showMessageDialog(Login.this, "Welcome "+a.getUsername()+"!");
+						
 						MainWindow w = new MainWindow(a);
 						w.setVisible(true);
 						dispose();
 						userSelect = true;
+						
 					}
 				}
 				if (!userSelect) {
@@ -93,6 +97,7 @@ public class Login extends JFrame {
 		btnRegister = new JButton("Sign Up");
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				Register r = new Register();
 				r.setVisible(true);
 			}
