@@ -14,7 +14,7 @@ public class Order extends User {
 	}
 
 	public Order(int idOrder,  int totalpaid, int idUser) {
-		super(idUser);
+		super();
 		this.idOrder=idOrder;
 		this.totalPaid=totalpaid;
 	}

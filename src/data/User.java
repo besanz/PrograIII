@@ -54,9 +54,8 @@ public class User {
 
     /**
      * second constructor. Only gets back the id
-     * @param idUser
      */
-    public User(int idUser) {
+    public User() {
 		this.idUser=idUser;
 	}
 

@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JButton;
 
 public class SettingsWindow extends JFrame {
 
@@ -23,8 +24,8 @@ public class SettingsWindow extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblYourProfile = new JLabel("Your Profile");
-		lblYourProfile.setBounds(61, 67, 69, 20);
-		contentPane.add(lblYourProfile);
+		JButton btnBackToLogin = new JButton("Back to Login");
+		btnBackToLogin.setBounds(35, 279, 144, 29);
+		contentPane.add(btnBackToLogin);
 	}
 }
