@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import data.Order;
-import data.Product;
 
 public class SelectOrderRecord {
 	

@@ -2,8 +2,6 @@ package app;
 
 import windows.Login;
 
-import java.awt.*;
-
 /**
  * Initialize app
  */

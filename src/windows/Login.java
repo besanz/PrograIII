@@ -1,18 +1,22 @@
 package windows;
 
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 /**
  * @author Beñat
  */
-
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 import data.User;
 import db.SelectUser;
-
-import java.awt.*;
-import java.awt.event.*;
-import java.util.ArrayList;
-import java.awt.Window;
 
 public class Login extends JFrame {
 

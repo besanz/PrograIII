@@ -1,7 +1,5 @@
 package data;
 
-import java.util.ArrayList;
-
 public class Order extends User {
 	
 	private int idOrder;

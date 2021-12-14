@@ -1,16 +1,11 @@
 package windows;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import data.Product;
-
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 
 public class ProductInfo extends JFrame {
 

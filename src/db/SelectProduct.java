@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import data.Product;
-import data.User;
 
 public class SelectProduct {
 	

@@ -1,15 +1,13 @@
 package windows;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import data.User;
-import javax.swing.JLabel;
-import java.awt.Font;
 
 public class UsersWindow extends JFrame {
 

@@ -1,8 +1,8 @@
 package data;
 
-import extra.iBasket;
-
 import java.util.ArrayList;
+
+import extra.iBasket;
 
 public class Client extends User implements iBasket {
 

@@ -1,43 +1,39 @@
 package windows;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
 import data.Product;
 import data.User;
 import db.SelectProduct;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-import java.awt.Toolkit;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JTable;
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
-import javax.swing.DefaultListModel;
-import javax.swing.JButton;
-import java.awt.Color;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import javax.swing.JLabel;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-
 /**
  *
- * @author Benat;
- * @author JON ANDER ARANA;
+ * @author JON ANDER ARANA
+ * @author Benat
  *
  */
 
 public class MainWindow extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtFilter;
+	private JTextField txtFiltro;
 	private User u;
 
 
@@ -60,27 +56,32 @@ public class MainWindow extends JFrame {
 		contentPane.setLayout(null);
 		
 		
-
+		
 		ArrayList<Product> selectProduct = db.SelectProduct.selectProduct(sql);
 		DefaultListModel<Product>model=new DefaultListModel<Product>();
 
 
-		JComboBox orderBy = new JComboBox();
-		orderBy.setBounds(462, 43, 138, 26);
-		contentPane.add(orderBy);
-
-		txtFilter = new JTextField();
-		txtFilter.setBackground(Color.CYAN);
-		txtFilter.setBounds(15, 119, 131, 26);
-		contentPane.add(txtFilter);
-		txtFilter.setColumns(10);
+		txtFiltro = new JTextField();
+		txtFiltro.setBackground(Color.CYAN);
+		txtFiltro.setBounds(15, 119, 131, 26);
+		contentPane.add(txtFiltro);
+		txtFiltro.setColumns(10);
 
 		JButton btnSearch = new JButton("Search");
 		btnSearch.setBounds(161, 118, 79, 29);
 		contentPane.add(btnSearch);
+		btnSearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(txtFiltro.getSelectedText() != null){
+				filtrar();
+				}else{
+					JOptionPane.showMessageDialog(MainWindow.this, "You must type something first!");
+				}
+			}
+		});
 
 		JButton btnBasket = new JButton("Basket");
-		btnBasket.setBounds(252, 448, 115, 29);
+		btnBasket.setBounds(230, 448, 137, 29);
 		contentPane.add(btnBasket);
 		btnBasket.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -108,48 +109,61 @@ public class MainWindow extends JFrame {
 		JButton btnInformation = new JButton("Information");
 		btnInformation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				Product pro = (Product) list.getSelectedValue();
+				
+				if(list.getSelectedValue() != null){
 				ProductInfo window = new ProductInfo(pro);
 				window.setVisible(true);
-				dispose();
+				dispose();}else{
+					JOptionPane.showMessageDialog(MainWindow.this, "Please, select a coin first" );
+					
+				}
 			}
 		});
 		btnInformation.setBounds(462, 159, 138, 29);
 		contentPane.add(btnInformation);
 		
-		JButton btnNewProduct_1 = new JButton("New Product");
-		btnNewProduct_1.setBounds(462, 204, 138, 29);
-		contentPane.add(btnNewProduct_1);
-		btnNewProduct_1.setEnabled(u.isAdmin());
+		JButton btnNewProduct = new JButton("New Product");
+		btnNewProduct.setBounds(462, 204, 138, 29);
+		contentPane.add(btnNewProduct);
+		btnNewProduct.setEnabled(u.isAdmin());
 		
-		JButton btnNewProduct_1_1 = new JButton("View Users");
-		btnNewProduct_1_1.addActionListener(new ActionListener() {
+		JButton btnViewUsers = new JButton("View Users");
+		btnViewUsers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewProduct_1_1.setBounds(462, 244, 138, 29);
-		contentPane.add(btnNewProduct_1_1);
-		btnNewProduct_1_1.setEnabled(u.isAdmin());
-		btnNewProduct_1_1.setEnabled(u.isAdmin());
+		btnViewUsers.setBounds(462, 244, 138, 29);
+		contentPane.add(btnViewUsers);
+		btnViewUsers.setEnabled(u.isAdmin());
+		btnViewUsers.setEnabled(u.isAdmin());
 		
-		JButton btnNewProduct_1_1_1 = new JButton("Settings");
-		btnNewProduct_1_1_1.addActionListener(new ActionListener() {
+		JButton btnSettings = new JButton("Settings");
+		btnSettings.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewProduct_1_1_1.setBounds(462, 287, 138, 29);
-		contentPane.add(btnNewProduct_1_1_1);
+		btnSettings.setBounds(462, 287, 138, 29);
+		contentPane.add(btnSettings);
 		
 		JButton btnNewButton = new JButton("Back");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				Login l = new Login();
-				l.setVisible(true);
+				backToLogin();
+				
 			}
 		});
 		btnNewButton.setBounds(462, 448, 138, 29);
 		contentPane.add(btnNewButton);
+		
+		JButton btnAddToBasket = new JButton("Add to Basket");
+		btnAddToBasket.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnAddToBasket.setBounds(77, 448, 138, 29);
+		contentPane.add(btnAddToBasket);
 		
 		
 		
@@ -160,4 +174,39 @@ public class MainWindow extends JFrame {
 	DefaultTableModel  tbl = new DefaultTableModel();
 
 	ArrayList<Product> productArrayList= SelectProduct.selectProduct(sql);
+	
+	
+	/**
+	 * must check this method
+	 */
+	public void filtrar(){
+		
+
+		ArrayList<Product> products = db.SelectProduct.selectProduct(sql);;
+		ArrayList<Product> productFiltrados = new ArrayList<>();
+		
+		for (Product p : products) {
+			
+			if(p.getName().toLowerCase().contains(this.txtFiltro.getText().toLowerCase())){
+				productFiltrados.add(p);
+			}
+			
+			 
+		}
+		
+		
+	}
+	
+
+	public void backToLogin(){
+		
+		int opcionSeleccionar = JOptionPane.showConfirmDialog(this, "Are you sure?");
+	
+		if(opcionSeleccionar == JOptionPane.OK_OPTION){
+			dispose();
+			Login l = new Login();
+			l.setVisible(true);
+		}
+	
+	}
 }
