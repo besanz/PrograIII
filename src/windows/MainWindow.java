@@ -19,6 +19,8 @@ import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
@@ -51,15 +53,10 @@ public class MainWindow extends JFrame {
 		contentPane.setLayout(null);
 
 
+		ArrayList<Product> selectProduct = db.SelectProduct.selectProduct();
+		
 
-		ArrayList<Product> selectProduct = db.SelectProduct.selectProduct(sql);
-		DefaultListModel<Product>model=new DefaultListModel<Product>();
-
-		ProductText = new JTextField();
-		ProductText.setBackground(Color.LIGHT_GRAY);
-		ProductText.setBounds(15, 119, 131, 26);
-		contentPane.add(ProductText);
-		ProductText.setColumns(10);
+		
 
 		JButton btnSearch = new JButton("Search");
 		btnSearch.addActionListener(new ActionListener() {
@@ -70,16 +67,7 @@ public class MainWindow extends JFrame {
 		btnSearch.setBounds(161, 118, 79, 29);
 		contentPane.add(btnSearch);
 
-		JButton btnBasket = new JButton("Add to Basket");
-		btnBasket.setBounds(236, 448, 131, 29);
-		contentPane.add(btnBasket);
-		btnBasket.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				Basket r = new Basket();
-				r.setVisible(true);
-			}
-		});
+		
 
 		DefaultListModel<Product>model1=new DefaultListModel<Product>();
 		for(Product a: selectProduct)
@@ -95,6 +83,35 @@ public class MainWindow extends JFrame {
 		scrollPane.setViewportView(list);
 		contentPane.add(scrollPane);
 
+ProductText = new JTextField();
+		
+        ProductText.addKeyListener(new KeyAdapter() {
+            
+            @Override
+            public void keyReleased(KeyEvent e) {//Se ejecuta cuando se libera una tecla
+                JTextField textField = (JTextField) e.getSource();
+                //obtiene contenido del textfield
+                String text = ProductText.getText();
+                if (text.trim().length() > 0) {
+                    //nuevo Model temporal
+                    DefaultListModel<Product> tmp = new DefaultListModel();
+                    for (int i = 0; i < model1.getSize(); i++) {//recorre Model original
+                        //si encuentra coincidencias agrega a model temporal
+                        if (model1.getElementAt(i).getName().toLowerCase().contains(text.toLowerCase())) {
+                            tmp.addElement(model1.getElementAt(i));
+                        }
+                    }
+                    //agrega nuevo modelo a JList
+                    list.setModel(tmp);
+                } else {//si esta vacio muestra el Model original
+                    list.setModel(model1);
+                }
+            }
+        });
+		ProductText.setBackground(Color.LIGHT_GRAY);
+		ProductText.setBounds(15, 119, 131, 26);
+		contentPane.add(ProductText);
+		ProductText.setColumns(10);
 		JButton btnInformation = new JButton("Information");
 		btnInformation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -109,15 +126,40 @@ public class MainWindow extends JFrame {
 
 		
 
-		JButton btnNewProduct_1_1 = new JButton("View Users");
+		JButton btnNewProduct_1_1 = new JButton("View Info");
 		btnNewProduct_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			//	Client cli = (Clien;
-				//Users window = new Users(pro);
-				//window.setVisible(true);
+			Users window = new Users(u);
+				window.setVisible(true);
 				dispose();
 				
 			
+			}
+		});
+		
+		JButton btnBasket = new JButton("Add to Basket");
+		btnBasket.setBounds(236, 448, 131, 29);
+		contentPane.add(btnBasket);
+		btnBasket.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Product p = (Product) list.getSelectedValue();
+				
+				
+				
+				DefaultListModel<Product> model = new DefaultListModel<Product>();
+				ArrayList<Product> products = db.SelectUserProduct.selectProductUser(u);
+				for(Product pro : products){
+					model.addElement(pro);
+				}
+				
+				list.setModel(model);
+				
+			
+				
+			
+				Basket r = new Basket(u, null);
+				r.setVisible(true);
 			}
 		});
 		btnNewProduct_1_1.setBounds(462, 244, 138, 29);
@@ -143,6 +185,10 @@ public class MainWindow extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("AddProduct");
+		btnNewButton_1.setVisible(false);
+		if(u.isAdmin()){
+			btnNewButton_1.setVisible(true);
+		}
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ProductToAdd window = new ProductToAdd();
@@ -153,9 +199,9 @@ public class MainWindow extends JFrame {
 		btnNewButton_1.setBounds(462, 199, 138, 29);
 		contentPane.add(btnNewButton_1);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(517, 16, 69, 20);
-		contentPane.add(lblNewLabel);
+		JLabel lblName = new JLabel(u.getUsername()+"");
+		lblName.setBounds(494, 16, 92, 55);
+		contentPane.add(lblName);
 
 
 
@@ -165,5 +211,5 @@ public class MainWindow extends JFrame {
 
 	DefaultTableModel  tbl = new DefaultTableModel();
 
-	ArrayList<Product> productArrayList= SelectProduct.selectProduct(sql);
+	ArrayList<Product> productArrayList= SelectProduct.selectProduct();
 }

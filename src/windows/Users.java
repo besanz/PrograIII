@@ -10,6 +10,9 @@ import javax.swing.border.EmptyBorder;
 import data.User;
 import javax.swing.JLabel;
 import java.awt.Font;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Users extends JFrame {
 
@@ -51,17 +54,28 @@ public class Users extends JFrame {
 		lblInformation.setBounds(272, 49, 267, 20);
 		contentPane.add(lblInformation);
 		
-		JLabel lblNewLabel = new JLabel("New label");
+		
+		JLabel lblNewLabel = new JLabel(u.getIdUser()+"");
 		lblNewLabel.setBounds(372, 153, 244, 20);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
+		JLabel lblNewLabel_1 = new JLabel(u.getUsername()+"");
 		lblNewLabel_1.setBounds(372, 242, 167, 20);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("New label");
+		JLabel lblNewLabel_2 = new JLabel(u.isAdmin()+"");
 		lblNewLabel_2.setBounds(372, 325, 167, 20);
 		contentPane.add(lblNewLabel_2);
+		
+		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainWindow window = new MainWindow(u);
+						window.setVisible(true);
+				dispose();
+			}
+		});
+		btnBack.setBounds(348, 565, 115, 29);
+		contentPane.add(btnBack);
 	}
-
 }

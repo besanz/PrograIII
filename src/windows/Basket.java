@@ -5,6 +5,10 @@ import java.awt.EventQueue;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+
+import data.Product;
+import data.User;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -22,7 +26,7 @@ public class Basket extends JDialog {
 	/**
 	 * Create the frame.
 	 */
-	public Basket() {
+	public Basket(User u ,Product a) {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 597);
 		contentPane = new JPanel();
@@ -50,6 +54,7 @@ public class Basket extends JDialog {
 		JButton btnBuy = new JButton("Buy Now");
 		btnBuy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		btnBuy.setBounds(74, 470, 271, 29);

@@ -12,6 +12,9 @@ import data.Product;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.Font;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ProductInfo extends JFrame {
 
@@ -73,5 +76,17 @@ public class ProductInfo extends JFrame {
 		lblNPrice2.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		lblNPrice2.setBounds(354, 226, 176, 20);
 		contentPane.add(lblNPrice2);
+		
+		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainWindow j = new MainWindow(null);
+				j.setVisible(true);
+				dispose();
+				
+			}
+		});
+		btnBack.setBounds(331, 538, 115, 29);
+		contentPane.add(btnBack);
 	}
 }

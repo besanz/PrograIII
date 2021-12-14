@@ -9,8 +9,9 @@ import java.util.ArrayList;
 
 import data.Order;
 import data.Product;
+import data.User;
 
-public class SelectOrderRecord {
+public class SelectUserProduct {
 	
 	private static Connection connect()
     {
@@ -35,10 +36,11 @@ public class SelectOrderRecord {
      * Receiving users from database
      */
 
-    public static ArrayList<Order> selectOrderRecord()
+    public static ArrayList<Product> selectProductUser(User u)
     {
-        String sql = "INSERT INTO idOrder,totalpaid,idUser";
-        ArrayList<Order> orderRecord = new ArrayList<Order>();
+        String sql = "SELECT IdUserU,IdProductP FROM UsuarioProducto";
+        ArrayList<Product> products = new ArrayList<Product>();
+        ArrayList<Product> prod = db.SelectProduct.selectProduct();
 
         try
                 (
@@ -50,15 +52,21 @@ public class SelectOrderRecord {
 
             while (rs.next())
             {
-                       Order o = new Order(rs.getInt("idOrder"),rs.getInt("totalpaid"),rs.getInt("idUser"));
-                        orderRecord.add(o);
+            	if(u.getIdUser()==rs.getInt("IdUserU")){
+            		for(Product a : prod){
+            			if(a.getIdProduct()==rs.getInt("IdProductP")){
+            				products.add(a);
+            			}
+            		}
+            	}
+                       
                        
             }
         } catch (SQLException e)
         {
             System.out.println(e.getMessage());
         }
-        return orderRecord;
+        return products;
     }
    
 
