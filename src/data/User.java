@@ -1,10 +1,16 @@
 package data;
+
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * @author Beñat
  * @version 1.0
  */
 
 public class User {
+	
+	private static final AtomicInteger count = new AtomicInteger(0);
+	private boolean isFilled;
 
     /**
      * users id
@@ -46,7 +52,9 @@ public class User {
      */
 
     public User(int idUser, String username, String password, boolean isAdmin) {
-        this.idUser = idUser;
+    	
+    	isFilled = false;
+        this.idUser = count.incrementAndGet();
         this.username = username;
         this.password = password;
         this.isAdmin = isAdmin;
@@ -54,10 +62,9 @@ public class User {
 
     /**
      * second constructor. Only gets back the id
-     * @param idUser
      */
-    public User(int idUser) {
-		this.idUser=idUser;
+    public User() {
+		
 	}
 
 

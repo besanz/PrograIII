@@ -1,8 +1,13 @@
 package db;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
+import data.Client;
 import data.User;
 
 public class SelectUser {
@@ -54,9 +59,11 @@ public class SelectUser {
             	boolean esAdmin=false;
                 if (rs.getInt("IsAdmin")==1){
                 	esAdmin=true;
+                	users.add(new User ( rs.getInt("id"),rs.getString("Name"),rs.getString("password"), esAdmin));
+                }else{
+                	users.add((User)new Client(rs.getInt("id"),rs.getString("Name"),rs.getString("password"), esAdmin));
                 }
-                        User u = new User ( rs.getInt("id"),rs.getString("Name"),rs.getString("password"), esAdmin);
-                        users.add(u);
+                        
                 
                        
             }

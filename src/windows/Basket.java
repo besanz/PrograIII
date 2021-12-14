@@ -1,16 +1,13 @@
 package windows;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-
-import data.Product;
-import data.User;
-
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.border.EmptyBorder;
 
 /**
  * 
@@ -26,7 +23,7 @@ public class Basket extends JDialog {
 	/**
 	 * Create the frame.
 	 */
-	public Basket(User u ,Product a) {
+	public Basket() {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 597);
 		contentPane = new JPanel();
@@ -54,7 +51,6 @@ public class Basket extends JDialog {
 		JButton btnBuy = new JButton("Buy Now");
 		btnBuy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 			}
 		});
 		btnBuy.setBounds(74, 470, 271, 29);

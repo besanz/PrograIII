@@ -38,12 +38,12 @@ public class DBConnector {
      * @param price
      * @param stock
      */
-    public static void insertProduct(int id, String name, int price, int stock) {
+    public void insertProduct(int id, String name, int price, int stock) {
         String sql = "INSERT INTO Product(id,name,price,stock) VALUES(?,?,?,?)";
 
         try
                 (
-                        Connection conn = connect();
+                        Connection conn = this.connect();
                         PreparedStatement pstmt = conn.prepareStatement(sql)
                 ) {
             pstmt.setInt(1, id);

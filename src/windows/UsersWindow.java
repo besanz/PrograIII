@@ -1,20 +1,15 @@
 package windows;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import data.User;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
-public class Users extends JFrame {
+public class UsersWindow extends JFrame {
 
 	private JPanel contentPane;
 
@@ -26,7 +21,7 @@ public class Users extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Users(User u) {
+	public UsersWindow(User u) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 819, 687);
 		contentPane = new JPanel();
@@ -54,28 +49,17 @@ public class Users extends JFrame {
 		lblInformation.setBounds(272, 49, 267, 20);
 		contentPane.add(lblInformation);
 		
-		
-		JLabel lblNewLabel = new JLabel(u.getIdUser()+"");
+		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setBounds(372, 153, 244, 20);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel(u.getUsername()+"");
+		JLabel lblNewLabel_1 = new JLabel("New label");
 		lblNewLabel_1.setBounds(372, 242, 167, 20);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel(u.isAdmin()+"");
+		JLabel lblNewLabel_2 = new JLabel("New label");
 		lblNewLabel_2.setBounds(372, 325, 167, 20);
 		contentPane.add(lblNewLabel_2);
-		
-		JButton btnBack = new JButton("Back");
-		btnBack.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				MainWindow window = new MainWindow(u);
-						window.setVisible(true);
-				dispose();
-			}
-		});
-		btnBack.setBounds(348, 565, 115, 29);
-		contentPane.add(btnBack);
 	}
+
 }

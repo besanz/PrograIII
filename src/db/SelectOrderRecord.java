@@ -8,10 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import data.Order;
-import data.Product;
-import data.User;
 
-public class SelectUserProduct {
+public class SelectOrderRecord {
 	
 	private static Connection connect()
     {
@@ -36,11 +34,10 @@ public class SelectUserProduct {
      * Receiving users from database
      */
 
-    public static ArrayList<Product> selectProductUser(User u)
+    public static ArrayList<Order> selectOrderRecord()
     {
-        String sql = "SELECT IdUserU,IdProductP FROM UsuarioProducto";
-        ArrayList<Product> products = new ArrayList<Product>();
-        ArrayList<Product> prod = db.SelectProduct.selectProduct();
+        String sql = "INSERT INTO idOrder,totalpaid,idUser";
+        ArrayList<Order> orderRecord = new ArrayList<Order>();
 
         try
                 (
@@ -52,24 +49,17 @@ public class SelectUserProduct {
 
             while (rs.next())
             {
-            	if(u.getIdUser()==rs.getInt("IdUserU")){
-            		for(Product a : prod){
-            			if(a.getIdProduct()==rs.getInt("IdProductP")){
-            				products.add(a);
-            			}
-            		}
-            	}
-                       
+                       Order o = new Order(rs.getInt("idOrder"),rs.getInt("totalpaid"),rs.getInt("idUser"));
+                        orderRecord.add(o);
                        
             }
         } catch (SQLException e)
         {
             System.out.println(e.getMessage());
         }
-        return products;
+        return orderRecord;
     }
    
 
 
 }
-
