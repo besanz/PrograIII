@@ -1,110 +1,99 @@
 package windows;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Font;
+/**
+ * @author JON ANDER ARANA
+ */
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
-
-import db.InsertUser;
-
 public class Register extends JDialog {
 
-	private final JPanel contentPanel = new JPanel();
-	private JTextField txtNombre;
-	private JPasswordField txtPass1;
-	private JPasswordField txtPass2;
+    private final JPanel contentPanel = new JPanel();
+    private JTextField txtidUser;
+    private JTextField txtName;
+    private JPasswordField txtPass1;
+    private JPasswordField txtAdmin;
 
-	/**
-	 * Create the dialog.
-	 */
-	public Register() {
-		setFont(new Font("Jokerman", Font.PLAIN, 12));
-		this.setModal(true);
-		setTitle("Welcome to our App!");
-		setBounds(100, 100, 337, 332);
-		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBackground(Color.ORANGE);
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		contentPanel.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("Username:");
-		lblNewLabel.setBounds(15, 45, 108, 20);
-		contentPanel.add(lblNewLabel);
-		
-		txtNombre = new JTextField();
-		txtNombre.setBounds(138, 42, 146, 26);
-		contentPanel.add(txtNombre);
-		txtNombre.setColumns(10);
-		
-		
-		txtPass1 = new JPasswordField();
-		txtPass1.setBounds(138, 84, 146, 25);
-		contentPanel.add(txtPass1);
-		
-		JLabel lblPassword = new JLabel("Password:");
-		lblPassword.setBounds(15, 87, 108, 20);
-		contentPanel.add(lblPassword);
-		
-		JLabel lblConfirmarPassword = new JLabel("Confirm PassW:");
-		lblConfirmarPassword.setBounds(15, 128, 118, 20);
-		contentPanel.add(lblConfirmarPassword);
-		
-		txtPass2 = new JPasswordField();
-		txtPass2.setBounds(138, 125, 146, 25);
-		contentPanel.add(txtPass2);
-		
-		JButton btnNewButton = new JButton("Sign Up");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				createUser();
-			}
-		});
-		btnNewButton.setBounds(80, 185, 146, 26);
-		contentPanel.add(btnNewButton);
-		
-		JButton btnVolver = new JButton("Back");
-		btnVolver.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
-		btnVolver.setBounds(80, 227, 146, 26);
-		contentPanel.add(btnVolver);
-	}
-	
-	public void createUser(){
-		
-		if(this.txtPass1.getText().equals(this.txtPass2.getText())){
-			
-			//We need to add autoIncrementation.
-			int idUser = 1;
-			
-			String username = this.txtNombre.getText();
-			String password = this.txtPass1.getText();
-			boolean isAdmin = false;
-			
-/**
- * Have to check this methods.
- * Previous version: 04-12-21
- * Last version: 13-12-21
- */
-			InsertUser.addUser(idUser, username, password, isAdmin);
-			
-			
-		}else{
-			JOptionPane.showMessageDialog(this, "Passwords don't match!" );
-		}
-		
-	}
+    /**
+     * Create the dialog.
+     */
+    public void setVisible(){
+    	
+    };
+    public Register() {
+        this.setModal(true);
+        setTitle("Register");
+        setBounds(100, 100, 337, 433);
+        getContentPane().setLayout(new BorderLayout());
+        contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+        getContentPane().add(contentPanel, BorderLayout.CENTER);
+        contentPanel.setLayout(null);
+
+        JLabel lblNewLabel = new JLabel("idUser:");
+        lblNewLabel.setBounds(15, 55, 69, 20);
+        contentPanel.add(lblNewLabel);
+
+        txtidUser = new JTextField();
+        txtidUser.setBounds(138, 49, 146, 26);
+        contentPanel.add(txtidUser);
+        txtidUser.setColumns(10);
+
+        JLabel lblName = new JLabel("Your Name:");
+        lblName.setBounds(15, 112, 108, 20);
+        contentPanel.add(lblName);
+
+        txtName = new JTextField();
+        txtName.setColumns(10);
+        txtName.setBounds(138, 106, 146, 26);
+        contentPanel.add(txtName);
+
+        txtPass1 = new JPasswordField();
+        txtPass1.setBounds(138, 165, 146, 25);
+        contentPanel.add(txtPass1);
+
+        JLabel lblPassword = new JLabel("Password:");
+        lblPassword.setBounds(15, 170, 69, 20);
+        contentPanel.add(lblPassword);
+
+        JLabel lblConfirmPassword = new JLabel("Admin");
+        lblConfirmPassword.setBounds(15, 227, 108, 20);
+        contentPanel.add(lblConfirmPassword);
+
+        txtAdmin = new JPasswordField();
+        txtAdmin.setBounds(138, 222, 146, 25);
+        contentPanel.add(txtAdmin);
+
+        JButton btnNewButton = new JButton("Sign Up");
+        btnNewButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	
+            	String idUserx = txtidUser.getText();
+            	int idUser = Integer.parseInt(idUserx);
+            	String name = txtName.getText();
+            	String Password = txtPass1.getText();
+            	String Admin1 = txtAdmin.getText();
+            	int  Admin = Integer.parseInt(Admin1);
+            	
+            	db.DBConnector.insertUser(idUser, name, Password, Admin);
+            	
+            	MainWindow w = new MainWindow(null);
+				w.setVisible(true);
+                
+            }
+        });
+        btnNewButton.setBounds(138, 273, 146, 26);
+        contentPanel.add(btnNewButton);
+
+        JButton btnBack = new JButton("Back to Login");
+        btnBack.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
+        btnBack.setBounds(138, 315, 146, 26);
+        contentPanel.add(btnBack);
+    }
 }
