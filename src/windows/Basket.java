@@ -13,9 +13,10 @@ import javax.swing.border.EmptyBorder;
 
 import data.Product;
 import javax.swing.JList;
+import java.awt.Color;
 
 /**
- * @author JON ANDER ARANA;
+ * 
  * @author Benat;
  *
  */
@@ -23,22 +24,18 @@ import javax.swing.JList;
 public class Basket extends JDialog {
 
 	private JPanel contentPane;
-	private JTable table;
 
 	/**
 	 * Create the frame.
 	 */
 	public Basket(ArrayList<Product> basket) {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 803, 601);
+		setBounds(100, 100, 439, 601);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.YELLOW);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		table = new JTable();
-		table.setBounds(74, 103, 271, 306);
-		contentPane.add(table);
 		
 		JButton btnRemove = new JButton("Remove");
 		btnRemove.setBounds(218, 425, 127, 29);
@@ -62,7 +59,7 @@ public class Basket extends JDialog {
 		contentPane.add(btnBuy);
 		
 		JList list = new JList();
-		list.setBounds(439, 99, 271, 322);
+		list.setBounds(74, 74, 271, 322);
 		contentPane.add(list);
 		
 		DefaultListModel<Product> model1 = new DefaultListModel<>();
