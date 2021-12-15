@@ -71,11 +71,10 @@ public class Register extends JDialog {
             public void actionPerformed(ActionEvent e) {
             	
             	String idUserx = txtidUser.getText();
-            	int idUser = Integer.parseInt(idUserx);
+            	int idUser = 100;
             	String name = txtName.getText();
             	String Password = txtPass1.getText();
-            	String Admin1 = txtAdmin.getText();
-            	int  Admin = Integer.parseInt(Admin1);
+            	boolean  Admin = false;
             	
             	db.DBConnector.insertUser(idUser, name, Password, Admin);
             	

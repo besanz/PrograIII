@@ -65,7 +65,7 @@ public class DBConnector {
      * Inserting user to the database
      */
 
-    public static void insertUser(int idUser, String username, String password, int isAdmin) {
+    public static void insertUser(int idUser, String username, String password, boolean isAdmin) {
         String sql = "INSERT INTO User(id, Name, password,IsAdmin) VALUES(?,?,?,?)";
 
         try
@@ -76,7 +76,7 @@ public class DBConnector {
             pstmt.setInt(1, idUser);
             pstmt.setString(2, username);
             pstmt.setString(3, password);
-            pstmt.setInt(4, isAdmin);
+            pstmt.setBoolean(4, isAdmin);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
