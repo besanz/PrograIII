@@ -1,7 +1,7 @@
 package test;
 
 import data.Product;
-import junit.framework.TestCase;
+//import junit.framework.TestCase;
 
 public class TestClaseProductoPrecios extends TestCase {
 
