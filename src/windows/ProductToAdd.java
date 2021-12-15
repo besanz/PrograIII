@@ -87,10 +87,10 @@ public class ProductToAdd extends JFrame {
             	String Stockx = StockText.getText();
             	int  Stock = Integer.parseInt(Stockx);
             	
-            	//db.DBConnector.insertProduct(idProduct, name, ProductPrice, Stock);
+            	db.DBConnector.insertProduct(idProduct, name, ProductPrice, Stock);
             	
-            	MainWindow w = new MainWindow(null);
-				w.setVisible(true);
+           // 	MainWindow w = new MainWindow(null);
+			//	w.setVisible(true);
 				dispose();
                 
 

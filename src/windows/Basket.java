@@ -1,6 +1,7 @@
 package windows;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class Basket extends JDialog {
 	 */
 	public Basket(ArrayList<Product> basket,User u) {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 439, 601);
+		setBounds(100, 100, 664, 672);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.YELLOW);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -41,7 +42,7 @@ public class Basket extends JDialog {
 		
 		
 		JButton btnBack = new JButton("Back");
-		btnBack.setBounds(74, 425, 129, 29);
+		btnBack.setBounds(74, 465, 129, 29);
 		contentPane.add(btnBack);
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -51,16 +52,10 @@ public class Basket extends JDialog {
 			}
 		});
 		
-		JButton btnBuy = new JButton("Buy Now");
-		btnBuy.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnBuy.setBounds(74, 470, 271, 29);
-		contentPane.add(btnBuy);
+		
 		
 		JList list = new JList();
-		list.setBounds(74, 74, 271, 322);
+		list.setBounds(188, 96, 271, 322);
 		contentPane.add(list);
 		
 		
@@ -78,11 +73,44 @@ public class Basket extends JDialog {
 				model1.removeElement(pSeleccionado);
 			}
 		});
-		btnRemove.setBounds(218, 425, 127, 29);
+		btnRemove.setBounds(447, 465, 127, 29);
 		contentPane.add(btnRemove);
+		
+		JButton btnBuy = new JButton("Buy Now");
+		btnBuy.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+			}
+		});
+		btnBuy.setBounds(188, 550, 271, 29);
+		contentPane.add(btnBuy);
 		
 		JLabel Name = new JLabel(u.getUsername()+"");
 		Name.setBounds(333, 33, 69, 20);
 		contentPane.add(Name);
+		
+		JLabel lblElPrecioFinal = new JLabel("El precio final es");
+		lblElPrecioFinal.setFont(new Font("Yu Gothic", Font.BOLD, 16));
+		lblElPrecioFinal(new Font("Yu Gothic", Font.BOLD, 16));
+		lblElPrecioFinal.setBounds(7, 304, 194, 20);
+		contentPane.add(lblElPrecioFinal);
+
+		double total = 0;
+		for(Object a: model1.toArray())
+		{
+			total += ((Product)a).getPrice();
+		}
+		
+		JLabel label = new JLabel(total+" €");
+		label.setFont(new Font("Yu Gothic", Font.BOLD, 16));
+		label.setBounds(74, 340, 120, 20);
+		contentPane.add(label);
+	}
+
+	private void lblElPrecioFinal(Font font) {
+		// TODO Auto-generated method stub
+		
 	}
 }
