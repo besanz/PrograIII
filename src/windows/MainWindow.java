@@ -86,7 +86,7 @@ public class MainWindow extends JFrame {
 		contentPane.add(btnBasket);
 		btnBasket.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Basket r = new Basket(basket);
+				Basket r = new Basket(basket, u);
 				r.setVisible(true);
 			}
 		});
@@ -169,7 +169,8 @@ ProductText.addKeyListener(new KeyAdapter() {
 		btnNewProduct.setEnabled(u.isAdmin());
 		
 		JLabel lblName = new JLabel(u.getUsername()+"");
-		lblName.setBounds(494, 16, 92, 55);
+		lblName.setForeground(Color.WHITE);
+		lblName.setBounds(508, 16, 92, 55);
 		contentPane.add(lblName);
 
 		

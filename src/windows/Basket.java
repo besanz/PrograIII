@@ -12,8 +12,11 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 
 import data.Product;
+import data.User;
+
 import javax.swing.JList;
 import java.awt.Color;
+import javax.swing.JLabel;
 
 /**
  * 
@@ -28,7 +31,7 @@ public class Basket extends JDialog {
 	/**
 	 * Create the frame.
 	 */
-	public Basket(ArrayList<Product> basket) {
+	public Basket(ArrayList<Product> basket,User u) {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 439, 601);
 		contentPane = new JPanel();
@@ -37,15 +40,15 @@ public class Basket extends JDialog {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnRemove = new JButton("Remove");
-		btnRemove.setBounds(218, 425, 127, 29);
-		contentPane.add(btnRemove);
+		
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.setBounds(74, 425, 129, 29);
 		contentPane.add(btnBack);
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				MainWindow window = new MainWindow(u);
+				window.setVisible(true);
 				dispose();
 			}
 		});
@@ -62,10 +65,26 @@ public class Basket extends JDialog {
 		list.setBounds(74, 74, 271, 322);
 		contentPane.add(list);
 		
+		
 		DefaultListModel<Product> model1 = new DefaultListModel<>();
 		for (Product product : basket) {
 			model1.addElement(product);
 		}
 		list.setModel(model1);
+		
+		JButton btnRemove = new JButton("Remove");
+		btnRemove.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Product pSeleccionado = (Product) list.getSelectedValue();
+				model1.removeElement(pSeleccionado);
+			}
+		});
+		btnRemove.setBounds(218, 425, 127, 29);
+		contentPane.add(btnRemove);
+		
+		JLabel Name = new JLabel(u.getUsername()+"");
+		Name.setBounds(333, 33, 69, 20);
+		contentPane.add(Name);
 	}
 }
