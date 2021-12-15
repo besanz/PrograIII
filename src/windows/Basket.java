@@ -79,9 +79,11 @@ public class Basket extends JDialog {
 		JButton btnBuy = new JButton("Buy Now");
 		btnBuy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
-				
+				for (int i = 0 ; i< model1.size(); i++){
+					int b = u.getIdUser();
+					int a = model1.getElementAt(i).getIdProduct();
+					db.DBConnector.insertUserProduct(b,a);
+				}			
 			}
 		});
 		btnBuy.setBounds(188, 550, 271, 29);

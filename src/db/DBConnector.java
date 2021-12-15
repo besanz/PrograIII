@@ -154,13 +154,13 @@ public class DBConnector {
          	
               }
         }
-        public void insertUserProduct (int IdUserU ,int IdProductP)
+        public static void insertUserProduct (int IdUserU ,int IdProductP)
         {
-        	String sql = "INSERT INTO UserProduct(IdUserU,IdProductP)VALUES(?,?,?,?)";
+        	String sql = "INSERT INTO UserProduct(IdUserU,IdProductP)VALUES(?,?)";
         	
        	 try
             (
-                    Connection conn = this.connect();
+                    Connection conn = connect();
                     PreparedStatement pstmt = conn.prepareStatement(sql)
             )
         {
@@ -168,8 +168,8 @@ public class DBConnector {
         pstmt.setInt(2,IdProductP);
         pstmt.executeUpdate();
         }
-        catch (SQLException e)
-        {
+        catch (SQLException e){
+       
         System.out.println(e.getMessage());
 
         	
