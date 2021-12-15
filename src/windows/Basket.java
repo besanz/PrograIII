@@ -15,7 +15,7 @@ import data.Product;
 import javax.swing.JList;
 
 /**
- * 
+ * @author JON ANDER ARANA;
  * @author Benat;
  *
  */
