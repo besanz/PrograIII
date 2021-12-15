@@ -26,6 +26,10 @@ public class User {
      * users passwrod
      */
     private String password;
+ /**
+  * 
+  */
+    private int saldo;
 
     /**
      * determines if user had admin rights or not
@@ -51,13 +55,14 @@ public class User {
      * @param isAdmin
      */
 
-    public User(int idUser, String username, String password, boolean isAdmin) {
+    public User(int idUser, String username, String password,int saldo, boolean isAdmin) {
     	
     	isFilled = false;
         this.idUser = count.incrementAndGet();
         this.username = username;
         this.password = password;
         this.isAdmin = isAdmin;
+        this.saldo=saldo;
     }
 
     /**
@@ -132,8 +137,17 @@ public class User {
     public void setAdmin(boolean admin) {
         isAdmin = admin;
     }
+    
 
-    /**
+    public int getSaldo() {
+		return saldo;
+	}
+
+	public void setSaldo(int saldo) {
+		this.saldo = saldo;
+	}
+
+	/**
      * When printing user
      * @return
      */

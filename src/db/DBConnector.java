@@ -154,7 +154,28 @@ public class DBConnector {
          	
               }
         }
+        public void insertUserProduct (int IdUserU ,int IdProductP)
+        {
+        	String sql = "INSERT INTO UserProduct(IdUserU,IdProductP)VALUES(?,?,?,?)";
+        	
+       	 try
+            (
+                    Connection conn = this.connect();
+                    PreparedStatement pstmt = conn.prepareStatement(sql)
+            )
+        {
+        pstmt.setInt(1,IdUserU);
+        pstmt.setInt(2,IdProductP);
+        pstmt.executeUpdate();
+        }
+        catch (SQLException e)
+        {
+        System.out.println(e.getMessage());
 
+        	
+             }
+        	
+        }
 }
     
 	

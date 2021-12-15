@@ -61,7 +61,7 @@ public class MainWindow extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		
+		this.setTitle("Our cryptos for you, "+u.getUsername());
 		
 		ArrayList<Product> selectProduct = db.SelectProduct.selectProduct();
 		DefaultListModel<Product>model=new DefaultListModel<Product>();

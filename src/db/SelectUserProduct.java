@@ -38,7 +38,7 @@ public class SelectUserProduct {
 
     public static ArrayList<Product> selectProductUser(User u)
     {
-        String sql = "SELECT IdUserU,IdProductP FROM UsuarioProducto";
+        String sql = "SELECT IdUserU,IdProductP FROM UserProduct";
         ArrayList<Product> products = new ArrayList<Product>();
         ArrayList<Product> prod = db.SelectProduct.selectProduct();
 

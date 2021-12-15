@@ -1,5 +1,6 @@
 package windows;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -7,16 +8,13 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 
 import data.Product;
 import data.User;
-
-import javax.swing.JList;
-import java.awt.Color;
-import javax.swing.JLabel;
 
 /**
  * 

@@ -5,8 +5,8 @@ public class Order extends User {
 	private int idOrder;
 	private int totalPaid;
 
-	public Order(int idUser, String username, String password, boolean isAdmin, int idOrder, int totalPaid) {
-		super(idUser, username, password, isAdmin);
+	public Order(int idUser, String username, String password, boolean isAdmin,int saldo, int idOrder, int totalPaid) {
+		super(idUser, username, password, saldo, isAdmin);
 		this.idOrder = idOrder;
 		this.totalPaid = totalPaid;
 	}
