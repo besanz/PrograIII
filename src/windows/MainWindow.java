@@ -38,12 +38,15 @@ public class MainWindow extends JFrame {
 	private JPanel contentPane;
 	private JTextField ProductText;
 	private User u;
+	private ArrayList<Product> basket;
 
 
 	/**
 	 * Create the frame.
 	 */
 	public MainWindow(User u) {
+		this.basket = new ArrayList<>();
+		
 		this.u = u;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 674, 571);
@@ -83,7 +86,7 @@ public class MainWindow extends JFrame {
 		contentPane.add(btnBasket);
 		btnBasket.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Basket r = new Basket();
+				Basket r = new Basket(basket);
 				r.setVisible(true);
 			}
 		});
@@ -205,6 +208,7 @@ ProductText.addKeyListener(new KeyAdapter() {
 		JButton btnAddToBasket = new JButton("Add to Basket");
 		btnAddToBasket.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				basket.add((Product) list.getSelectedValue());
 			}
 		});
 		btnAddToBasket.setBounds(77, 448, 138, 29);

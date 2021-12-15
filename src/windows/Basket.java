@@ -2,12 +2,17 @@ package windows;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+
+import data.Product;
+import javax.swing.JList;
 
 /**
  * 
@@ -23,9 +28,9 @@ public class Basket extends JDialog {
 	/**
 	 * Create the frame.
 	 */
-	public Basket() {
+	public Basket(ArrayList<Product> basket) {
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 597);
+		setBounds(100, 100, 803, 601);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -55,6 +60,15 @@ public class Basket extends JDialog {
 		});
 		btnBuy.setBounds(74, 470, 271, 29);
 		contentPane.add(btnBuy);
+		
+		JList list = new JList();
+		list.setBounds(439, 99, 271, 322);
+		contentPane.add(list);
+		
+		DefaultListModel<Product> model1 = new DefaultListModel<>();
+		for (Product product : basket) {
+			model1.addElement(product);
+		}
+		list.setModel(model1);
 	}
-
 }
