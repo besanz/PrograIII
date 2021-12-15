@@ -6,11 +6,17 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+<<<<<<< HEAD
+=======
+import javax.swing.JLabel;
+>>>>>>> 03a077756366fe22c0f07e1b36c3e2ca37be94d8
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -33,7 +39,11 @@ import db.SelectProduct;
 public class MainWindow extends JFrame {
 
 	private JPanel contentPane;
+<<<<<<< HEAD
 	private JTextField txtFiltro;
+=======
+	private JTextField ProductText;
+>>>>>>> 03a077756366fe22c0f07e1b36c3e2ca37be94d8
 	private User u;
 
 
@@ -57,6 +67,7 @@ public class MainWindow extends JFrame {
 		
 		
 		
+<<<<<<< HEAD
 		ArrayList<Product> selectProduct = db.SelectProduct.selectProduct(sql);
 		DefaultListModel<Product>model=new DefaultListModel<Product>();
 
@@ -66,13 +77,23 @@ public class MainWindow extends JFrame {
 		txtFiltro.setBounds(15, 119, 131, 26);
 		contentPane.add(txtFiltro);
 		txtFiltro.setColumns(10);
+=======
+		ArrayList<Product> selectProduct = db.SelectProduct.selectProduct();
+		DefaultListModel<Product>model=new DefaultListModel<Product>();
 
+>>>>>>> 03a077756366fe22c0f07e1b36c3e2ca37be94d8
+
+		
 		JButton btnSearch = new JButton("Search");
 		btnSearch.setBounds(161, 118, 79, 29);
 		contentPane.add(btnSearch);
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+<<<<<<< HEAD
 				if(txtFiltro.getSelectedText() != null){
+=======
+				if(ProductText.getSelectedText() != null){
+>>>>>>> 03a077756366fe22c0f07e1b36c3e2ca37be94d8
 				filtrar();
 				}else{
 					JOptionPane.showMessageDialog(MainWindow.this, "You must type something first!");
@@ -99,6 +120,38 @@ public class MainWindow extends JFrame {
 		list.setModel(model1);
 		list.setBounds(15, 161, 432, 216);
 		list.setBackground(Color.CYAN);
+<<<<<<< HEAD
+=======
+
+ProductText = new JTextField();
+ProductText.addKeyListener(new KeyAdapter() {
+    
+    @Override
+    public void keyReleased(KeyEvent e) {//Se ejecuta cuando se libera una tecla
+        JTextField textField = (JTextField) e.getSource();
+        //obtiene contenido del textfield
+        String text = ProductText.getText();
+        if (text.trim().length() > 0) {
+            //nuevo Model temporal
+            DefaultListModel<Product> tmp = new DefaultListModel();
+            for (int i = 0; i < model1.getSize(); i++) {//recorre Model original
+                //si encuentra coincidencias agrega a model temporal
+                if (model1.getElementAt(i).getName().toLowerCase().contains(text.toLowerCase())) {
+                    tmp.addElement(model1.getElementAt(i));
+                }
+            }
+            //agrega nuevo modelo a JList
+            list.setModel(tmp);
+        } else {//si esta vacio muestra el Model original
+            list.setModel(model1);
+        }
+    }
+});
+		ProductText.setBackground(Color.CYAN);
+		ProductText.setBounds(15, 119, 131, 26);
+		contentPane.add(ProductText);
+		ProductText.setColumns(10);
+>>>>>>> 03a077756366fe22c0f07e1b36c3e2ca37be94d8
 
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -125,19 +178,50 @@ public class MainWindow extends JFrame {
 		contentPane.add(btnInformation);
 		
 		JButton btnNewProduct = new JButton("New Product");
+<<<<<<< HEAD
+=======
+		btnNewProduct.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ProductToAdd window = new ProductToAdd();
+				window.setVisible(true);
+				dispose();
+			}
+			
+		});
+		
+>>>>>>> 03a077756366fe22c0f07e1b36c3e2ca37be94d8
 		btnNewProduct.setBounds(462, 204, 138, 29);
 		contentPane.add(btnNewProduct);
 		btnNewProduct.setEnabled(u.isAdmin());
 		
+<<<<<<< HEAD
 		JButton btnViewUsers = new JButton("View Users");
 		btnViewUsers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+=======
+		JLabel lblName = new JLabel(u.getUsername()+"");
+		lblName.setBounds(494, 16, 92, 55);
+		contentPane.add(lblName);
+
+		
+		JButton btnViewUsers = new JButton("View Users");
+		btnViewUsers.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Users window = new Users(u);
+				window.setVisible(true);
+				dispose();
+				
+>>>>>>> 03a077756366fe22c0f07e1b36c3e2ca37be94d8
 			}
 		});
 		btnViewUsers.setBounds(462, 244, 138, 29);
 		contentPane.add(btnViewUsers);
 		btnViewUsers.setEnabled(u.isAdmin());
+<<<<<<< HEAD
 		btnViewUsers.setEnabled(u.isAdmin());
+=======
+		
+>>>>>>> 03a077756366fe22c0f07e1b36c3e2ca37be94d8
 		
 		JButton btnSettings = new JButton("Settings");
 		btnSettings.addActionListener(new ActionListener() {
@@ -173,7 +257,11 @@ public class MainWindow extends JFrame {
 
 	DefaultTableModel  tbl = new DefaultTableModel();
 
+<<<<<<< HEAD
 	ArrayList<Product> productArrayList= SelectProduct.selectProduct(sql);
+=======
+	ArrayList<Product> productArrayList= SelectProduct.selectProduct();
+>>>>>>> 03a077756366fe22c0f07e1b36c3e2ca37be94d8
 	
 	
 	/**
@@ -182,12 +270,20 @@ public class MainWindow extends JFrame {
 	public void filtrar(){
 		
 
+<<<<<<< HEAD
 		ArrayList<Product> products = db.SelectProduct.selectProduct(sql);;
+=======
+		ArrayList<Product> products = db.SelectProduct.selectProduct();;
+>>>>>>> 03a077756366fe22c0f07e1b36c3e2ca37be94d8
 		ArrayList<Product> productFiltrados = new ArrayList<>();
 		
 		for (Product p : products) {
 			
+<<<<<<< HEAD
 			if(p.getName().toLowerCase().contains(this.txtFiltro.getText().toLowerCase())){
+=======
+			if(p.getName().toLowerCase().contains(this.ProductText.getText().toLowerCase())){
+>>>>>>> 03a077756366fe22c0f07e1b36c3e2ca37be94d8
 				productFiltrados.add(p);
 			}
 			

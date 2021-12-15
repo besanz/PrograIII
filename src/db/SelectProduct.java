@@ -35,9 +35,9 @@ public class SelectProduct {
 		 * @param sql
 	     */
 
-	    public static ArrayList<Product> selectProduct(String sql)
+	    public static ArrayList<Product> selectProduct()
 	    {
-	        String s = "Select id,name,Price,stock from Product ";
+	        String sql = "Select id,name,Price,stock from Product ";
 	        ArrayList<Product> products = new ArrayList<Product>();
 
 	        try
@@ -46,7 +46,7 @@ public class SelectProduct {
 	                        Statement stmt  = conn.createStatement();
 	                )
 	        {
-	        	ResultSet rs    = stmt.executeQuery(s);
+	        	ResultSet rs    = stmt.executeQuery(sql);
 
 	            while (rs.next())
 	            {
@@ -63,3 +63,4 @@ public class SelectProduct {
 	   
 
 }
+
