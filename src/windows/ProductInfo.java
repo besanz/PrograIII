@@ -7,6 +7,10 @@ import javax.swing.border.EmptyBorder;
 
 import data.Product;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Font;
+import java.awt.Color;
 
 public class ProductInfo extends JFrame {
 
@@ -22,47 +26,57 @@ public class ProductInfo extends JFrame {
 	 * Create the frame.
 	 */
 	public ProductInfo(Product p) {
+		setFont(new Font("Berlin Sans FB", Font.PLAIN, 12));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 783, 654);
+		setBounds(100, 100, 280, 380);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(175, 238, 238));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblInformation = new JLabel("INFORMATION");
-		lblInformation.setBounds(289, 65, 126, 20);
-		contentPane.add(lblInformation);
-		
-		JLabel lblId = new JLabel("id");
-		lblId.setBounds(331, 141, 123, 20);
+		JLabel lblId = new JLabel("Crypto ID ...................................");
+		lblId.setFont(new Font("Century Gothic", Font.PLAIN, 18));
+		lblId.setBounds(15, 32, 175, 20);
 		contentPane.add(lblId);
 		label.setBounds(447, 312, 145, 41);
 		contentPane.add(label);
 		
-		JLabel lblPrice = new JLabel("Price");
-		lblPrice.setBounds(323, 231, 69, 20);
+		JLabel lblPrice = new JLabel("Price .................................");
+		lblPrice.setFont(new Font("Century Gothic", Font.PLAIN, 18));
+		lblPrice.setBounds(15, 82, 175, 20);
 		contentPane.add(lblPrice);
-		
-		JLabel lblPicture = new JLabel("Picture");
-		lblPicture.setBounds(323, 334, 69, 20);
-		contentPane.add(lblPicture);
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(269, 382, 146, 94);
-		contentPane.add(panel);
 		
 		String id = p.getIdProduct()+"";
 		JLabel lblId2 = new JLabel(id);
-		lblId2.setBounds(323, 177, 69, 20);
+		lblId2.setFont(new Font("Century Gothic", Font.ITALIC, 18));
+		lblId2.setBounds(205, 32, 69, 20);
 		contentPane.add(lblId2);
 		
 		String price = p.getPrice()+"";
-		JLabel lblNPrice2 = new JLabel(price);
-		lblNPrice2.setBounds(333, 270, 69, 20);
+		JLabel lblNPrice2 = new JLabel("0.0 \u20AC");
+		lblNPrice2.setFont(new Font("Century Gothic", Font.ITALIC, 18));
+		lblNPrice2.setBounds(205, 82, 69, 20);
 		contentPane.add(lblNPrice2);
 		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(289, 511, 115, 29);
-		contentPane.add(btnNewButton);
+		JButton btnBack = new JButton("Return");
+		btnBack.setBackground(Color.WHITE);
+		btnBack.setFont(new Font("Century Gothic", Font.ITALIC, 16));
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnBack.setBounds(60, 225, 145, 41);
+		contentPane.add(btnBack);
+		
+		JLabel lblStock = new JLabel("Stock ..............................");
+		lblStock.setFont(new Font("Century Gothic", Font.PLAIN, 18));
+		lblStock.setBounds(15, 139, 175, 20);
+		contentPane.add(lblStock);
+		
+		JLabel lblStock1 = new JLabel("0");
+		lblStock1.setFont(new Font("Century Gothic", Font.ITALIC, 18));
+		lblStock1.setBounds(205, 139, 69, 20);
+		contentPane.add(lblStock1);
 	}
 }

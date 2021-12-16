@@ -28,7 +28,7 @@ public class Users extends JFrame {
 	 */
 	public Users(User u) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 819, 687);
+		setBounds(100, 100, 543, 553);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -75,7 +75,7 @@ public class Users extends JFrame {
 				dispose();
 			}
 		});
-		btnBack.setBounds(348, 565, 115, 29);
+		btnBack.setBounds(232, 407, 115, 29);
 		contentPane.add(btnBack);
 	}
 }

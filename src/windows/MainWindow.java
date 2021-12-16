@@ -25,6 +25,7 @@ import javax.swing.table.DefaultTableModel;
 import data.Product;
 import data.User;
 import db.SelectProduct;
+import java.awt.Font;
 
 /**
  *
@@ -49,7 +50,7 @@ public class MainWindow extends JFrame {
 		
 		this.u = u;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 674, 571);
+		setBounds(100, 100, 687, 512);
 		contentPane = new JPanel(){  
               public void paintComponent(Graphics g) {  
               Image img = Toolkit.getDefaultToolkit().getImage("background.jpg");  
@@ -59,17 +60,18 @@ public class MainWindow extends JFrame {
 		contentPane.setBackground(Color.ORANGE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
 		
 		this.setTitle("Our cryptos for you, "+u.getUsername());
 		
 		ArrayList<Product> selectProduct = db.SelectProduct.selectProduct();
 		DefaultListModel<Product>model=new DefaultListModel<Product>();
+		contentPane.setLayout(null);
 
 
 		
-		JButton btnSearch = new JButton("Search");
-		btnSearch.setBounds(161, 118, 79, 29);
+		JButton btnSearch = new JButton("Automatic Search");
+		btnSearch.setFont(new Font("Century Gothic", Font.PLAIN, 16));
+		btnSearch.setBounds(250, 117, 197, 34);
 		contentPane.add(btnSearch);
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -81,8 +83,9 @@ public class MainWindow extends JFrame {
 			}
 		});
 
-		JButton btnBasket = new JButton("Basket");
-		btnBasket.setBounds(230, 448, 137, 29);
+		JButton btnBasket = new JButton("Open Basket");
+		btnBasket.setFont(new Font("Century Gothic", Font.PLAIN, 16));
+		btnBasket.setBounds(250, 393, 197, 38);
 		contentPane.add(btnBasket);
 		btnBasket.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -97,11 +100,14 @@ public class MainWindow extends JFrame {
 		model1.addElement(a);
 		}
 		JList list = new JList();
+		list.setFont(new Font("Consolas", Font.PLAIN, 25));
 		list.setModel(model1);
 		list.setBounds(15, 161, 432, 216);
-		list.setBackground(Color.CYAN);
+		list.setBackground(new Color(175, 238, 238));
 
 ProductText = new JTextField();
+ProductText.setFont(new Font("Consolas", Font.PLAIN, 18));
+ProductText.setBounds(15, 117, 220, 34);
 ProductText.addKeyListener(new KeyAdapter() {
     
     @Override
@@ -125,8 +131,7 @@ ProductText.addKeyListener(new KeyAdapter() {
         }
     }
 });
-		ProductText.setBackground(Color.CYAN);
-		ProductText.setBounds(15, 119, 131, 26);
+		ProductText.setBackground(new Color(175, 238, 238));
 		contentPane.add(ProductText);
 		ProductText.setColumns(10);
 
@@ -137,6 +142,8 @@ ProductText.addKeyListener(new KeyAdapter() {
 		contentPane.add(scrollPane);
 		
 		JButton btnInformation = new JButton("Information");
+		btnInformation.setFont(new Font("Century Gothic", Font.PLAIN, 16));
+		btnInformation.setBounds(492, 159, 150, 56);
 		btnInformation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -151,10 +158,11 @@ ProductText.addKeyListener(new KeyAdapter() {
 				}
 			}
 		});
-		btnInformation.setBounds(462, 159, 138, 29);
 		contentPane.add(btnInformation);
 		
 		JButton btnNewProduct = new JButton("New Product");
+		btnNewProduct.setFont(new Font("Century Gothic", Font.PLAIN, 16));
+		btnNewProduct.setBounds(492, 231, 150, 38);
 		btnNewProduct.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ProductToAdd window = new ProductToAdd(u);
@@ -163,13 +171,13 @@ ProductText.addKeyListener(new KeyAdapter() {
 			}
 			
 		});
-		
-		btnNewProduct.setBounds(462, 213, 138, 29);
 		contentPane.add(btnNewProduct);
 		btnNewProduct.setEnabled(u.isAdmin());
 
 		
 		JButton btnViewUsers = new JButton("View Users");
+		btnViewUsers.setFont(new Font("Century Gothic", Font.PLAIN, 16));
+		btnViewUsers.setBounds(492, 285, 150, 38);
 		btnViewUsers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Users window = new Users(u);
@@ -178,47 +186,50 @@ ProductText.addKeyListener(new KeyAdapter() {
 				
 			}
 		});
-		btnViewUsers.setBounds(462, 258, 138, 29);
 		contentPane.add(btnViewUsers);
 		btnViewUsers.setEnabled(u.isAdmin());
 		
 		
 		JButton btnSettings = new JButton("Settings");
+		btnSettings.setFont(new Font("Consolas", Font.PLAIN, 16));
+		btnSettings.setBounds(15, 16, 113, 38);
 		btnSettings.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SettingsWindow sw = new SettingsWindow();
 				sw.setVisible(true);
 			}
 		});
-		btnSettings.setBounds(462, 348, 138, 29);
 		contentPane.add(btnSettings);
 		btnSettings.setEnabled(u.isAdmin());
 		
 		JButton btnNewButton = new JButton("Back to Login");
+		btnNewButton.setFont(new Font("Century Gothic", Font.PLAIN, 16));
+		btnNewButton.setBounds(491, 16, 151, 38);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				backToLogin();
 				
 			}
 		});
-		btnNewButton.setBounds(462, 448, 138, 29);
 		contentPane.add(btnNewButton);
 		
 		JButton btnAddToBasket = new JButton("Add to Basket");
+		btnAddToBasket.setFont(new Font("Century Gothic", Font.PLAIN, 16));
+		btnAddToBasket.setBounds(25, 393, 180, 38);
 		btnAddToBasket.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				basket.add((Product) list.getSelectedValue());
 			}
 		});
-		btnAddToBasket.setBounds(77, 448, 138, 29);
 		contentPane.add(btnAddToBasket);
 		
 		JButton btnManageUsers = new JButton("Manage Users");
+		btnManageUsers.setFont(new Font("Century Gothic", Font.PLAIN, 16));
+		btnManageUsers.setBounds(492, 339, 150, 38);
 		btnManageUsers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnManageUsers.setBounds(462, 303, 138, 29);
 		contentPane.add(btnManageUsers);
 		btnManageUsers.setEnabled(u.isAdmin());
 		

@@ -25,10 +25,11 @@ public class ProductToAdd extends JFrame {
 
 
     public ProductToAdd(User u) {
+    	setTitle("Add a new Crypto");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 811, 711);
+        setBounds(100, 100, 415, 436);
         contentPane = new JPanel();
-        contentPane.setBackground(Color.ORANGE);
+        contentPane.setBackground(new Color(240, 255, 240));
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(null);
@@ -36,41 +37,39 @@ public class ProductToAdd extends JFrame {
        
         
         NameText = new JTextField();
-        NameText.setBounds(227, 224, 387, 38);
+        NameText.setFont(new Font("Consolas", Font.PLAIN, 17));
+        NameText.setBounds(132, 186, 203, 29);
         contentPane.add(NameText);
         NameText.setColumns(10);
         
         PriceText = new JTextField();
-        PriceText.setBounds(227, 339, 387, 38);
+        PriceText.setFont(new Font("Consolas", Font.PLAIN, 17));
+        PriceText.setBounds(132, 126, 203, 29);
         contentPane.add(PriceText);
         PriceText.setColumns(10);
         
         StockText = new JTextField();
-        StockText.setBounds(227, 464, 387, 38);
+        StockText.setFont(new Font("Consolas", Font.PLAIN, 17));
+        StockText.setBounds(132, 70, 203, 29);
         contentPane.add(StockText);
         StockText.setColumns(10);
         
-        JLabel lblNewProduct = new JLabel("NEW PRODUCT");
-        lblNewProduct.setFont(new Font("Verdana", Font.BOLD, 25));
-        lblNewProduct.setBounds(291, 113, 263, 20);
-        contentPane.add(lblNewProduct);
-        
-        JLabel lblProductName = new JLabel("Product Name");
-        lblProductName.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 20));
-        lblProductName.setBounds(42, 233, 133, 20);
+        JLabel lblProductName = new JLabel("Name:");
+        lblProductName.setFont(new Font("Century Gothic", Font.PLAIN, 18));
+        lblProductName.setBounds(42, 72, 87, 20);
         contentPane.add(lblProductName);
         
-        JLabel lblProdcutPrice = new JLabel("Product Price");
-        lblProdcutPrice.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 20));
-        lblProdcutPrice.setBounds(42, 348, 133, 20);
+        JLabel lblProdcutPrice = new JLabel("Price:");
+        lblProdcutPrice.setFont(new Font("Century Gothic", Font.PLAIN, 18));
+        lblProdcutPrice.setBounds(42, 128, 87, 20);
         contentPane.add(lblProdcutPrice);
         
-        JLabel lblProductStock = new JLabel("Product Stock");
-        lblProductStock.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 20));
-        lblProductStock.setBounds(42, 473, 133, 20);
+        JLabel lblProductStock = new JLabel("Stock:");
+        lblProductStock.setFont(new Font("Century Gothic", Font.PLAIN, 18));
+        lblProductStock.setBounds(42, 190, 87, 20);
         contentPane.add(lblProductStock);
 
-        JButton btnAdd = new JButton("Add");
+        JButton btnAdd = new JButton("Add Crypto");
         btnAdd.addActionListener(new ActionListener() {
 
             /**
@@ -94,16 +93,16 @@ public class ProductToAdd extends JFrame {
 
             }
         });
-        btnAdd.setBounds(250, 585, 115, 29);
+        btnAdd.setBounds(42, 266, 126, 55);
         contentPane.add(btnAdd);
 
-        JButton btnBack = new JButton("Back");
+        JButton btnBack = new JButton("Return");
         btnBack.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		backToLogin(u);
         	}
         });
-        btnBack.setBounds(496, 585, 115, 29);
+        btnBack.setBounds(216, 266, 119, 55);
         contentPane.add(btnBack);
 
     }

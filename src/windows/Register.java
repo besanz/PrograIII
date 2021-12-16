@@ -28,31 +28,37 @@ public class Register extends JDialog {
     };
     public Register(User u) {
         this.setModal(true);
-        setTitle("Register");
-        setBounds(100, 100, 337, 433);
+        setTitle("Register (It's free!)");
+        setBounds(100, 100, 339, 447);
         getContentPane().setLayout(new BorderLayout());
+        contentPanel.setBackground(new Color(240, 255, 240));
         contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
         getContentPane().add(contentPanel, BorderLayout.CENTER);
         contentPanel.setLayout(null);
 
-        JLabel lblName = new JLabel("Your Name:");
-        lblName.setBounds(15, 112, 108, 20);
+        JLabel lblName = new JLabel("Username:");
+        lblName.setFont(new Font("Century Gothic", Font.PLAIN, 18));
+        lblName.setBounds(15, 79, 108, 20);
         contentPanel.add(lblName);
 
         txtName = new JTextField();
+        txtName.setFont(new Font("Century Gothic", Font.PLAIN, 18));
         txtName.setColumns(10);
-        txtName.setBounds(138, 106, 146, 26);
+        txtName.setBounds(138, 76, 146, 34);
         contentPanel.add(txtName);
 
         txtPass1 = new JPasswordField();
-        txtPass1.setBounds(138, 165, 146, 25);
+        txtPass1.setFont(new Font("Century Gothic", Font.PLAIN, 18));
+        txtPass1.setBounds(138, 126, 146, 34);
         contentPanel.add(txtPass1);
 
         JLabel lblPassword = new JLabel("Password:");
-        lblPassword.setBounds(15, 170, 69, 20);
+        lblPassword.setFont(new Font("Century Gothic", Font.PLAIN, 18));
+        lblPassword.setBounds(15, 132, 92, 20);
         contentPanel.add(lblPassword);
 
         JButton btnNewButton = new JButton("Sign Up");
+        btnNewButton.setFont(new Font("Century Gothic", Font.PLAIN, 18));
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	
@@ -68,16 +74,17 @@ public class Register extends JDialog {
                 
             }
         });
-        btnNewButton.setBounds(138, 273, 146, 26);
+        btnNewButton.setBounds(74, 245, 172, 41);
         contentPanel.add(btnNewButton);
 
         JButton btnBack = new JButton("Back to Login");
+        btnBack.setFont(new Font("Century Gothic", Font.PLAIN, 18));
         btnBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();
             }
         });
-        btnBack.setBounds(138, 315, 146, 26);
+        btnBack.setBounds(74, 302, 172, 41);
         contentPanel.add(btnBack);
     }
 }

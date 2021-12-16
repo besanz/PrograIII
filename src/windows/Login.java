@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 
 import data.User;
 import db.SelectUser;
+import java.awt.Font;
 
 public class Login extends JFrame {
 
@@ -34,7 +35,7 @@ public class Login extends JFrame {
 	 */
 	public Login(User u) {
 		setTitle("Login");
-		getContentPane().setBackground(Color.ORANGE);
+		getContentPane().setBackground(new Color(255, 215, 0));
 		initialize(u);
 	}
 
@@ -44,29 +45,36 @@ public class Login extends JFrame {
 	private void initialize(User u) {
 		this.setTitle("Login");
 		this.setResizable(false);
-		this.setBounds(100, 100, 503, 383);
+		this.setBounds(100, 100, 451, 364);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(null);
 		getContentPane().setLayout(null);
 
 		txtUser = new JTextField();
-		txtUser.setBounds(176, 99, 205, 26);
+		txtUser.setFont(new Font("Century Gothic", Font.PLAIN, 16));
+		txtUser.setToolTipText("Example: Peru");
+		txtUser.setBounds(167, 46, 198, 31);
 		this.getContentPane().add(txtUser);
 		txtUser.setColumns(10);
 
-		JLabel lblNewLabel = new JLabel("User:");
-		lblNewLabel.setBounds(50, 102, 69, 20);
+		JLabel lblNewLabel = new JLabel("Username:");
+		lblNewLabel.setFont(new Font("Century Gothic", Font.PLAIN, 18));
+		lblNewLabel.setBounds(50, 39, 111, 41);
 		this.getContentPane().add(lblNewLabel);
 
 		txtPass = new JPasswordField();
-		txtPass.setBounds(176, 156, 205, 26);
+		txtPass.setFont(new Font("Century Gothic", Font.PLAIN, 18));
+		txtPass.setToolTipText("Example: Peru");
+		txtPass.setBounds(167, 110, 198, 31);
 		this.getContentPane().add(txtPass);
 
 		JLabel lblNewLabel_1 = new JLabel("Password:");
-		lblNewLabel_1.setBounds(50, 159, 111, 20);
+		lblNewLabel_1.setFont(new Font("Century Gothic", Font.PLAIN, 18));
+		lblNewLabel_1.setBounds(50, 113, 111, 20);
 		this.getContentPane().add(lblNewLabel_1);
 
 		JButton btnLogIn = new JButton("Log In");
+		btnLogIn.setFont(new Font("Century Gothic", Font.PLAIN, 16));
 		btnLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -95,10 +103,11 @@ public class Login extends JFrame {
 			}
 		});
 
-		btnLogIn.setBounds(176, 198, 205, 29);
+		btnLogIn.setBounds(111, 177, 205, 29);
 		this.getContentPane().add(btnLogIn);
 
 		btnRegister = new JButton("Sign Up");
+		btnRegister.setFont(new Font("Century Gothic", Font.PLAIN, 16));
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -107,7 +116,7 @@ public class Login extends JFrame {
 			}
 		});
 
-		btnRegister.setBounds(176, 243, 205, 29);
+		btnRegister.setBounds(111, 222, 205, 29);
 		this.getContentPane().add(btnRegister);
 	}
 
