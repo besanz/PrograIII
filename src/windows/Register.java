@@ -5,6 +5,9 @@ package windows;
  */
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+
+import db.DBConnector;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -76,7 +79,7 @@ public class Register extends JDialog {
             	String Password = txtPass1.getText();
             	boolean  Admin = false;
             	
-            	db.DBConnector.insertUser(idUser, name, Password, Admin);
+            	DBConnector.insertUser(idUser, name, Password, Admin);
             	
             	MainWindow w = new MainWindow(null);
 				w.setVisible(true);

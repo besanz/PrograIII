@@ -1,6 +1,7 @@
 package data;
 
 import java.util.ArrayList;
+import data.Product;
 
 
 public class Client extends User {
