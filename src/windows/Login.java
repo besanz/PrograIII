@@ -42,8 +42,8 @@ public class Login extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		this.setTitle("");
-		this.setResizable(true);
+		this.setTitle("Login");
+		this.setResizable(false);
 		this.setBounds(100, 100, 503, 383);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(null);

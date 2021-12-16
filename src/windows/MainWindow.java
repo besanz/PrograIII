@@ -192,8 +192,9 @@ ProductText.addKeyListener(new KeyAdapter() {
 		});
 		btnSettings.setBounds(462, 348, 138, 29);
 		contentPane.add(btnSettings);
+		btnSettings.setEnabled(u.isAdmin());
 		
-		JButton btnNewButton = new JButton("Back");
+		JButton btnNewButton = new JButton("Back to Login");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				backToLogin();
@@ -219,6 +220,7 @@ ProductText.addKeyListener(new KeyAdapter() {
 		});
 		btnManageUsers.setBounds(462, 303, 138, 29);
 		contentPane.add(btnManageUsers);
+		btnManageUsers.setEnabled(u.isAdmin());
 		
 		
 		
