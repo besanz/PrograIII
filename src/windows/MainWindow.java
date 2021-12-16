@@ -150,7 +150,7 @@ ProductText.addKeyListener(new KeyAdapter() {
 				Product pro = (Product) list.getSelectedValue();
 				
 				if(list.getSelectedValue() != null){
-				ProductInfo window = new ProductInfo(pro);
+				ProductInfo window = new ProductInfo(pro, u);
 				window.setVisible(true);
 				}else{
 					JOptionPane.showMessageDialog(MainWindow.this, "Please, select a coin first" );

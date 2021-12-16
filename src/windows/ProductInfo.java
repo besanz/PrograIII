@@ -6,6 +6,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import data.Product;
+import data.User;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -25,7 +27,7 @@ public class ProductInfo extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ProductInfo(Product p) {
+	public ProductInfo(Product p,User u) {
 		setFont(new Font("Berlin Sans FB", Font.PLAIN, 12));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 280, 380);
@@ -53,8 +55,8 @@ public class ProductInfo extends JFrame {
 		lblId2.setBounds(205, 32, 69, 20);
 		contentPane.add(lblId2);
 		
-		String price = p.getPrice()+"";
-		JLabel lblNPrice2 = new JLabel("0.0 \u20AC");
+	
+		JLabel lblNPrice2 = new JLabel(p.getPrice()+"");
 		lblNPrice2.setFont(new Font("Century Gothic", Font.ITALIC, 18));
 		lblNPrice2.setBounds(205, 82, 69, 20);
 		contentPane.add(lblNPrice2);
@@ -64,6 +66,9 @@ public class ProductInfo extends JFrame {
 		btnBack.setFont(new Font("Century Gothic", Font.ITALIC, 16));
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				MainWindow w = new MainWindow(u);
+				w.setVisible(true);
+				dispose();
 			}
 		});
 		btnBack.setBounds(60, 225, 145, 41);
@@ -74,7 +79,7 @@ public class ProductInfo extends JFrame {
 		lblStock.setBounds(15, 139, 175, 20);
 		contentPane.add(lblStock);
 		
-		JLabel lblStock1 = new JLabel("0");
+		JLabel lblStock1 = new JLabel(p.getStock()+"");
 		lblStock1.setFont(new Font("Century Gothic", Font.ITALIC, 18));
 		lblStock1.setBounds(205, 139, 69, 20);
 		contentPane.add(lblStock1);
