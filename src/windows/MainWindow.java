@@ -145,7 +145,7 @@ ProductText.addKeyListener(new KeyAdapter() {
 				if(list.getSelectedValue() != null){
 				ProductInfo window = new ProductInfo(pro);
 				window.setVisible(true);
-				dispose();}else{
+				}else{
 					JOptionPane.showMessageDialog(MainWindow.this, "Please, select a coin first" );
 					
 				}
@@ -224,7 +224,7 @@ ProductText.addKeyListener(new KeyAdapter() {
 		
 		
 	}
-	String sql = "Selecct id,name,Price,stock from Product ";
+	String sql = "Select id,name,Price,stock from Product ";
 
 	DefaultTableModel  tbl = new DefaultTableModel();
 
@@ -255,7 +255,7 @@ ProductText.addKeyListener(new KeyAdapter() {
 
 	public void backToLogin(){
 		
-		int opcionSeleccionar = JOptionPane.showConfirmDialog(this, "Are you sure?");
+		int opcionSeleccionar = JOptionPane.showConfirmDialog(this, "Are you sure you want to exit?");
 	
 		if(opcionSeleccionar == JOptionPane.OK_OPTION){
 			dispose();

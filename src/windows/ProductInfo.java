@@ -1,17 +1,15 @@
 package windows;
 
-import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import data.Product;
-import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 
-public class ProductInfo extends JDialog {
+public class ProductInfo extends JFrame {
 
 	private JPanel contentPane;
 	private final JLabel label = new JLabel("");
@@ -62,9 +60,23 @@ public class ProductInfo extends JDialog {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
+
+
 			}
 		});
 		btnNewButton.setBounds(149, 224, 115, 29);
 		contentPane.add(btnNewButton);
+	}
+
+	public void backToLogin(){
+
+		int opcionSeleccionar = JOptionPane.showConfirmDialog(this, "Are you sure you want to exit?");
+
+		if(opcionSeleccionar == JOptionPane.OK_OPTION){
+			dispose();
+			Login l = new Login();
+			l.setVisible(true);
+		}
+
 	}
 }

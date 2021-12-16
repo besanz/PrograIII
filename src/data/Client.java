@@ -2,9 +2,8 @@ package data;
 
 import java.util.ArrayList;
 
-import extra.iBasket;
 
-public class Client extends User implements iBasket {
+public class Client extends User {
 
     private ArrayList<Product> basket;
 
