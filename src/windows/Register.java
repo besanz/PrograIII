@@ -6,7 +6,9 @@ package windows;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import data.User;
 import db.DBConnector;
+import db.InsertUser;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,10 +17,8 @@ import java.awt.event.ActionListener;
 public class Register extends JDialog {
 
     private final JPanel contentPanel = new JPanel();
-    private JTextField txtidUser;
     private JTextField txtName;
     private JPasswordField txtPass1;
-    private JPasswordField txtAdmin;
 
     /**
      * Create the dialog.
@@ -26,7 +26,7 @@ public class Register extends JDialog {
     public void setVisible(){
     	
     };
-    public Register() {
+    public Register(User u) {
         this.setModal(true);
         setTitle("Register");
         setBounds(100, 100, 337, 433);
@@ -34,15 +34,6 @@ public class Register extends JDialog {
         contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
         getContentPane().add(contentPanel, BorderLayout.CENTER);
         contentPanel.setLayout(null);
-
-        JLabel lblNewLabel = new JLabel("idUser:");
-        lblNewLabel.setBounds(15, 55, 69, 20);
-        contentPanel.add(lblNewLabel);
-
-        txtidUser = new JTextField();
-        txtidUser.setBounds(138, 49, 146, 26);
-        contentPanel.add(txtidUser);
-        txtidUser.setColumns(10);
 
         JLabel lblName = new JLabel("Your Name:");
         lblName.setBounds(15, 112, 108, 20);
@@ -61,28 +52,19 @@ public class Register extends JDialog {
         lblPassword.setBounds(15, 170, 69, 20);
         contentPanel.add(lblPassword);
 
-        JLabel lblConfirmPassword = new JLabel("Admin");
-        lblConfirmPassword.setBounds(15, 227, 108, 20);
-        contentPanel.add(lblConfirmPassword);
-
-        txtAdmin = new JPasswordField();
-        txtAdmin.setBounds(138, 222, 146, 25);
-        contentPanel.add(txtAdmin);
-
         JButton btnNewButton = new JButton("Sign Up");
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	
-            	String idUserx = txtidUser.getText();
-            	int idUser = 100;
+            	
             	String name = txtName.getText();
             	String Password = txtPass1.getText();
-            	boolean  Admin = false;
             	
-            	DBConnector.insertUser(idUser, name, Password, Admin);
             	
-            	MainWindow w = new MainWindow(null);
-				w.setVisible(true);
+            	InsertUser.addUser(name, Password);
+            	
+            	
+            	dispose();
                 
             }
         });

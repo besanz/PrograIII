@@ -11,6 +11,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import data.User;
+
 import java.awt.Color;
 
 public class ProductToAdd extends JFrame {
@@ -21,7 +24,7 @@ public class ProductToAdd extends JFrame {
     private JTextField StockText;
 
 
-    public ProductToAdd() {
+    public ProductToAdd(User u) {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 811, 711);
         contentPane = new JPanel();
@@ -82,7 +85,7 @@ public class ProductToAdd extends JFrame {
             	String Stockx = StockText.getText();
             	int  Stock = Integer.parseInt(Stockx);
             	
-            	db.DBConnector.insertProduct(34, name, ProductPrice, Stock);
+            	db.DBConnector.insertProduct(name, ProductPrice, Stock);
             	
            // 	MainWindow w = new MainWindow(null);
 			//	w.setVisible(true);
@@ -97,7 +100,7 @@ public class ProductToAdd extends JFrame {
         JButton btnBack = new JButton("Back");
         btnBack.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		backToLogin();
+        		backToLogin(u);
         	}
         });
         btnBack.setBounds(496, 585, 115, 29);
@@ -105,13 +108,13 @@ public class ProductToAdd extends JFrame {
 
     }
     
-	public void backToLogin(){
+	public void backToLogin(User u){
 		
 		int opcionSeleccionar = JOptionPane.showConfirmDialog(this, "Are you sure?");
 	
 		if(opcionSeleccionar == JOptionPane.OK_OPTION){
 			dispose();
-			Login l = new Login();
+			Login l = new Login(u);
 			l.setVisible(true);
 		}
 	

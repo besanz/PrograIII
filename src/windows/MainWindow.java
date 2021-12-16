@@ -157,7 +157,7 @@ ProductText.addKeyListener(new KeyAdapter() {
 		JButton btnNewProduct = new JButton("New Product");
 		btnNewProduct.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ProductToAdd window = new ProductToAdd();
+				ProductToAdd window = new ProductToAdd(u);
 				window.setVisible(true);
 				dispose();
 			}
@@ -172,7 +172,7 @@ ProductText.addKeyListener(new KeyAdapter() {
 		JButton btnViewUsers = new JButton("View Users");
 		btnViewUsers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				UsersInfoWindow window = new UsersInfoWindow(u);
+				Users window = new Users(u);
 				window.setVisible(true);
 				dispose();
 				
@@ -261,7 +261,7 @@ ProductText.addKeyListener(new KeyAdapter() {
 	
 		if(opcionSeleccionar == JOptionPane.OK_OPTION){
 			dispose();
-			Login l = new Login();
+			Login l = new Login(u);
 			l.setVisible(true);
 		}
 	

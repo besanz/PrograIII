@@ -32,16 +32,16 @@ public class Login extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public Login() {
+	public Login(User u) {
 		setTitle("Login");
 		getContentPane().setBackground(Color.ORANGE);
-		initialize();
+		initialize(u);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(User u) {
 		this.setTitle("Login");
 		this.setResizable(false);
 		this.setBounds(100, 100, 503, 383);
@@ -102,7 +102,7 @@ public class Login extends JFrame {
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				Register r = new Register();
+				Register r = new Register(u);
 				r.setVisible(true);
 			}
 		});

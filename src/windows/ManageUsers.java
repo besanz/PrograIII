@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import data.User;
+
 import java.awt.Color;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -20,23 +23,12 @@ public class ManageUsers extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ManageUsers frame = new ManageUsers();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the frame.
 	 */
-	public ManageUsers() {
+	public ManageUsers(User u) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 353);
 		contentPane = new JPanel();
@@ -52,7 +44,7 @@ public class ManageUsers extends JFrame {
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				backToLogin();
+				backToLogin(u);
 			}
 		});
 		btnBack.setBounds(227, 234, 131, 29);
@@ -63,14 +55,15 @@ public class ManageUsers extends JFrame {
 		contentPane.add(btnDelete);
 	}
 
-	public void backToLogin() {
+	public void backToLogin(User u) {
 
 		int opcionSeleccionar = JOptionPane.showConfirmDialog(this, "Are you sure?");
 
 		if (opcionSeleccionar == JOptionPane.OK_OPTION) {
 			dispose();
-			Login l = new Login();
+			Login l = new Login(u);
 			l.setVisible(true);
-		}
+		
 	}
+}
 }

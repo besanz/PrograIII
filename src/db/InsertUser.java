@@ -26,20 +26,20 @@ public class InsertUser {
 	        return conn;
 	    }
 	 
-	 public static void addUser(int idUser, String username, String password, boolean isAdmin){
-		 String sql = "INSERT INTO user(id, Name, password,IsAdmin) VALUES(?,?,?,?)";
+	 public static void addUser( String username, String password){
+		 String sql = "INSERT INTO User( Name, password) VALUES(?,?)";
 	        try
          (
          		Connection conn = connect();
                  PreparedStatement pstmt  = conn.prepareStatement(sql)
          )
  {
-	            pstmt.setInt(1, idUser);
-	            pstmt.setString(2, username);
-	            pstmt.setString(3, password);
+	          
+	            pstmt.setString(1, username);
+	            pstmt.setString(2, password);
 	            
 	            //Check later. Administrator. + security?
-	            pstmt.setBoolean(4, isAdmin);
+	            
 	            pstmt.executeUpdate();
 	        }
 	        catch (SQLException e)
