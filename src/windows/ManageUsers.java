@@ -44,11 +44,11 @@ public class ManageUsers extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JList list = new JList();
 		list.setBounds(62, 46, 290, 164);
 		contentPane.add(list);
-		
+
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -57,19 +57,20 @@ public class ManageUsers extends JFrame {
 		});
 		btnBack.setBounds(227, 234, 131, 29);
 		contentPane.add(btnBack);
-		
+
 		JButton btnDelete = new JButton("Delete User");
 		btnDelete.setBounds(62, 234, 131, 29);
 		contentPane.add(btnDelete);
 	}
-	
-		public void backToLogin(){
-		
+
+	public void backToLogin() {
+
 		int opcionSeleccionar = JOptionPane.showConfirmDialog(this, "Are you sure?");
-	
-		if(opcionSeleccionar == JOptionPane.OK_OPTION){
+
+		if (opcionSeleccionar == JOptionPane.OK_OPTION) {
 			dispose();
 			Login l = new Login();
 			l.setVisible(true);
 		}
+	}
 }

@@ -69,17 +69,20 @@ public class ProductToAdd extends JFrame {
 
         JButton btnAdd = new JButton("Add");
         btnAdd.addActionListener(new ActionListener() {
+
+            /**
+             * have to check id, need to increment automatically.
+             * @param e
+             */
             public void actionPerformed(ActionEvent e) {
-            	
-            	String idProductx = idText.getText();
-            	int idProduct = Integer.parseInt(idProductx);
+
             	String name =NameText.getText();
             	String ProductPricex = PriceText.getText();
             	int ProductPrice=Integer.parseInt(ProductPricex);
             	String Stockx = StockText.getText();
             	int  Stock = Integer.parseInt(Stockx);
             	
-            	db.DBConnector.insertProduct(idProduct, name, ProductPrice, Stock);
+            	db.DBConnector.insertProduct(34, name, ProductPrice, Stock);
             	
            // 	MainWindow w = new MainWindow(null);
 			//	w.setVisible(true);
@@ -94,7 +97,7 @@ public class ProductToAdd extends JFrame {
         JButton btnBack = new JButton("Back");
         btnBack.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		backToLogin;
+        		backToLogin();
         	}
         });
         btnBack.setBounds(496, 585, 115, 29);

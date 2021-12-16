@@ -36,6 +36,9 @@ public class User {
      */
     private boolean isAdmin;
 
+    public User(int i, String admin, String admin1, boolean b) {
+    }
+
     public boolean isItAdmin(){
         boolean goodAdmin;
         if (this.getUsername().equalsIgnoreCase("Admin") && this.getPassword().equalsIgnoreCase("Admin")){
