@@ -7,14 +7,15 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import java.awt.Color;
 
 public class ProductToAdd extends JFrame {
 
     private JPanel contentPane;
-    private JTextField idText;
     private JTextField NameText;
     private JTextField PriceText;
     private JTextField StockText;
@@ -24,14 +25,10 @@ public class ProductToAdd extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 811, 711);
         contentPane = new JPanel();
+        contentPane.setBackground(Color.ORANGE);
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(null);
-
-        idText = new JTextField();
-        idText.setBounds(227, 114, 387, 38);
-        contentPane.add(idText);
-        idText.setColumns(10);
 
        
         
@@ -52,13 +49,8 @@ public class ProductToAdd extends JFrame {
         
         JLabel lblNewProduct = new JLabel("NEW PRODUCT");
         lblNewProduct.setFont(new Font("Verdana", Font.BOLD, 25));
-        lblNewProduct.setBounds(227, 32, 263, 20);
+        lblNewProduct.setBounds(291, 113, 263, 20);
         contentPane.add(lblNewProduct);
-        
-        JLabel lblNewLabel = new JLabel("Product Id");
-        lblNewLabel.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 20));
-        lblNewLabel.setBounds(42, 123, 170, 20);
-        contentPane.add(lblNewLabel);
         
         JLabel lblProductName = new JLabel("Product Name");
         lblProductName.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 20));
@@ -96,16 +88,29 @@ public class ProductToAdd extends JFrame {
 
             }
         });
-        btnAdd.setBounds(140, 585, 115, 29);
+        btnAdd.setBounds(250, 585, 115, 29);
         contentPane.add(btnAdd);
 
-        JButton btnNewButton = new JButton("Return");
-        btnNewButton.addActionListener(new ActionListener() {
+        JButton btnBack = new JButton("Back");
+        btnBack.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		backToLogin;
         	}
         });
-        btnNewButton.setBounds(558, 585, 115, 29);
-        contentPane.add(btnNewButton);
+        btnBack.setBounds(496, 585, 115, 29);
+        contentPane.add(btnBack);
 
     }
+    
+	public void backToLogin(){
+		
+		int opcionSeleccionar = JOptionPane.showConfirmDialog(this, "Are you sure?");
+	
+		if(opcionSeleccionar == JOptionPane.OK_OPTION){
+			dispose();
+			Login l = new Login();
+			l.setVisible(true);
+		}
+	
+	}
 }

@@ -164,26 +164,21 @@ ProductText.addKeyListener(new KeyAdapter() {
 			
 		});
 		
-		btnNewProduct.setBounds(462, 204, 138, 29);
+		btnNewProduct.setBounds(462, 213, 138, 29);
 		contentPane.add(btnNewProduct);
 		btnNewProduct.setEnabled(u.isAdmin());
-		
-		JLabel lblName = new JLabel(u.getUsername()+"");
-		lblName.setForeground(Color.WHITE);
-		lblName.setBounds(508, 16, 92, 55);
-		contentPane.add(lblName);
 
 		
 		JButton btnViewUsers = new JButton("View Users");
 		btnViewUsers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Users window = new Users(u);
+				UsersInfoWindow window = new UsersInfoWindow(u);
 				window.setVisible(true);
 				dispose();
 				
 			}
 		});
-		btnViewUsers.setBounds(462, 244, 138, 29);
+		btnViewUsers.setBounds(462, 258, 138, 29);
 		contentPane.add(btnViewUsers);
 		btnViewUsers.setEnabled(u.isAdmin());
 		
@@ -191,9 +186,11 @@ ProductText.addKeyListener(new KeyAdapter() {
 		JButton btnSettings = new JButton("Settings");
 		btnSettings.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				SettingsWindow sw = new SettingsWindow();
+				sw.setVisible(true);
 			}
 		});
-		btnSettings.setBounds(462, 287, 138, 29);
+		btnSettings.setBounds(462, 348, 138, 29);
 		contentPane.add(btnSettings);
 		
 		JButton btnNewButton = new JButton("Back");
@@ -214,6 +211,14 @@ ProductText.addKeyListener(new KeyAdapter() {
 		});
 		btnAddToBasket.setBounds(77, 448, 138, 29);
 		contentPane.add(btnAddToBasket);
+		
+		JButton btnManageUsers = new JButton("Manage Users");
+		btnManageUsers.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnManageUsers.setBounds(462, 303, 138, 29);
+		contentPane.add(btnManageUsers);
 		
 		
 		
