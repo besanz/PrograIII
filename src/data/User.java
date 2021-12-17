@@ -36,7 +36,7 @@ public class User {
      */
     private boolean isAdmin;
 
-    public User(int i, String admin, String admin1, boolean b) {
+    public User(String name, String admin, boolean isAdmin2, int saldo2) {
     }
 
     public boolean isItAdmin(){
@@ -76,7 +76,14 @@ public class User {
 	}
 
 
-    /**
+    public User(String username, String password,int saldo, boolean isAdmin) {
+    	 this.username = username;
+         this.password = password;
+         this.isAdmin = isAdmin;
+         this.saldo=saldo;
+	}
+
+	/**
      *
      * @return users id
      */

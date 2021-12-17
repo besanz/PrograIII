@@ -169,7 +169,6 @@ ProductText.addKeyListener(new KeyAdapter() {
 			public void actionPerformed(ActionEvent e) {
 				ProductToAdd window = new ProductToAdd(u);
 				window.setVisible(true);
-				dispose();
 			}
 			
 		});
@@ -197,7 +196,7 @@ ProductText.addKeyListener(new KeyAdapter() {
 		btnSettings.setBounds(15, 16, 113, 38);
 		btnSettings.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SettingsWindow sw = new SettingsWindow();
+				SettingsWindow sw = new SettingsWindow(u);
 				sw.setVisible(true);
 			}
 		});
@@ -221,6 +220,7 @@ ProductText.addKeyListener(new KeyAdapter() {
 		btnAddToBasket.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				basket.add((Product) list.getSelectedValue());
+				JOptionPane.showMessageDialog(MainWindow.this, "Success! Go chek the basket.");
 			}
 		});
 		contentPane.add(btnAddToBasket);

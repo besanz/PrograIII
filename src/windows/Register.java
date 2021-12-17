@@ -15,10 +15,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Register extends JDialog {
+	public static int saldo = 180000;
 
     private final JPanel contentPanel = new JPanel();
     private JTextField txtName;
     private JPasswordField txtPass1;
+    private JPasswordField txtPass2;
 
     /**
      * Create the dialog.
@@ -44,12 +46,12 @@ public class Register extends JDialog {
         txtName = new JTextField();
         txtName.setFont(new Font("Century Gothic", Font.PLAIN, 18));
         txtName.setColumns(10);
-        txtName.setBounds(138, 76, 146, 34);
+        txtName.setBounds(148, 76, 136, 34);
         contentPanel.add(txtName);
 
         txtPass1 = new JPasswordField();
         txtPass1.setFont(new Font("Century Gothic", Font.PLAIN, 18));
-        txtPass1.setBounds(138, 126, 146, 34);
+        txtPass1.setBounds(148, 126, 136, 34);
         contentPanel.add(txtPass1);
 
         JLabel lblPassword = new JLabel("Password:");
@@ -66,11 +68,18 @@ public class Register extends JDialog {
             	String name = txtName.getText();
             	String Password = txtPass1.getText();
             	
+            	boolean isAdmin = true;
             	
-            	InsertUser.addUser(name, Password);
+            	if(txtPass1.getText().equals(txtPass2.getText())){
+            	InsertUser.addUser(name, Password, isAdmin, saldo);
             	
-            	
+            	JOptionPane.showMessageDialog(Register.this, name + ", welcome to Binance!");
             	dispose();
+ 
+            	}
+            	else{
+            		JOptionPane.showMessageDialog(Register.this, "Passwords don't match");
+            	}
                 
             }
         });
@@ -86,5 +95,15 @@ public class Register extends JDialog {
         });
         btnBack.setBounds(74, 302, 172, 41);
         contentPanel.add(btnBack);
+        
+        txtPass2 = new JPasswordField();
+        txtPass2.setFont(new Font("Century Gothic", Font.PLAIN, 18));
+        txtPass2.setBounds(148, 177, 136, 34);
+        contentPanel.add(txtPass2);
+        
+        JLabel lblPassword2 = new JLabel("Confirm PSW:");
+        lblPassword2.setFont(new Font("Century Gothic", Font.PLAIN, 18));
+        lblPassword2.setBounds(15, 185, 118, 20);
+        contentPanel.add(lblPassword2);
     }
 }

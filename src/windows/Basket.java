@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -31,11 +32,11 @@ public class Basket extends JDialog {
 	 * Create the frame.
 	 */
 	public Basket(ArrayList<Product> basket,User u,Product p) {
-		setTitle("Your Cart");
+		setTitle("Cart");
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 437, 636);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.YELLOW);
+		contentPane.setBackground(new Color(255, 255, 204));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -79,6 +80,7 @@ public class Basket extends JDialog {
 				
 				Product pSeleccionado = (Product) list.getSelectedValue();
 				model1.removeElement(pSeleccionado);
+				JOptionPane.showMessageDialog(Basket.this, "Deleted.");
 			}
 		});
 		btnRemove.setBounds(218, 465, 127, 29);
@@ -86,9 +88,9 @@ public class Basket extends JDialog {
 		
 		
 		
-		JLabel Name = new JLabel(u.getUsername()+"");
-		Name.setFont(new Font("Century Gothic", Font.ITALIC, 24));
-		Name.setBounds(74, 27, 180, 42);
+		JLabel Name = new JLabel("Your basket, <dynamic>");
+		Name.setFont(new Font("Century Gothic", Font.ITALIC, 22));
+		Name.setBounds(15, 16, 269, 42);
 		contentPane.add(Name);
 		
 		JLabel lblElPrecioFinal = new JLabel("Total Price .....................................");

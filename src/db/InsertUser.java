@@ -26,8 +26,8 @@ public class InsertUser {
 	        return conn;
 	    }
 	 
-	 public static void addUser( String username, String password){
-		 String sql = "INSERT INTO User( Name, password) VALUES(?,?)";
+	 public static void addUser( String username, String password, boolean isAdmin, int saldo){
+		 String sql = "INSERT INTO User( Name, password, isAdmin, saldo) VALUES(?,?,?,?)";
 	        try
          (
          		Connection conn = connect();
@@ -37,8 +37,9 @@ public class InsertUser {
 	          
 	            pstmt.setString(1, username);
 	            pstmt.setString(2, password);
-	            
-	            //Check later. Administrator. + security?
+	            pstmt.setBoolean(3, isAdmin);
+	            pstmt.setInt(4, saldo);
+
 	            
 	            pstmt.executeUpdate();
 	        }

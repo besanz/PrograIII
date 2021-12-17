@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 /**
  * @author Beñat
  */
@@ -67,6 +69,7 @@ public class Login extends JFrame {
 		txtPass.setToolTipText("Example: Peru");
 		txtPass.setBounds(167, 110, 198, 31);
 		this.getContentPane().add(txtPass);
+		
 
 		JLabel lblNewLabel_1 = new JLabel("Password:");
 		lblNewLabel_1.setFont(new Font("Century Gothic", Font.PLAIN, 18));
@@ -105,6 +108,7 @@ public class Login extends JFrame {
 
 		btnLogIn.setBounds(111, 177, 205, 29);
 		this.getContentPane().add(btnLogIn);
+
 
 		btnRegister = new JButton("Sign Up");
 		btnRegister.setFont(new Font("Century Gothic", Font.PLAIN, 16));

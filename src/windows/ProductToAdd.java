@@ -99,7 +99,7 @@ public class ProductToAdd extends JFrame {
         JButton btnBack = new JButton("Return");
         btnBack.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		backToLogin(u);
+        		dispose();
         	}
         });
         btnBack.setBounds(216, 266, 119, 55);
@@ -107,15 +107,5 @@ public class ProductToAdd extends JFrame {
 
     }
     
-	public void backToLogin(User u){
-		
-		int opcionSeleccionar = JOptionPane.showConfirmDialog(this, "Are you sure?");
-	
-		if(opcionSeleccionar == JOptionPane.OK_OPTION){
-			dispose();
-			Login l = new Login(u);
-			l.setVisible(true);
-		}
-	
-	}
+
 }
