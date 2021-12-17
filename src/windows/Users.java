@@ -10,6 +10,8 @@ import javax.swing.border.EmptyBorder;
 import data.User;
 import javax.swing.JLabel;
 import java.awt.Font;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -27,6 +29,8 @@ public class Users extends JFrame {
 	 * Create the frame.
 	 */
 	public Users(User u) {
+		ImageIcon icon = new ImageIcon("favicon.png");
+		this.setIconImage(icon.getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 543, 553);
 		contentPane = new JPanel();

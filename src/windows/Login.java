@@ -5,8 +5,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.print.DocFlavor.URL;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.ImageIcon;
 /**
  * @author Beñat
  */
@@ -45,6 +47,9 @@ public class Login extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize(User u) {
+
+		ImageIcon icon = new ImageIcon("favicon.png");
+		this.setIconImage(icon.getImage());
 		
 		this.setTitle("Login");
 		this.setResizable(false);
