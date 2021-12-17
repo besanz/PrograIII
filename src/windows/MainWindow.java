@@ -45,7 +45,7 @@ public class MainWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MainWindow(User u) {
+	public MainWindow(User u,Product p) {
 		this.basket = new ArrayList<>();
 		
 		this.u = u;
@@ -84,15 +84,17 @@ public class MainWindow extends JFrame {
 		});
 
 		JButton btnBasket = new JButton("Open Basket");
+		btnBasket.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			Basket r = new Basket(basket, u, p);
+			r.setVisible(true);
+			dispose();
+			}
+		});
 		btnBasket.setFont(new Font("Century Gothic", Font.PLAIN, 16));
 		btnBasket.setBounds(250, 393, 197, 38);
 		contentPane.add(btnBasket);
-		btnBasket.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Basket r = new Basket(basket, u);
-				r.setVisible(true);
-			}
-		});
+		
 		
 		DefaultListModel<Product>model1=new DefaultListModel<Product>();
 		for(Product a: selectProduct)
@@ -111,22 +113,22 @@ ProductText.setBounds(15, 117, 220, 34);
 ProductText.addKeyListener(new KeyAdapter() {
     
     @Override
-    public void keyReleased(KeyEvent e) {//Se ejecuta cuando se libera una tecla
+    public void keyReleased(KeyEvent e) {
         JTextField textField = (JTextField) e.getSource();
-        //obtiene contenido del textfield
+        
         String text = ProductText.getText();
         if (text.trim().length() > 0) {
-            //nuevo Model temporal
+           
             DefaultListModel<Product> tmp = new DefaultListModel();
-            for (int i = 0; i < model1.getSize(); i++) {//recorre Model original
-                //si encuentra coincidencias agrega a model temporal
+            for (int i = 0; i < model1.getSize(); i++) {
+                
                 if (model1.getElementAt(i).getName().toLowerCase().contains(text.toLowerCase())) {
                     tmp.addElement(model1.getElementAt(i));
                 }
             }
-            //agrega nuevo modelo a JList
+            
             list.setModel(tmp);
-        } else {//si esta vacio muestra el Model original
+        } else {
             list.setModel(model1);
         }
     }

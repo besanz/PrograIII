@@ -70,7 +70,7 @@ public class Users extends JFrame {
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainWindow window = new MainWindow(u);
+				MainWindow window = new MainWindow(u, null);
 						window.setVisible(true);
 				dispose();
 			}

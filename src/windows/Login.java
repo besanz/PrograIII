@@ -88,7 +88,7 @@ public class Login extends JFrame {
 						
 						JOptionPane.showMessageDialog(Login.this, "Welcome "+a.getUsername()+"!");
 						
-						MainWindow w = new MainWindow(a);
+						MainWindow w = new MainWindow(a, null);
 						w.setVisible(true);
 						dispose();
 						userSelect = true;

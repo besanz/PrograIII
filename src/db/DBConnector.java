@@ -176,6 +176,57 @@ public class DBConnector {
              }
         	
         }
-}
+        public static void updateSaldo  (int id , double valor )
+        {
+        	
+        	String sql = "UPDATE User SET saldo = ? WHERE id = ? ";
+        	int a= (int) Math.round(valor);
+        	 try
+             (
+                     Connection conn = connect();
+                     PreparedStatement pstmt = conn.prepareStatement(sql)
+             )
+             {
+        		 
+                 pstmt.setInt(2,id);
+                 pstmt.setInt(1,a);
+                 pstmt.executeUpdate();
+                 }
+        	  catch (SQLException e){
+        	       
+        	        System.out.println(e.getMessage());
+
+        	        	
+        	             }
+        	        	
+        	        }
+        public static void updateStock  (int id , int stock )
+        {
+        	
+        	String sql = "UPDATE Product SET stock = ? WHERE id = ? ";
+        	
+        	 try
+             (
+                     Connection conn = connect();
+                     PreparedStatement pstmt = conn.prepareStatement(sql)
+             )
+             {
+        		 
+                 pstmt.setInt(2,id);
+                 pstmt.setInt(1,stock);
+                 pstmt.executeUpdate();
+                 }
+        	  catch (SQLException e){
+        	       
+        	        System.out.println(e.getMessage());
+
+        	        	
+        	             }
+        	        	
+        	        }
+        	
+        	
+        }
+
     
 	

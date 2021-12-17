@@ -30,7 +30,7 @@ public class Basket extends JDialog {
 	/**
 	 * Create the frame.
 	 */
-	public Basket(ArrayList<Product> basket,User u) {
+	public Basket(ArrayList<Product> basket,User u,Product p) {
 		setTitle("Your Cart");
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 437, 636);
@@ -40,7 +40,8 @@ public class Basket extends JDialog {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		
+		int saldo = u.getSaldo();
+		//int stock= p.getStock();
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.setBackground(Color.WHITE);
@@ -49,7 +50,7 @@ public class Basket extends JDialog {
 		contentPane.add(btnBack);
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainWindow window = new MainWindow(u);
+				MainWindow window = new MainWindow(u, p);
 				window.setVisible(true);
 				dispose();
 			}
@@ -83,19 +84,7 @@ public class Basket extends JDialog {
 		btnRemove.setBounds(218, 465, 127, 29);
 		contentPane.add(btnRemove);
 		
-		JButton btnBuy = new JButton("Buy Now");
-		btnBuy.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		btnBuy.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				for (int i = 0 ; i< model1.size(); i++){
-					int b = u.getIdUser();
-					int a = model1.getElementAt(i).getIdProduct();
-					db.DBConnector.insertUserProduct(b,a);
-				}			
-			}
-		});
-		btnBuy.setBounds(74, 510, 271, 29);
-		contentPane.add(btnBuy);
+		
 		
 		JLabel Name = new JLabel(u.getUsername()+"");
 		Name.setFont(new Font("Century Gothic", Font.ITALIC, 24));
@@ -118,8 +107,33 @@ public class Basket extends JDialog {
 		label.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 16));
 		label.setBounds(299, 429, 75, 20);
 		contentPane.add(label);
-	}
+	
 
+	double valor= saldo - total;
+	
+	JButton btnBuy = new JButton("Buy Now");
+	btnBuy.setFont(new Font("Century Gothic", Font.PLAIN, 16));
+	btnBuy.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			for (int i = 0 ; i< model1.size(); i++){
+				int b = u.getIdUser();
+				int a = model1.getElementAt(i).getIdProduct();
+				db.DBConnector.insertUserProduct(b,a);
+				for(Object z: model1.toArray())
+				{
+					int y = ((Product)z).getStock()-1;
+					int c = ((Product) z).getIdProduct();
+					db.DBConnector.updateStock(c, y);
+				}
+				db.DBConnector.updateSaldo(b, valor);
+			}			
+		}
+	});
+	btnBuy.setBounds(74, 498, 271, 29);
+	contentPane.add(btnBuy);}
+	
+	
+	
 	private void lblElPrecioFinal(Font font) {
 		// TODO Auto-generated method stub
 		
