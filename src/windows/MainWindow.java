@@ -64,7 +64,7 @@ public class MainWindow extends JFrame {
 		this.setTitle("Our cryptos for you, "+u.getUsername());
 		
 		ArrayList<Product> selectProduct = db.SelectProduct.selectProduct();
-		DefaultListModel<Product>model=new DefaultListModel<Product>();
+		//DefaultListModel<Product>model=new DefaultListModel<Product>();
 		contentPane.setLayout(null);
 
 
@@ -230,11 +230,28 @@ ProductText.addKeyListener(new KeyAdapter() {
 		btnManageUsers.setBounds(492, 339, 150, 38);
 		btnManageUsers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ManageUsers mg = new ManageUsers(null);
+				mg.setVisible(true);
+				dispose();
+				
 			}
 		});
 		contentPane.add(btnManageUsers);
 		btnManageUsers.setEnabled(u.isAdmin());
 		
+		JButton btnNewButton_1 = new JButton("Delete Product");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DeleteProduct p = new DeleteProduct(null, u);
+				p.setVisible(true);
+				dispose();
+				
+				
+			}
+		});
+		btnNewButton_1.setBounds(492, 393, 150, 29);
+		contentPane.add(btnNewButton_1);
+		btnNewButton_1.setEnabled(u.isAdmin());
 		
 		
 		

@@ -88,7 +88,7 @@ public class Basket extends JDialog {
 		
 		
 		
-		JLabel Name = new JLabel("Your basket, <dynamic>");
+		JLabel Name = new JLabel("Your basket:");
 		Name.setFont(new Font("Century Gothic", Font.ITALIC, 22));
 		Name.setBounds(15, 16, 269, 42);
 		contentPane.add(Name);
@@ -132,7 +132,16 @@ public class Basket extends JDialog {
 		}
 	});
 	btnBuy.setBounds(74, 498, 271, 29);
-	contentPane.add(btnBuy);}
+	contentPane.add(btnBuy);
+	
+	JLabel label_1 = new JLabel("");
+	label_1.setBounds(255, 38, 69, 20);
+	contentPane.add(label_1);
+	
+	JLabel Name_1 = new JLabel(u.getUsername()+"");
+	Name_1.setFont(new Font("Century Gothic", Font.ITALIC, 22));
+	Name_1.setBounds(146, 16, 210, 42);
+	contentPane.add(Name_1);}
 	
 	
 	

@@ -163,8 +163,7 @@ public class User {
      */
 	@Override
 	public String toString() {
-		return "User [idUser=" + idUser + ", username=" + username + ", password=" + password + ", isAdmin=" + isAdmin
-				+ "]";
+		return  username;
 	}
 
     public static void Password (User u){
