@@ -76,7 +76,7 @@ public class MainWindow extends JFrame {
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(ProductText.getSelectedText() != null){
-				filtrar();
+				JOptionPane.showMessageDialog(MainWindow.this, "It works automatically!");
 				}else{
 					JOptionPane.showMessageDialog(MainWindow.this, "You must type something first!");
 				}
@@ -143,7 +143,7 @@ ProductText.addKeyListener(new KeyAdapter() {
 		scrollPane.setViewportView(list);
 		contentPane.add(scrollPane);
 		
-		JButton btnInformation = new JButton("Information");
+		JButton btnInformation = new JButton("Crypto Info");
 		btnInformation.setFont(new Font("Century Gothic", Font.PLAIN, 16));
 		btnInformation.setBounds(492, 159, 150, 56);
 		btnInformation.addActionListener(new ActionListener() {
@@ -162,12 +162,12 @@ ProductText.addKeyListener(new KeyAdapter() {
 		});
 		contentPane.add(btnInformation);
 		
-		JButton btnNewProduct = new JButton("New Product");
+		JButton btnNewProduct = new JButton("Administration");
 		btnNewProduct.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		btnNewProduct.setBounds(492, 231, 150, 38);
+		btnNewProduct.setBounds(492, 227, 150, 56);
 		btnNewProduct.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ProductToAdd window = new ProductToAdd(u);
+				ProductManagement window = new ProductManagement(u);
 				window.setVisible(true);
 			}
 			
@@ -178,7 +178,7 @@ ProductText.addKeyListener(new KeyAdapter() {
 		
 		JButton btnViewUsers = new JButton("View Users");
 		btnViewUsers.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		btnViewUsers.setBounds(492, 285, 150, 38);
+		btnViewUsers.setBounds(492, 299, 150, 56);
 		btnViewUsers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Users window = new Users(u);
@@ -225,9 +225,9 @@ ProductText.addKeyListener(new KeyAdapter() {
 		});
 		contentPane.add(btnAddToBasket);
 		
-		JButton btnManageUsers = new JButton("Manage Users");
+		JButton btnManageUsers = new JButton("Manage Clients");
 		btnManageUsers.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		btnManageUsers.setBounds(492, 339, 150, 38);
+		btnManageUsers.setBounds(492, 371, 150, 60);
 		btnManageUsers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ManageUsers mg = new ManageUsers(null);
@@ -238,20 +238,6 @@ ProductText.addKeyListener(new KeyAdapter() {
 		});
 		contentPane.add(btnManageUsers);
 		btnManageUsers.setEnabled(u.isAdmin());
-		
-		JButton btnNewButton_1 = new JButton("Delete Product");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				DeleteProduct p = new DeleteProduct(null, u);
-				p.setVisible(true);
-				dispose();
-				
-				
-			}
-		});
-		btnNewButton_1.setBounds(492, 393, 150, 29);
-		contentPane.add(btnNewButton_1);
-		btnNewButton_1.setEnabled(u.isAdmin());
 		
 		
 		

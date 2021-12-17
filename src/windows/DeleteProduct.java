@@ -36,7 +36,7 @@ public class DeleteProduct extends JFrame {
 	public DeleteProduct(Product p,User u) {
 		setTitle("User Management");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 669, 616);
+		setBounds(100, 100, 523, 398);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 239, 213));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -54,15 +54,15 @@ public class DeleteProduct extends JFrame {
 		JList list3 = new JList();
 		list3.setFont(new Font("Consolas", Font.PLAIN, 18));
 		list3.setBackground(new Color(175, 238, 238));
-		list3.setBounds(80, 54, 410, 399);
+		list3.setBounds(50, 51, 410, 194);
 		list3.setModel(model3);
 		contentPane.add(list3);
 		
 		
-	//	JScrollPane scrollPane = new JScrollPane();
-		//scrollPane.setBounds(15, 161, 432, 216);
-		//scrollPane.setViewportView(list2);
-		//contentPane.add(scrollPane);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(50, 51, 410, 194);
+		scrollPane.setViewportView(list3);
+		contentPane.add(scrollPane);
 		
 		
 
@@ -70,13 +70,12 @@ public class DeleteProduct extends JFrame {
 		btnBack.setFont(new Font("Century Gothic", Font.PLAIN, 16));
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Login l = new Login(u);
-				l.setVisible(true);
+				
 				dispose();
 				
 			}
 		});
-		btnBack.setBounds(405, 493, 138, 29);
+		btnBack.setBounds(269, 275, 191, 29);
 		contentPane.add(btnBack);
 		
 		JButton btnDelete = new JButton("Delete Product");
@@ -92,15 +91,13 @@ public class DeleteProduct extends JFrame {
 				}
 				list3.setModel(model);
 				
+				JOptionPane.showMessageDialog(DeleteProduct.this, product.getName()+" has been deleted successfully!");
+				
 			}
 		});
 		btnDelete.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		btnDelete.setBounds(108, 493, 151, 29);
+		btnDelete.setBounds(50, 275, 191, 29);
 		contentPane.add(btnDelete);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(467, 54, 34, 129);
-		contentPane.add(scrollPane);
 	}
 
 	

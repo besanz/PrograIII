@@ -45,6 +45,7 @@ public class Login extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize(User u) {
+		
 		this.setTitle("Login");
 		this.setResizable(false);
 		this.setBounds(100, 100, 451, 364);
