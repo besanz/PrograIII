@@ -30,11 +30,19 @@ import data.ProductBasket;
 import data.User;
 import db.SelectProduct;
 import java.awt.Font;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
  * @author JON ANDER ARANA
  * @author Benat
+ *
+ */
+
+/**
+ * 
+ * @author Benat Sorting for Jlist
  *
  */
 
@@ -44,72 +52,92 @@ public class MainWindow extends JFrame {
 	private JTextField ProductText;
 	private User u;
 	private ArrayList<ProductBasket> basket;
+	
 	private ArrayList<Product> DBProducts;
 
+	public ArrayList<Product> getDBProducts() {
+		return DBProducts;
+	}
 
+	public void setDBProducts(ArrayList<Product> dBProducts) {
+		DBProducts = dBProducts;
+	}
+
+	public User getU() {
+		return u;
+	}
+
+	public void setU(User u) {
+		this.u = u;
+	}
+
+	public ArrayList<ProductBasket> getBasket() {
+		return basket;
+	}
+
+	public void setBasket(ArrayList<ProductBasket> basket) {
+		this.basket = basket;
+	}
 	/**
 	 * Create the frame.
 	 */
-	public MainWindow(User u){//,Product p) {
-		
+	public MainWindow(User u) {// ,Product p) {
+
 		ImageIcon icon = new ImageIcon("favicon.png");
 		this.setIconImage(icon.getImage());
 		this.basket = new ArrayList<>();
-		
+
 		this.u = u;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 687, 512);
-		contentPane = new JPanel(){  
-              public void paintComponent(Graphics g) {  
-              Image img = Toolkit.getDefaultToolkit().getImage("background.jpg");  
-			                      g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);  
-			                }  
-			            };  
+		contentPane = new JPanel() {
+			public void paintComponent(Graphics g) {
+				Image img = Toolkit.getDefaultToolkit().getImage("background.jpg");
+				g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
+			}
+		};
 		contentPane.setBackground(Color.ORANGE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		
-		this.setTitle("Our cryptos for you, "+u.getUsername());
-		
+
+		this.setTitle("Our cryptos for you, " + u.getUsername());
+
 		DBProducts = db.SelectProduct.selectProduct();
-		
+
 		DBProducts.sort(Comparator.comparing(p -> ((Product) p).getName()));
 
 		contentPane.setLayout(null);
 
-
-		
 		JButton btnSearch = new JButton("Automatic Search");
 		btnSearch.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		btnSearch.setBounds(250, 117, 197, 34);
+		btnSearch.setBounds(15, 66, 220, 34);
 		contentPane.add(btnSearch);
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(ProductText.getSelectedText() != null){
-				JOptionPane.showMessageDialog(MainWindow.this, "It works automatically!");
-				}else{
+				if (ProductText.getSelectedText() != null) {
+					JOptionPane.showMessageDialog(MainWindow.this, "It works automatically!");
+				} else {
 					JOptionPane.showMessageDialog(MainWindow.this, "You must type something first!");
 				}
 			}
 		});
 
 		JButton btnBasket = new JButton("Open Basket");
+		MainWindow main=this;
 		btnBasket.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			Basket r = new Basket(basket, u);//, p);
-			r.setVisible(true);
+				Basket r = new Basket(main);//(basket, u);// , p);
+				r.setVisible(true);
 
 			}
 		});
 		btnBasket.setFont(new Font("Century Gothic", Font.PLAIN, 16));
 		btnBasket.setBounds(239, 393, 208, 38);
 		contentPane.add(btnBasket);
-		
-		
-		DefaultListModel<Product>model1=new DefaultListModel<Product>();
-		for(Product a: DBProducts)
-		{
-		model1.addElement(a);
+
+		DefaultListModel<Product> model1 = new DefaultListModel<Product>();
+		for (Product a : DBProducts) {
+			model1.addElement(a);
 		}
 		JList list = new JList();
 		list.setFont(new Font("Consolas", Font.PLAIN, 25));
@@ -121,57 +149,56 @@ public class MainWindow extends JFrame {
 		ProductText.setFont(new Font("Consolas", Font.PLAIN, 18));
 		ProductText.setBounds(15, 117, 220, 34);
 		ProductText.addKeyListener(new KeyAdapter() {
-    
-    @Override
-    public void keyReleased(KeyEvent e) {
-       // JTextField textField = (JTextField) e.getSource();
-        
-        String text = ProductText.getText();
-        if (text.trim().length() > 0) {
-           
-            DefaultListModel<Product> tmp = new DefaultListModel();
-            for (int i = 0; i < model1.getSize(); i++) {
-                
-                if (model1.getElementAt(i).getName().toLowerCase().contains(text.toLowerCase())) {
-                    tmp.addElement(model1.getElementAt(i));
-                }
-            }
-            
-            list.setModel(tmp);
-        } else {
-            list.setModel(model1);
-        }
-		    }
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// JTextField textField = (JTextField) e.getSource();
+
+				String text = ProductText.getText();
+				if (text.trim().length() > 0) {
+
+					DefaultListModel<Product> tmp = new DefaultListModel();
+					for (int i = 0; i < model1.getSize(); i++) {
+
+						if (model1.getElementAt(i).getName().toLowerCase().contains(text.toLowerCase())) {
+							tmp.addElement(model1.getElementAt(i));
+						}
+					}
+
+					list.setModel(tmp);
+				} else {
+					list.setModel(model1);
+				}
+			}
 		});
 		ProductText.setBackground(new Color(175, 238, 238));
 		contentPane.add(ProductText);
 		ProductText.setColumns(10);
 
-		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(15, 161, 432, 216);
 		scrollPane.setViewportView(list);
 		contentPane.add(scrollPane);
-		
+
 		JButton btnInformation = new JButton("Crypto Info");
 		btnInformation.setFont(new Font("Century Gothic", Font.PLAIN, 16));
 		btnInformation.setBounds(492, 159, 150, 56);
 		btnInformation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				Product pro = (Product) list.getSelectedValue();
-				
-				if(list.getSelectedValue() != null){
-				ProductInfo window = new ProductInfo(pro, u);
-				window.setVisible(true);
-				}else{
-					JOptionPane.showMessageDialog(MainWindow.this, "Please, select a coin first" );
-					
+
+				if (list.getSelectedValue() != null) {
+					ProductInfo window = new ProductInfo(pro, u);
+					window.setVisible(true);
+				} else {
+					JOptionPane.showMessageDialog(MainWindow.this, "Please, select a coin first");
+
 				}
 			}
 		});
 		contentPane.add(btnInformation);
-		
+
 		JButton btnNewProduct = new JButton("Administration");
 		btnNewProduct.setFont(new Font("Century Gothic", Font.PLAIN, 16));
 		btnNewProduct.setBounds(492, 227, 150, 56);
@@ -180,12 +207,11 @@ public class MainWindow extends JFrame {
 				ProductManagement window = new ProductManagement(u);
 				window.setVisible(true);
 			}
-			
+
 		});
 		contentPane.add(btnNewProduct);
 		btnNewProduct.setEnabled(u.isAdmin());
 
-		
 		JButton btnViewUsers = new JButton("View Users");
 		btnViewUsers.setFont(new Font("Century Gothic", Font.PLAIN, 16));
 		btnViewUsers.setBounds(492, 299, 150, 56);
@@ -193,17 +219,16 @@ public class MainWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Users window = new Users(u);
 				window.setVisible(true);
-				dispose();
-				
+
+
 			}
 		});
 		contentPane.add(btnViewUsers);
 		btnViewUsers.setEnabled(u.isAdmin());
-		
-		
+
 		JButton btnSettings = new JButton("Settings");
 		btnSettings.setFont(new Font("Consolas", Font.PLAIN, 16));
-		btnSettings.setBounds(15, 16, 150, 56);
+		btnSettings.setBounds(15, 16, 220, 34);
 		btnSettings.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SettingsWindow sw = new SettingsWindow(u);
@@ -212,46 +237,48 @@ public class MainWindow extends JFrame {
 		});
 		contentPane.add(btnSettings);
 		btnSettings.setEnabled(u.isAdmin());
-		
+
 		JButton btnNewButton = new JButton("Back to Login");
 		btnNewButton.setFont(new Font("Century Gothic", Font.PLAIN, 16));
 		btnNewButton.setBounds(491, 16, 151, 56);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				backToLogin();
-				
+
 			}
 		});
 		contentPane.add(btnNewButton);
-		
+
 		JButton btnAddToBasket = new JButton("Add to Basket");
 		btnAddToBasket.setFont(new Font("Century Gothic", Font.PLAIN, 16));
 		btnAddToBasket.setBounds(15, 393, 197, 38);
 		btnAddToBasket.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Product pro = (Product) list.getSelectedValue();//catalogo
-				if (pro==null)return;
-				ProductBasket proBasket= new ProductBasket(pro.getIdProduct(),pro.getName(),pro.getPrice());
-				int pos=0;
-				boolean encontrado=false;
+				Product pro = (Product) list.getSelectedValue();// catalogo
+				if (pro == null)
+					return;
+				ProductBasket proBasket = new ProductBasket(pro.getIdProduct(), pro.getName(), pro.getPrice());
+				int pos = 0;
+				boolean encontrado = false;
 				for (ProductBasket productBasket : basket) {
-					if (proBasket.getIdProduct()==productBasket.getIdProduct()){
-						encontrado=true;
+					if (proBasket.getIdProduct() == productBasket.getIdProduct()) {
+						encontrado = true;
 						break;
-					}
-					else pos++;
+					} else
+						pos++;
 				}
-				if(encontrado){
-					basket.get(pos).setPurchaseQuantity(proBasket.getPurchaseQuantity()+1);
-				}else{
+				if (encontrado) {
+					basket.get(pos).setPurchaseQuantity(proBasket.getPurchaseQuantity() + 1);
+				} else {
 					basket.add(proBasket);
 				}
-				
+				u.setSaldo(u.getSaldo()-pro.getPrice());
+
 				JOptionPane.showMessageDialog(MainWindow.this, "Success! Go check the basket.");
 			}
 		});
 		contentPane.add(btnAddToBasket);
-		
+
 		JButton btnManageUsers = new JButton("Manage Clients");
 		btnManageUsers.setFont(new Font("Century Gothic", Font.PLAIN, 15));
 		btnManageUsers.setBounds(492, 371, 150, 60);
@@ -260,53 +287,74 @@ public class MainWindow extends JFrame {
 				ManageUsers mg = new ManageUsers(null);
 				mg.setVisible(true);
 				dispose();
-				
+
 			}
 		});
 		contentPane.add(btnManageUsers);
 		btnManageUsers.setEnabled(u.isAdmin());
-		
-		
-		
+
+		JComboBox cbOrden = new JComboBox();
+		cbOrden.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (cbOrden.getSelectedItem() == "NAME") {
+					DBProducts.sort(Comparator.comparing(p -> ((Product) p).getName()));
+					DefaultListModel<Product> model1 = new DefaultListModel<Product>();
+					for (Product a : DBProducts) {
+						model1.addElement(a);
+					}
+					list.setModel(model1);
+					
+				} else if (cbOrden.getSelectedItem() == "PRICE") {
+					DBProducts.sort(Comparator.comparing(p -> ((Product) p).getPrice()));
+					DefaultListModel<Product> model1 = new DefaultListModel<Product>();
+					for (Product a : DBProducts) {
+						model1.addElement(a);
+					}
+					list.setModel(model1);
+				}
+				
+			}
+		});
+		cbOrden.setModel(new DefaultComboBoxModel(new String[] {"Sort by", "NAME ASC", "PRICE ASC", "NAME DESC", "PRICE DESC"}));
+		cbOrden.setBounds(250, 119, 140, 32);
+		contentPane.add(cbOrden);
+
 	}
+
 	String sql = "Select id,name,Price,stock from Product ";
 
-	DefaultTableModel  tbl = new DefaultTableModel();
+	DefaultTableModel tbl = new DefaultTableModel();
 
-	ArrayList<Product> productArrayList= SelectProduct.selectProduct();
-	
-	
+	ArrayList<Product> productArrayList = SelectProduct.selectProduct();
+
 	/**
 	 * must check this method
 	 */
-	public void filtrar(){
-		
+	public void filtrar() {
 
-		ArrayList<Product> products = db.SelectProduct.selectProduct();;
+		ArrayList<Product> products = db.SelectProduct.selectProduct();
+		;
 		ArrayList<Product> productFiltrados = new ArrayList<>();
-		
+
 		for (Product p : products) {
-			
-			if(p.getName().toLowerCase().contains(this.ProductText.getText().toLowerCase())){
+
+			if (p.getName().toLowerCase().contains(this.ProductText.getText().toLowerCase())) {
 				productFiltrados.add(p);
 			}
-			
-			 
-		}
-		
-		
-	}
-	
 
-	public void backToLogin(){
-		
+		}
+
+	}
+
+	public void backToLogin() {
+
 		int opcionSeleccionar = JOptionPane.showConfirmDialog(this, "Are you sure you want to exit?");
-	
-		if(opcionSeleccionar == JOptionPane.OK_OPTION){
+
+		if (opcionSeleccionar == JOptionPane.OK_OPTION) {
 			dispose();
 			Login l = new Login(u);
 			l.setVisible(true);
 		}
-	
+
 	}
 }

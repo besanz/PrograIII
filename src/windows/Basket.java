@@ -33,7 +33,9 @@ public class Basket extends JDialog {
 	/**
 	 * Create the frame.
 	 */
-	public Basket(ArrayList<ProductBasket> basket,User u){//,Product p) {
+	
+	//public Basket(ArrayList<ProductBasket> basket,User u){//,Product p) {
+	public Basket(MainWindow main){//,Product p) {
 		ImageIcon icon = new ImageIcon("favicon.png");
 		this.setIconImage(icon.getImage());
 		setTitle("Cart");
@@ -45,7 +47,7 @@ public class Basket extends JDialog {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		int saldo = u.getSaldo();
+		int saldo = main.getU().getSaldo();
 		//int stock= p.getStock();
 		
 		JButton btnBack = new JButton("Back");
@@ -69,7 +71,8 @@ public class Basket extends JDialog {
 		
 		
 		DefaultListModel<ProductBasket> model1 = new DefaultListModel<>();
-		for (ProductBasket product : basket) {
+		ArrayList<ProductBasket> lista=main.getBasket();
+		for (ProductBasket product : lista) {
 			model1.addElement(product);
 		}
 		list.setModel(model1);
@@ -119,18 +122,25 @@ public class Basket extends JDialog {
 	btnBuy.setFont(new Font("Century Gothic", Font.PLAIN, 16));
 	btnBuy.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
+			int valorCompra=0;
+			int idUsu = main.getU().getIdUser();
 			for (int i = 0 ; i< model1.size(); i++){
-				int b = u.getIdUser();
-				int a = model1.getElementAt(i).getIdProduct();
-				db.DBConnector.insertUserProduct(b,a);
-				for(Object z: model1.toArray())
-				{
-					int y = ((Product)z).getStock()-1;
-					int c = ((Product) z).getIdProduct();
-					db.DBConnector.updateStock(c, y);
+				ProductBasket pB=model1.getElementAt(i);
+				int idPro = pB.getIdProduct();
+				db.DBConnector.insertUserProduct(idUsu,idPro);
+				valorCompra=valorCompra +  (pB.getPurchaseQuantity()*pB.getPrice());
+				for (Product  prod : main.getDBProducts()) {
+					if (prod.getIdProduct()==pB.getIdProduct()){
+						prod.setStock(prod.getStock()-pB.getPurchaseQuantity());
+						db.DBConnector.updateStock(idPro, prod.getStock());
+						break;
+					}
 				}
-				db.DBConnector.updateSaldo(b, valor);
-			}			
+			}
+			main.getU().setSaldo(main.getU().getSaldo()-valorCompra);
+			System.out.println("usuario "+idUsu+"  saldo  "+main.getU().getSaldo());
+			db.DBConnector.updateSaldo(idUsu, main.getU().getSaldo());
+			JOptionPane.showMessageDialog(Basket.this, "cambiado");
 		}
 	});
 	btnBuy.setBounds(74, 498, 271, 29);
@@ -140,7 +150,7 @@ public class Basket extends JDialog {
 	label_1.setBounds(255, 38, 69, 20);
 	contentPane.add(label_1);
 	
-	JLabel Name_1 = new JLabel(u.getUsername()+"");
+	JLabel Name_1 = new JLabel(main.getU().getUsername()+"");
 	Name_1.setFont(new Font("Century Gothic", Font.ITALIC, 22));
 	Name_1.setBounds(146, 16, 210, 42);
 	contentPane.add(Name_1);}

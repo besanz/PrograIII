@@ -67,15 +67,15 @@ public class Users extends JFrame {
 		lblNewLabel_1.setBounds(372, 242, 167, 20);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel(u.isAdmin()+"");
+		JLabel lblNewLabel_2 = new JLabel(u.getSaldo()+"");
 		lblNewLabel_2.setBounds(372, 325, 167, 20);
 		contentPane.add(lblNewLabel_2);
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainWindow window = new MainWindow(u, null);
-						window.setVisible(true);
+				//MainWindow window = new MainWindow(u);
+				//		window.setVisible(true);
 				dispose();
 			}
 		});

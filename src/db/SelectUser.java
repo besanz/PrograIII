@@ -16,7 +16,7 @@ public class SelectUser {
      * @auhor Benat
      * @return
      */
-
+	
     private static Connection connect()
     {
         // SQLite connection string
@@ -67,11 +67,14 @@ public class SelectUser {
                 
                        
             }
+            conn.close();;
         } catch (SQLException e)
         {
             System.out.println(e.getMessage());
         }
+       
         return users;
+        
     }
 
     public static void main(String[]args){
