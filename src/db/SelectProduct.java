@@ -52,7 +52,7 @@ public class SelectProduct {
 	            while (rs.next())
 	            {
 	                       Product p = new Product( rs.getInt("id"),rs.getString("Name"),rs.getInt("Price"),rs.getInt("Stock"));
-	                        products.add(p);
+	                       products.add(p);
 	                       
 	            }
 	        } catch (SQLException e)

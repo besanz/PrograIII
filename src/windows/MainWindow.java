@@ -9,8 +9,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Iterator;
 
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -23,6 +26,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import data.Product;
+import data.ProductBasket;
 import data.User;
 import db.SelectProduct;
 import java.awt.Font;
@@ -39,13 +43,17 @@ public class MainWindow extends JFrame {
 	private JPanel contentPane;
 	private JTextField ProductText;
 	private User u;
-	private ArrayList<Product> basket;
+	private ArrayList<ProductBasket> basket;
+	private ArrayList<Product> DBProducts;
 
 
 	/**
 	 * Create the frame.
 	 */
-	public MainWindow(User u,Product p) {
+	public MainWindow(User u){//,Product p) {
+		
+		ImageIcon icon = new ImageIcon("favicon.png");
+		this.setIconImage(icon.getImage());
 		this.basket = new ArrayList<>();
 		
 		this.u = u;
@@ -63,8 +71,10 @@ public class MainWindow extends JFrame {
 		
 		this.setTitle("Our cryptos for you, "+u.getUsername());
 		
-		ArrayList<Product> selectProduct = db.SelectProduct.selectProduct();
-		//DefaultListModel<Product>model=new DefaultListModel<Product>();
+		DBProducts = db.SelectProduct.selectProduct();
+		
+		DBProducts.sort(Comparator.comparing(p -> ((Product) p).getName()));
+
 		contentPane.setLayout(null);
 
 
@@ -86,18 +96,18 @@ public class MainWindow extends JFrame {
 		JButton btnBasket = new JButton("Open Basket");
 		btnBasket.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			Basket r = new Basket(basket, u, p);
+			Basket r = new Basket(basket, u);//, p);
 			r.setVisible(true);
-			dispose();
+
 			}
 		});
 		btnBasket.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		btnBasket.setBounds(250, 393, 197, 38);
+		btnBasket.setBounds(239, 393, 208, 38);
 		contentPane.add(btnBasket);
 		
 		
 		DefaultListModel<Product>model1=new DefaultListModel<Product>();
-		for(Product a: selectProduct)
+		for(Product a: DBProducts)
 		{
 		model1.addElement(a);
 		}
@@ -107,14 +117,14 @@ public class MainWindow extends JFrame {
 		list.setBounds(15, 161, 432, 216);
 		list.setBackground(new Color(175, 238, 238));
 
-ProductText = new JTextField();
-ProductText.setFont(new Font("Consolas", Font.PLAIN, 18));
-ProductText.setBounds(15, 117, 220, 34);
-ProductText.addKeyListener(new KeyAdapter() {
+		ProductText = new JTextField();
+		ProductText.setFont(new Font("Consolas", Font.PLAIN, 18));
+		ProductText.setBounds(15, 117, 220, 34);
+		ProductText.addKeyListener(new KeyAdapter() {
     
     @Override
     public void keyReleased(KeyEvent e) {
-        JTextField textField = (JTextField) e.getSource();
+       // JTextField textField = (JTextField) e.getSource();
         
         String text = ProductText.getText();
         if (text.trim().length() > 0) {
@@ -131,8 +141,8 @@ ProductText.addKeyListener(new KeyAdapter() {
         } else {
             list.setModel(model1);
         }
-    }
-});
+		    }
+		});
 		ProductText.setBackground(new Color(175, 238, 238));
 		contentPane.add(ProductText);
 		ProductText.setColumns(10);
@@ -169,7 +179,6 @@ ProductText.addKeyListener(new KeyAdapter() {
 			public void actionPerformed(ActionEvent e) {
 				ProductManagement window = new ProductManagement(u);
 				window.setVisible(true);
-				dispose();
 			}
 			
 		});
@@ -177,7 +186,7 @@ ProductText.addKeyListener(new KeyAdapter() {
 		btnNewProduct.setEnabled(u.isAdmin());
 
 		
-		JButton btnViewUsers = new JButton("My Profile");
+		JButton btnViewUsers = new JButton("View Users");
 		btnViewUsers.setFont(new Font("Century Gothic", Font.PLAIN, 16));
 		btnViewUsers.setBounds(492, 299, 150, 56);
 		btnViewUsers.addActionListener(new ActionListener() {
@@ -189,12 +198,12 @@ ProductText.addKeyListener(new KeyAdapter() {
 			}
 		});
 		contentPane.add(btnViewUsers);
-	
+		btnViewUsers.setEnabled(u.isAdmin());
 		
 		
 		JButton btnSettings = new JButton("Settings");
 		btnSettings.setFont(new Font("Consolas", Font.PLAIN, 16));
-		btnSettings.setBounds(15, 16, 113, 38);
+		btnSettings.setBounds(15, 16, 150, 56);
 		btnSettings.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SettingsWindow sw = new SettingsWindow(u);
@@ -206,7 +215,7 @@ ProductText.addKeyListener(new KeyAdapter() {
 		
 		JButton btnNewButton = new JButton("Back to Login");
 		btnNewButton.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		btnNewButton.setBounds(491, 16, 151, 38);
+		btnNewButton.setBounds(491, 16, 151, 56);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				backToLogin();
@@ -217,17 +226,34 @@ ProductText.addKeyListener(new KeyAdapter() {
 		
 		JButton btnAddToBasket = new JButton("Add to Basket");
 		btnAddToBasket.setFont(new Font("Century Gothic", Font.PLAIN, 16));
-		btnAddToBasket.setBounds(25, 393, 180, 38);
+		btnAddToBasket.setBounds(15, 393, 197, 38);
 		btnAddToBasket.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				basket.add((Product) list.getSelectedValue());
-				JOptionPane.showMessageDialog(MainWindow.this, "Success! Go chek the basket.");
+				Product pro = (Product) list.getSelectedValue();//catalogo
+				if (pro==null)return;
+				ProductBasket proBasket= new ProductBasket(pro.getIdProduct(),pro.getName(),pro.getPrice());
+				int pos=0;
+				boolean encontrado=false;
+				for (ProductBasket productBasket : basket) {
+					if (proBasket.getIdProduct()==productBasket.getIdProduct()){
+						encontrado=true;
+						break;
+					}
+					else pos++;
+				}
+				if(encontrado){
+					basket.get(pos).setPurchaseQuantity(proBasket.getPurchaseQuantity()+1);
+				}else{
+					basket.add(proBasket);
+				}
+				
+				JOptionPane.showMessageDialog(MainWindow.this, "Success! Go check the basket.");
 			}
 		});
 		contentPane.add(btnAddToBasket);
 		
 		JButton btnManageUsers = new JButton("Manage Clients");
-		btnManageUsers.setFont(new Font("Century Gothic", Font.PLAIN, 16));
+		btnManageUsers.setFont(new Font("Century Gothic", Font.PLAIN, 15));
 		btnManageUsers.setBounds(492, 371, 150, 60);
 		btnManageUsers.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

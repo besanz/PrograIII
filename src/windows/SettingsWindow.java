@@ -1,5 +1,6 @@
 package windows;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -25,6 +26,8 @@ public class SettingsWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public SettingsWindow(User u) {
+		ImageIcon icon = new ImageIcon("favicon.png");
+		this.setIconImage(icon.getImage());
 		setTitle("Settings");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 536, 392);

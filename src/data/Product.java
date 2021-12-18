@@ -4,14 +4,14 @@ package data;
 
 
 /**
- * @author Beñat
+ * @author Benat
  */
 
 public class Product {
 
-    private int idProduct;
-    private String name;
-    private int price;
+    protected int idProduct;
+    protected String name;
+    protected int price;
     private int stock;
 
     /**
@@ -20,7 +20,7 @@ public class Product {
      * @param price
      * @param stock
      */
-
+    public Product(){};
     public Product(int idProduct, String name, int price,int stock) {
         this.idProduct = idProduct;
         this.name = name;
@@ -50,7 +50,7 @@ public class Product {
         this.name = name;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
@@ -75,7 +75,7 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return    name  ;
+		return    name + " (" + price + "$) ";
 	}
 	
 

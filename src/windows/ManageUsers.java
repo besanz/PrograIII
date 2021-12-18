@@ -15,6 +15,7 @@ import java.awt.Color;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -34,6 +35,9 @@ public class ManageUsers extends JFrame {
 	 * Create the frame.
 	 */
 	public ManageUsers(User u) {
+		
+		ImageIcon icon = new ImageIcon("favicon.png");
+		this.setIconImage(icon.getImage());
 		setTitle("User Management");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 669, 616);

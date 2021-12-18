@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -16,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import data.Product;
+import data.ProductBasket;
 import data.User;
 
 /**
@@ -31,7 +33,9 @@ public class Basket extends JDialog {
 	/**
 	 * Create the frame.
 	 */
-	public Basket(ArrayList<Product> basket,User u,Product p) {
+	public Basket(ArrayList<ProductBasket> basket,User u){//,Product p) {
+		ImageIcon icon = new ImageIcon("favicon.png");
+		this.setIconImage(icon.getImage());
 		setTitle("Cart");
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 437, 636);
@@ -51,8 +55,6 @@ public class Basket extends JDialog {
 		contentPane.add(btnBack);
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainWindow window = new MainWindow(u, p);
-				window.setVisible(true);
 				dispose();
 			}
 		});
@@ -66,8 +68,8 @@ public class Basket extends JDialog {
 		contentPane.add(list);
 		
 		
-		DefaultListModel<Product> model1 = new DefaultListModel<>();
-		for (Product product : basket) {
+		DefaultListModel<ProductBasket> model1 = new DefaultListModel<>();
+		for (ProductBasket product : basket) {
 			model1.addElement(product);
 		}
 		list.setModel(model1);
@@ -78,7 +80,7 @@ public class Basket extends JDialog {
 		btnRemove.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				Product pSeleccionado = (Product) list.getSelectedValue();
+				ProductBasket pSeleccionado = (ProductBasket) list.getSelectedValue();
 				model1.removeElement(pSeleccionado);
 				JOptionPane.showMessageDialog(Basket.this, "Deleted.");
 			}
@@ -96,18 +98,18 @@ public class Basket extends JDialog {
 		JLabel lblElPrecioFinal = new JLabel("Total Price .....................................");
 		lblElPrecioFinal.setFont(new Font("Century Gothic", Font.BOLD, 16));
 		lblElPrecioFinal(new Font("Yu Gothic", Font.BOLD, 16));
-		lblElPrecioFinal.setBounds(74, 429, 210, 20);
+		lblElPrecioFinal.setBounds(74, 429, 190, 20);
 		contentPane.add(lblElPrecioFinal);
 
 		double total = 0;
 		for(Object a: model1.toArray())
 		{
-			total += ((Product)a).getPrice();
+			total += ((ProductBasket)a).getPrice()*((ProductBasket)a).getPurchaseQuantity();
 		}
 		
 		JLabel label = new JLabel(total+" €");
 		label.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 16));
-		label.setBounds(299, 429, 75, 20);
+		label.setBounds(270, 429, 104, 20);
 		contentPane.add(label);
 	
 

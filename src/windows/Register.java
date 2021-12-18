@@ -29,6 +29,8 @@ public class Register extends JDialog {
     	
     };
     public Register(User u) {
+    	ImageIcon icon = new ImageIcon("favicon.png");
+		this.setIconImage(icon.getImage());
         this.setModal(true);
         setTitle("Register (It's free!)");
         setBounds(100, 100, 339, 447);
@@ -68,7 +70,7 @@ public class Register extends JDialog {
             	String name = txtName.getText();
             	String Password = txtPass1.getText();
             	
-            	boolean isAdmin = true;
+            	boolean isAdmin = false;
             	
             	if(txtPass1.getText().equals(txtPass2.getText())){
             	InsertUser.addUser(name, Password, isAdmin, saldo);

@@ -8,6 +8,7 @@ import javax.swing.border.EmptyBorder;
 import data.Product;
 import data.User;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -28,6 +29,9 @@ public class ProductInfo extends JFrame {
 	 * Create the frame.
 	 */
 	public ProductInfo(Product p,User u) {
+		
+		ImageIcon icon = new ImageIcon("favicon.png");
+		this.setIconImage(icon.getImage());
 		setFont(new Font("Berlin Sans FB", Font.PLAIN, 12));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 280, 380);

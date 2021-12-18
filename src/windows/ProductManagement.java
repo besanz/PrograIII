@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -30,6 +31,8 @@ public class ProductManagement extends JFrame {
 
 
     public ProductManagement(User u) {
+    	ImageIcon icon = new ImageIcon("favicon.png");
+		this.setIconImage(icon.getImage());
     	setTitle("Crypto management");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 920, 436);
@@ -93,9 +96,6 @@ public class ProductManagement extends JFrame {
         JButton btnBack = new JButton("Return");
         btnBack.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		
-        		MainWindow window = new MainWindow(u, null);
-        		window.setVisible(true);
         		dispose();
         	}
         });
