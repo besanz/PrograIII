@@ -169,6 +169,7 @@ ProductText.addKeyListener(new KeyAdapter() {
 			public void actionPerformed(ActionEvent e) {
 				ProductManagement window = new ProductManagement(u);
 				window.setVisible(true);
+				dispose();
 			}
 			
 		});
@@ -176,7 +177,7 @@ ProductText.addKeyListener(new KeyAdapter() {
 		btnNewProduct.setEnabled(u.isAdmin());
 
 		
-		JButton btnViewUsers = new JButton("View Users");
+		JButton btnViewUsers = new JButton("My Profile");
 		btnViewUsers.setFont(new Font("Century Gothic", Font.PLAIN, 16));
 		btnViewUsers.setBounds(492, 299, 150, 56);
 		btnViewUsers.addActionListener(new ActionListener() {
@@ -188,7 +189,7 @@ ProductText.addKeyListener(new KeyAdapter() {
 			}
 		});
 		contentPane.add(btnViewUsers);
-		btnViewUsers.setEnabled(u.isAdmin());
+	
 		
 		
 		JButton btnSettings = new JButton("Settings");

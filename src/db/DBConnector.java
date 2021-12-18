@@ -131,20 +131,17 @@ public class DBConnector {
          * @param date
          * @param 
          */
-        public void insertOrderProduct(int idProduct ,int idO , int quantityProduct,int orderDate)
+        public static void insertsaldo(int saldo)
         {
-        	String sql = "INSERT INTO ORDERPRODUCT(idProduct,idO,quantityOrder,orderDate)VALUES(?,?,?,?)";
+        	String sql = "INSERT INTO User(saldo)VALUES(?)";
         	
         	 try
              (
-                     Connection conn = this.connect();
+                     Connection conn = connect();
                      PreparedStatement pstmt = conn.prepareStatement(sql)
              )
          {
-         pstmt.setInt(1,idProduct);
-         pstmt.setInt(2,idO);
-         pstmt.setInt(3,quantityProduct);
-         pstmt.setInt(4,orderDate);
+         pstmt.setInt(1,saldo);
          pstmt.executeUpdate();
          }
          catch (SQLException e)

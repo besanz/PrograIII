@@ -93,6 +93,9 @@ public class ProductManagement extends JFrame {
         JButton btnBack = new JButton("Return");
         btnBack.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		
+        		MainWindow window = new MainWindow(u, null);
+        		window.setVisible(true);
         		dispose();
         	}
         });

@@ -48,7 +48,7 @@ public class Users extends JFrame {
 		lblNameOfThe.setBounds(48, 239, 359, 20);
 		contentPane.add(lblNameOfThe);
 		
-		JLabel lblIdAdminOr = new JLabel("Id admin or not:");
+		JLabel lblIdAdminOr = new JLabel("Balance");
 		lblIdAdminOr.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 25));
 		lblIdAdminOr.setBounds(48, 322, 359, 20);
 		contentPane.add(lblIdAdminOr);
@@ -67,7 +67,7 @@ public class Users extends JFrame {
 		lblNewLabel_1.setBounds(372, 242, 167, 20);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel(u.isAdmin()+"");
+		JLabel lblNewLabel_2 = new JLabel(u.getSaldo()+"");
 		lblNewLabel_2.setBounds(372, 325, 167, 20);
 		contentPane.add(lblNewLabel_2);
 		
@@ -79,7 +79,18 @@ public class Users extends JFrame {
 				dispose();
 			}
 		});
-		btnBack.setBounds(232, 407, 115, 29);
+		btnBack.setBounds(48, 398, 115, 29);
 		contentPane.add(btnBack);
+		
+		JButton btnAddBalance = new JButton("Add Balance");
+		btnAddBalance.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AddBalance window = new AddBalance(u);
+				window.setVisible(true);
+				dispose();
+			}
+		});
+		btnAddBalance.setBounds(333, 398, 139, 29);
+		contentPane.add(btnAddBalance);
 	}
 }
