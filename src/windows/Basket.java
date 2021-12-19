@@ -20,6 +20,8 @@ import data.Product;
 import data.ProductBasket;
 import data.User;
 
+import db.*;
+
 /**
  * 
  * @author Benat;
@@ -29,7 +31,10 @@ import data.User;
 public class Basket extends JDialog {
 
 	private JPanel contentPane;
-
+	private int total = 0;
+	private JList list;
+	private DefaultListModel<ProductBasket> modelBasket;
+	private JLabel labelTotal;
 	/**
 	 * Create the frame.
 	 */
@@ -63,29 +68,43 @@ public class Basket extends JDialog {
 		
 		
 		
-		JList list = new JList();
+		list = new JList();
 		list.setFont(new Font("Century Gothic", Font.BOLD, 20));
 		list.setBackground(Color.WHITE);
 		list.setBounds(74, 74, 271, 340);
 		contentPane.add(list);
 		
 		
-		DefaultListModel<ProductBasket> model1 = new DefaultListModel<>();
-		ArrayList<ProductBasket> lista=main.getBasket();
-		for (ProductBasket product : lista) {
-			model1.addElement(product);
+		modelBasket = new DefaultListModel<>();
+		//ArrayList<ProductBasket> lista=main.getBasket();
+		for (ProductBasket product : main.getBasket()) {
+			modelBasket.addElement(product);
 		}
-		list.setModel(model1);
+		list.setModel(modelBasket);
 		
 		JButton btnRemove = new JButton("Remove");
 		btnRemove.setBackground(Color.LIGHT_GRAY);
 		btnRemove.setFont(new Font("Century Gothic", Font.PLAIN, 16));
 		btnRemove.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				ProductBasket pSeleccionado = (ProductBasket) list.getSelectedValue();
-				model1.removeElement(pSeleccionado);
-				JOptionPane.showMessageDialog(Basket.this, "Deleted.");
+				ProductBasket pB = (ProductBasket) list.getSelectedValue();
+				if (pB==null) return ;
+				//int idPro = pB.getIdProduct();
+				//UserProductDB.insertUserProduct(idUsu,idPro);
+				//valorCompra=valorCompra +  (pB.getPurchaseQuantity()*pB.getPrice());
+				for (Product  prod : main.getDBProducts()) {
+					if (prod.getIdProduct()==pB.getIdProduct()){
+						prod.setStock(prod.getStock()+pB.getPurchaseQuantity());
+						//ProductDB.updateStock(idPro, prod.getStock());
+						break;
+					}
+				}
+				modelBasket.removeElement(pB);
+				list.setModel(modelBasket);
+				main.getBasket().remove(pB);
+				JOptionPane.showMessageDialog(Basket.this, "Product "+pB.getName()+" removed.");
+				calculaTotal();
+				labelTotal.setText(total+" €");
 			}
 		});
 		btnRemove.setBounds(218, 465, 127, 29);
@@ -103,17 +122,11 @@ public class Basket extends JDialog {
 		lblElPrecioFinal(new Font("Yu Gothic", Font.BOLD, 16));
 		lblElPrecioFinal.setBounds(74, 429, 190, 20);
 		contentPane.add(lblElPrecioFinal);
-
-		double total = 0;
-		for(Object a: model1.toArray())
-		{
-			total += ((ProductBasket)a).getPrice()*((ProductBasket)a).getPurchaseQuantity();
-		}
-		
-		JLabel label = new JLabel(total+" €");
-		label.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 16));
-		label.setBounds(270, 429, 104, 20);
-		contentPane.add(label);
+		this.calculaTotal();
+		labelTotal = new JLabel(this.total+" €");
+		labelTotal.setFont(new Font("Century Gothic", Font.BOLD | Font.ITALIC, 16));
+		labelTotal.setBounds(270, 429, 104, 20);
+		contentPane.add(labelTotal);
 	
 
 	double valor= saldo - total;
@@ -124,23 +137,30 @@ public class Basket extends JDialog {
 		public void actionPerformed(ActionEvent e) {
 			int valorCompra=0;
 			int idUsu = main.getU().getIdUser();
-			for (int i = 0 ; i< model1.size(); i++){
-				ProductBasket pB=model1.getElementAt(i);
+			if (modelBasket.size()==0)  return ;
+			for (int i = 0 ; i< modelBasket.size(); i++){
+				ProductBasket pB=modelBasket.getElementAt(i);
 				int idPro = pB.getIdProduct();
-				db.DBConnector.insertUserProduct(idUsu,idPro);
+				UserProductDB.insertUserProduct(idUsu,idPro);
 				valorCompra=valorCompra +  (pB.getPurchaseQuantity()*pB.getPrice());
+				System.out.println("Tamaño del bascket "+modelBasket.size()+" Hemos comprado :"+pB.getPurchaseQuantity()+"Valor compra: "+valorCompra);
 				for (Product  prod : main.getDBProducts()) {
 					if (prod.getIdProduct()==pB.getIdProduct()){
 						prod.setStock(prod.getStock()-pB.getPurchaseQuantity());
-						db.DBConnector.updateStock(idPro, prod.getStock());
+						ProductDB.updateStock(idPro, prod.getStock());
 						break;
 					}
 				}
 			}
 			main.getU().setSaldo(main.getU().getSaldo()-valorCompra);
 			System.out.println("usuario "+idUsu+"  saldo  "+main.getU().getSaldo());
-			db.DBConnector.updateSaldo(idUsu, main.getU().getSaldo());
-			JOptionPane.showMessageDialog(Basket.this, "cambiado");
+			UserDB.updateSaldo(idUsu, main.getU().getSaldo());
+			JOptionPane.showMessageDialog(Basket.this, "Comprado");
+			modelBasket.clear();
+			list.setModel(modelBasket);
+			main.getBasket().clear();
+			calculaTotal();
+			labelTotal.setText(total+" €");
 		}
 	});
 	btnBuy.setBounds(74, 498, 271, 29);
@@ -155,7 +175,13 @@ public class Basket extends JDialog {
 	Name_1.setBounds(146, 16, 210, 42);
 	contentPane.add(Name_1);}
 	
-	
+	private void calculaTotal(){
+		this.total=0;
+		for(Object a: this.modelBasket.toArray())
+		{
+			this.total += ((ProductBasket)a).getPrice()*((ProductBasket)a).getPurchaseQuantity();
+		}
+	}
 	
 	private void lblElPrecioFinal(Font font) {
 		// TODO Auto-generated method stub

@@ -20,7 +20,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import data.User;
-import db.SelectUser;
+import db.UserDB;
 import java.awt.Font;
 
 public class Login extends JFrame {
@@ -88,26 +88,28 @@ public class Login extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				boolean userSelect = false;
-				ArrayList<User> userslist = SelectUser.selectUser();
+				ArrayList<User> userslist = UserDB.selectUser();
 				
 				String UserTxt = txtUser.getText();
 				String passwordTxt = txtPass.getText();
-
-				for (User a : userslist) {
-					if (UserTxt.equals(a.getUsername()) && passwordTxt.equals(a.getPassword())) {	
-						
-						JOptionPane.showMessageDialog(Login.this, "Welcome "+a.getUsername()+"!");
-						
-						MainWindow w = new MainWindow(a);//, null);
-						w.setVisible(true);
-						dispose();
+				User usuSelect=null;
+				for ( User usu: userslist) {
+					if (UserTxt.equals(usu.getUsername()) && passwordTxt.equals(usu.getPassword())) {	
+						JOptionPane.showMessageDialog(Login.this, "Welcome "+usu.getUsername()+"!");
 						userSelect = true;
+						usuSelect=usu;
+						break;
 						
 					}
 				}
 				if (!userSelect) {
 					
 					JOptionPane.showMessageDialog(Login.this, "User does not exist");
+				}
+				else{
+					MainWindow w = new MainWindow(usuSelect);//, null);
+					w.setVisible(true);
+					dispose();
 				}
 
 			}

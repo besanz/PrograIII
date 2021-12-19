@@ -40,27 +40,27 @@ public class Users extends JFrame {
 		
 		JLabel lblIdOfThe = new JLabel("Id of the user:");
 		lblIdOfThe.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 25));
-		lblIdOfThe.setBounds(48, 150, 359, 20);
+		lblIdOfThe.setBounds(48, 150, 295, 20);
 		contentPane.add(lblIdOfThe);
 		
 		JLabel lblNameOfThe = new JLabel("Name of the user:");
 		lblNameOfThe.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 25));
-		lblNameOfThe.setBounds(48, 239, 359, 20);
+		lblNameOfThe.setBounds(48, 239, 303, 20);
 		contentPane.add(lblNameOfThe);
 		
-		JLabel lblIdAdminOr = new JLabel("Id admin or not:");
+		JLabel lblIdAdminOr = new JLabel("Saldo:");
 		lblIdAdminOr.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 25));
-		lblIdAdminOr.setBounds(48, 322, 359, 20);
+		lblIdAdminOr.setBounds(48, 322, 303, 20);
 		contentPane.add(lblIdAdminOr);
 		
 		JLabel lblInformation = new JLabel("INFORMATION");
 		lblInformation.setFont(new Font("Verdana", Font.BOLD, 27));
-		lblInformation.setBounds(272, 49, 267, 20);
+		lblInformation.setBounds(138, 53, 267, 20);
 		contentPane.add(lblInformation);
 		
 		
 		JLabel lblNewLabel = new JLabel(u.getIdUser()+"");
-		lblNewLabel.setBounds(372, 153, 244, 20);
+		lblNewLabel.setBounds(372, 153, 134, 20);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel(u.getUsername()+"");

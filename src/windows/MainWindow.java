@@ -28,7 +28,7 @@ import javax.swing.table.DefaultTableModel;
 import data.Product;
 import data.ProductBasket;
 import data.User;
-import db.SelectProduct;
+import db.ProductDB;
 import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -42,7 +42,7 @@ import javax.swing.DefaultComboBoxModel;
 
 /**
  * 
- * @author Benat Sorting for Jlist
+ * @author Benat 
  *
  */
 
@@ -52,7 +52,7 @@ public class MainWindow extends JFrame {
 	private JTextField ProductText;
 	private User u;
 	private ArrayList<ProductBasket> basket;
-	
+
 	private ArrayList<Product> DBProducts;
 
 	public ArrayList<Product> getDBProducts() {
@@ -78,6 +78,7 @@ public class MainWindow extends JFrame {
 	public void setBasket(ArrayList<ProductBasket> basket) {
 		this.basket = basket;
 	}
+
 	/**
 	 * Create the frame.
 	 */
@@ -102,7 +103,7 @@ public class MainWindow extends JFrame {
 
 		this.setTitle("Our cryptos for you, " + u.getUsername());
 
-		DBProducts = db.SelectProduct.selectProduct();
+		DBProducts = db.ProductDB.selectProduct();
 
 		DBProducts.sort(Comparator.comparing(p -> ((Product) p).getName()));
 
@@ -123,10 +124,10 @@ public class MainWindow extends JFrame {
 		});
 
 		JButton btnBasket = new JButton("Open Basket");
-		MainWindow main=this;
+		MainWindow main = this;
 		btnBasket.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Basket r = new Basket(main);//(basket, u);// , p);
+				Basket r = new Basket(main);// (basket, u);// , p);
 				r.setVisible(true);
 
 			}
@@ -220,11 +221,10 @@ public class MainWindow extends JFrame {
 				Users window = new Users(u);
 				window.setVisible(true);
 
-
 			}
 		});
 		contentPane.add(btnViewUsers);
-		btnViewUsers.setEnabled(u.isAdmin());
+		//btnViewUsers.setEnabled(u.isAdmin());
 
 		JButton btnSettings = new JButton("Settings");
 		btnSettings.setFont(new Font("Consolas", Font.PLAIN, 16));
@@ -267,14 +267,24 @@ public class MainWindow extends JFrame {
 					} else
 						pos++;
 				}
-				if (encontrado) {
-					basket.get(pos).setPurchaseQuantity(proBasket.getPurchaseQuantity() + 1);
+				
+				if ((u.getSaldo() - pro.getPrice())>pro.getPrice()) {
+					if (pro.getStock() >= 1) {
+						if (encontrado) {
+							u.setSaldo(u.getSaldo() - pro.getPrice());
+							basket.get(pos).setPurchaseQuantity(proBasket.getPurchaseQuantity() + 1);
+						} else {
+							u.setSaldo(u.getSaldo() - pro.getPrice());
+							basket.add(proBasket);
+						}
+						JOptionPane.showMessageDialog(MainWindow.this, "Success!.");
+					} else {
+						JOptionPane.showMessageDialog(MainWindow.this, "Not enough stock.");
+					}
 				} else {
-					basket.add(proBasket);
+					JOptionPane.showMessageDialog(MainWindow.this, "Not enough balance.");
 				}
-				u.setSaldo(u.getSaldo()-pro.getPrice());
 
-				JOptionPane.showMessageDialog(MainWindow.this, "Success! Go check the basket.");
 			}
 		});
 		contentPane.add(btnAddToBasket);
@@ -296,15 +306,15 @@ public class MainWindow extends JFrame {
 		JComboBox cbOrden = new JComboBox();
 		cbOrden.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (cbOrden.getSelectedItem() == "NAME") {
+				if (cbOrden.getSelectedItem() == "NAME ASC") {
 					DBProducts.sort(Comparator.comparing(p -> ((Product) p).getName()));
 					DefaultListModel<Product> model1 = new DefaultListModel<Product>();
 					for (Product a : DBProducts) {
 						model1.addElement(a);
 					}
 					list.setModel(model1);
-					
-				} else if (cbOrden.getSelectedItem() == "PRICE") {
+
+				} else if (cbOrden.getSelectedItem() == "PRICE ASC") {
 					DBProducts.sort(Comparator.comparing(p -> ((Product) p).getPrice()));
 					DefaultListModel<Product> model1 = new DefaultListModel<Product>();
 					for (Product a : DBProducts) {
@@ -312,10 +322,11 @@ public class MainWindow extends JFrame {
 					}
 					list.setModel(model1);
 				}
-				
+
 			}
 		});
-		cbOrden.setModel(new DefaultComboBoxModel(new String[] {"Sort by", "NAME ASC", "PRICE ASC", "NAME DESC", "PRICE DESC"}));
+		cbOrden.setModel(new DefaultComboBoxModel(
+				new String[] { "Sort by", "NAME ASC", "PRICE ASC" }));
 		cbOrden.setBounds(250, 119, 140, 32);
 		contentPane.add(cbOrden);
 
@@ -325,14 +336,14 @@ public class MainWindow extends JFrame {
 
 	DefaultTableModel tbl = new DefaultTableModel();
 
-	ArrayList<Product> productArrayList = SelectProduct.selectProduct();
+	ArrayList<Product> productArrayList = ProductDB.selectProduct();
 
 	/**
 	 * must check this method
 	 */
 	public void filtrar() {
 
-		ArrayList<Product> products = db.SelectProduct.selectProduct();
+		ArrayList<Product> products = db.ProductDB.selectProduct();
 		;
 		ArrayList<Product> productFiltrados = new ArrayList<>();
 

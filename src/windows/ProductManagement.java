@@ -19,6 +19,7 @@ import javax.swing.border.EmptyBorder;
 
 import data.Product;
 import data.User;
+import db.ProductDB;
 
 import java.awt.Color;
 
@@ -87,7 +88,7 @@ public class ProductManagement extends JFrame {
             	String Stockx = StockText.getText();
             	int  Stock = Integer.parseInt(Stockx);
             	
-            	db.DBConnector.insertProduct(name, ProductPrice, Stock);
+            	ProductDB.insertProduct(name, ProductPrice, Stock);
             }
         });
         btnAdd.setBounds(42, 266, 126, 55);
@@ -102,7 +103,7 @@ public class ProductManagement extends JFrame {
         btnBack.setBounds(216, 266, 119, 55);
         contentPane.add(btnBack);
         
-        ArrayList<Product> selectProduct = db.SelectProduct.selectProduct();
+        ArrayList<Product> selectProduct = db.ProductDB.selectProduct();
 		
 		DefaultListModel<Product>model3=new DefaultListModel<Product>();
 		for(Product p1: selectProduct)
@@ -131,9 +132,9 @@ public class ProductManagement extends JFrame {
 				Product product = (Product) list3.getSelectedValue();
 				int ok = JOptionPane.showConfirmDialog(ProductManagement.this, "Are you sure you want to delete "+product.getName()+"?");
 				if(ok == JOptionPane.OK_OPTION){
-				db.DeleteDb.deleteP(product.getName());
+				ProductDB.deleteProduct(product.getName());
 				DefaultListModel<Product> model = new DefaultListModel<Product>();
-				ArrayList<Product> newList = db.SelectProduct.selectProduct();
+				ArrayList<Product> newList = db.ProductDB.selectProduct();
 				for(Product p : newList){
 					model.addElement(p);
 				}

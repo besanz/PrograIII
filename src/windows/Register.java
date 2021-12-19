@@ -1,18 +1,26 @@
 package windows;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  * @author JON ANDER ARANA
  */
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import data.User;
-import db.DBConnector;
-import db.InsertUser;
-
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import db.UserDB;
 
 public class Register extends JDialog {
 	public static int saldo = 180000;
@@ -73,7 +81,7 @@ public class Register extends JDialog {
             	boolean isAdmin = false;
             	
             	if(txtPass1.getText().equals(txtPass2.getText())){
-            	InsertUser.addUser(name, Password, isAdmin, saldo);
+            	UserDB.addUser(name, Password, isAdmin, saldo);
             	
             	JOptionPane.showMessageDialog(Register.this, name + ", welcome to Binance!");
             	dispose();

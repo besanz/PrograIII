@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 
 import data.Product;
 import data.User;
+import db.UserDB;
 
 import java.awt.Color;
 import javax.swing.JList;
@@ -47,12 +48,12 @@ public class ManageUsers extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		ArrayList<User> selectUser = db.SelectUser.selectUser();
+		ArrayList<User> selectUser = db.UserDB.selectUser();
 		
 		DefaultListModel<User>model2=new DefaultListModel<User>();
 		for(User a: selectUser)
 		{
-		model2.addElement(a);
+			model2.addElement(a);
 		}
 
 		JList list2 = new JList();
@@ -85,9 +86,9 @@ public class ManageUsers extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				User user = (User) list2.getSelectedValue();
 				
-				db.DeleteDb.delete(user.getUsername());
+				UserDB.delete(user.getUsername());
 				DefaultListModel<User> model = new DefaultListModel<User>();
-				ArrayList<User> listaNueva = db.SelectUser.selectUser();
+				ArrayList<User> listaNueva = db.UserDB.selectUser();
 				for(User u : listaNueva){
 					model.addElement(u);
 				}
