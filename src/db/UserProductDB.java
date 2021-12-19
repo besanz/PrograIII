@@ -2,6 +2,7 @@ package db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -11,26 +12,22 @@ import data.Order;
 import data.Product;
 import data.User;
 
-public class SelectUserProduct {
+public class UserProductDB {
 	
-	private static Connection connect()
-    {
-        // SQLite connection string
-        String name = "BaseDeDatos.db";
-        String url = "jdbc:sqlite:" + name;
-        Connection conn = null;
+	
+	public static void insertUserProduct(int IdUserU, int IdProductP) {
+		String sql = "INSERT INTO UserProduct(IdUserU,IdProductP) VALUES (?,?)";
 
-        try
-        {
-            conn = DriverManager.getConnection(url);
-        }
-        catch (SQLException e)
-        {
-            System.out.println(e.getMessage());
-        }
-        return conn;
-    }
-
+		try {
+			Connection conn = DBConnector.connect();
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, IdUserU);
+			pstmt.setInt(2, IdProductP);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
     /**
      * @author JON ANDER ARANA
      * Receiving users from database
@@ -40,11 +37,11 @@ public class SelectUserProduct {
     {
         String sql = "SELECT IdUserU,IdProductP FROM UserProduct";
         ArrayList<Product> products = new ArrayList<Product>();
-        ArrayList<Product> prod = db.SelectProduct.selectProduct();
+        ArrayList<Product> prod = db.ProductDB.selectProduct();
 
         try
                 (
-                        Connection conn = connect();
+                        Connection conn = DBConnector.connect();
                         Statement stmt  = conn.createStatement();
                 )
         {

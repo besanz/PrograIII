@@ -2,6 +2,7 @@ package db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -9,25 +10,37 @@ import java.util.ArrayList;
 
 import data.Product;
 
-public class SelectOrderProduct {
+public class OrderProductDB {
 	
-	private static Connection connect()
-    {
-        // SQLite connection string
-        String name = "BaseDeDatos.db";
-        String url = "jdbc:sqlite:" + name;
-        Connection conn = null;
+	
+	/**
+	 * @author JON ANDER ARANA;
+	 * @author Benat
+	 */
+	/**
+	 * Insert a new row into the Basket table
+	 *
+	 * @param idProduct
+	 * @param idOrder
+	 * @param quantityProduct
+	 * @param date
+	 * @param
+	 */
+	public static void insertOrderProduct(int idProduct, int idO, int quantityProduct, int orderDate) {
+		String sql = "INSERT INTO ORDERPRODUCT(idProduct,idO,quantityOrder,orderDate)VALUES(?,?,?,?)";
 
-        try
-        {
-            conn = DriverManager.getConnection(url);
-        }
-        catch (SQLException e)
-        {
-            System.out.println(e.getMessage());
-        }
-        return conn;
-    }
+		try (Connection conn = DBConnector.connect(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, idProduct);
+			pstmt.setInt(2, idO);
+			pstmt.setInt(3, quantityProduct);
+			pstmt.setInt(4, orderDate);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+
+		}
+	}
+
 
     /**
      * @author JON ANDER ARANA
@@ -41,7 +54,7 @@ public class SelectOrderProduct {
 
         try
                 (
-                        Connection conn = connect();
+                        Connection conn = DBConnector.connect();
                         Statement stmt  = conn.createStatement();
                 )
         {

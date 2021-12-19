@@ -2,6 +2,7 @@ package db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -9,25 +10,34 @@ import java.util.ArrayList;
 
 import data.Order;
 
-public class SelectOrderRecord {
+public class OrderRecordDB {
 	
-	private static Connection connect()
-    {
-        // SQLite connection string
-        String name = "BaseDeDatos.db";
-        String url = "jdbc:sqlite:" + name;
-        Connection conn = null;
+	/*
+	 * @author JON ANDER ARANA;
+	 */
+	/**
+	 * Insert a new row into the Basket table
+	 *
+	 * @param id
+	 * @param totalpaid
+	 * @param idUser
+	 */
+	public void insertOrderRecord(int idOrder, int totalpaid, int idUser) {
+		String sql = "INSERT INTO OrderRecord(idOrder,totalpaid,idUser)VALUES(?,?,?)";
 
-        try
-        {
-            conn = DriverManager.getConnection(url);
-        }
-        catch (SQLException e)
-        {
-            System.out.println(e.getMessage());
-        }
-        return conn;
-    }
+		try (Connection conn = DBConnector.connect(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, idOrder);
+			pstmt.setInt(2, totalpaid);
+			pstmt.setInt(3, idUser);
+			pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+
+		}
+
+	}
+
 
     /**
      * @author JON ANDER ARANA
@@ -41,7 +51,7 @@ public class SelectOrderRecord {
 
         try
                 (
-                        Connection conn = connect();
+                        Connection conn = DBConnector.connect();
                         Statement stmt  = conn.createStatement();
                 )
         {

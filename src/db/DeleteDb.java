@@ -9,7 +9,7 @@ import java.sql.SQLException;
  *
  * @author sqlitetutorial.net
  */
-public class DeleteDb
+public class DeleteDB
 {
     /**
      * Connect to the test.db database
@@ -33,58 +33,8 @@ public class DeleteDb
 	        return conn;
 	    }
 
-    /**
-     * Delete a user specified by the id
-     *
-     * @param id
-     */
-    public static void delete(String n)
-    {
-        String sql = "DELETE FROM User WHERE Name = ?";
-
-        try
-                (
-                        Connection conn = connect();
-                        PreparedStatement pstmt = conn.prepareStatement(sql)
-                )
-        {
-
-            
-            pstmt.setString(1, n);
-
-            
-            pstmt.executeUpdate();
-
-        }
-        catch (SQLException e)
-        {
-            System.out.println(e.getMessage());
-        }
-    }
-    public static void deleteP(String p)
-    {
-        String sql = "DELETE FROM Product WHERE Name = ?";
-
-        try
-                (
-                        Connection conn = connect();
-                        PreparedStatement pstmt = conn.prepareStatement(sql)
-                )
-        {
-
-            
-            pstmt.setString(1, p);
-
-            
-            pstmt.executeUpdate();
-
-        }
-        catch (SQLException e)
-        {
-            System.out.println(e.getMessage());
-        }
-    }
-
+    
+    
 
     /**
      * @param args the command line arguments

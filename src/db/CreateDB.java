@@ -7,7 +7,8 @@ import java.sql.SQLException;
 
 public class CreateDB {
     /**
-     *
+     *@author JON ANDER ARANA
+     *@author Benat;
      * @param dbName es el nombre de la base de datos que se quiere crear
      */
     public static void createNewDatabase(String dbName)
