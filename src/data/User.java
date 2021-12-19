@@ -71,16 +71,20 @@ public class User {
     /**
      * second constructor. Only gets back the id
      */
-    public User() {
+   // public User() {
 		
-	}
+	//}
 
 
-    public User(String username, String password,int saldo, boolean isAdmin) {
-    	 this.username = username;
-         this.password = password;
-         this.isAdmin = isAdmin;
-         this.saldo=saldo;
+   // public User(String username, String password,int saldo, boolean isAdmin) {
+    //	 this.username = username;
+      //   this.password = password;
+        // this.isAdmin = isAdmin;
+         //this.saldo=saldo;
+	//}
+
+	public User(int idUser2) {
+		// TODO Auto-generated constructor stub
 	}
 
 	/**

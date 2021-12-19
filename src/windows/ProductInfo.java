@@ -70,7 +70,8 @@ public class ProductInfo extends JFrame {
 		btnBack.setFont(new Font("Century Gothic", Font.ITALIC, 16));
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
+				MainWindow window = new MainWindow(u);
+				window.setVisible(true);
 				dispose();
 			}
 		});

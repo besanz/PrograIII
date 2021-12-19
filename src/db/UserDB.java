@@ -116,7 +116,19 @@ public class UserDB {
 		return users;
 
 	}
+	public static void insertSaldo(User u,int saldo) {
+			String sql = "INSERT INTO User(saldo) VALUES(?)";
 
+			try (Connection conn = DBConnector.connect(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+				pstmt.setInt(1, saldo);
+				
+				pstmt.executeUpdate();
+
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+	
 	public static void main(String[] args) {
 		ArrayList<User> u = UserDB.selectUser();
 		System.out.println(u);

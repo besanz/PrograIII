@@ -213,7 +213,7 @@ public class MainWindow extends JFrame {
 		contentPane.add(btnNewProduct);
 		btnNewProduct.setEnabled(u.isAdmin());
 
-		JButton btnViewUsers = new JButton("View Users");
+		JButton btnViewUsers = new JButton("My Profile");
 		btnViewUsers.setFont(new Font("Century Gothic", Font.PLAIN, 16));
 		btnViewUsers.setBounds(492, 299, 150, 56);
 		btnViewUsers.addActionListener(new ActionListener() {
@@ -224,19 +224,7 @@ public class MainWindow extends JFrame {
 			}
 		});
 		contentPane.add(btnViewUsers);
-		//btnViewUsers.setEnabled(u.isAdmin());
-
-		JButton btnSettings = new JButton("Settings");
-		btnSettings.setFont(new Font("Consolas", Font.PLAIN, 16));
-		btnSettings.setBounds(15, 16, 220, 34);
-		btnSettings.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				SettingsWindow sw = new SettingsWindow(u);
-				sw.setVisible(true);
-			}
-		});
-		contentPane.add(btnSettings);
-		btnSettings.setEnabled(u.isAdmin());
+		
 
 		JButton btnNewButton = new JButton("Back to Login");
 		btnNewButton.setFont(new Font("Century Gothic", Font.PLAIN, 16));

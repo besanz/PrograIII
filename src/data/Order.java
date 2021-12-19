@@ -12,7 +12,7 @@ public class Order extends User {
 	}
 
 	public Order(int idOrder,  int totalpaid, int idUser) {
-		super();
+		super(idUser);
 		this.idOrder=idOrder;
 		this.totalPaid=totalpaid;
 	}

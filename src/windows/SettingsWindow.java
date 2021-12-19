@@ -75,9 +75,19 @@ public class SettingsWindow extends JFrame {
 		contentPane.add(txtSaldoInicial);
 		txtSaldoInicial.setColumns(10);
 		
+		int id = u.getIdUser();
 		JButton btnSetSaldo = new JButton("Change Initial Budget");
 		btnSetSaldo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				String Balance = txtSaldoInicial.getText();
+				int newBalance = Integer.parseInt(Balance);
+				
+				newBalance = newBalance + u.getSaldo();
+				//u.setSaldo(newBalance);
+				db.UserDB.updateSaldo(id, newBalance);
+				JOptionPane.showMessageDialog(SettingsWindow.this, "New Balance Added ");
+				dispose();
 				
 			}
 		});

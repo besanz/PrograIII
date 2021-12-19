@@ -23,7 +23,7 @@ import data.User;
 import db.UserDB;
 
 public class Register extends JDialog {
-	public static int saldo = 180000;
+	public static int saldo = 0;
 
     private final JPanel contentPanel = new JPanel();
     private JTextField txtName;

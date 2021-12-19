@@ -1,5 +1,5 @@
 package data;
-
+import recursividad.Comparation;
 
 
 
@@ -7,7 +7,7 @@ package data;
  * @author Benat
  */
 
-public class Product {
+public class Product implements Comparation<Product> {
 
     protected int idProduct;
     protected String name;
@@ -76,6 +76,20 @@ public class Product {
 	@Override
 	public String toString() {
 		return    name + " (" + price + "$) ";
+	}
+	@Override
+	public boolean compareNum(Product o) {
+		if(o.getPrice()>this.price){
+			return false;
+		}else{
+			return true;
+		}
+	
+	}
+	@Override
+	public boolean compareStr(Product o) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 
