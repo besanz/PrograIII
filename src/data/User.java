@@ -61,7 +61,7 @@ public class User {
     public User(int idUser, String username, String password,int saldo, boolean isAdmin) {
     	
     	isFilled = false;
-        this.idUser = count.incrementAndGet();
+        this.idUser = idUser;
         this.username = username;
         this.password = password;
         this.isAdmin = isAdmin;
