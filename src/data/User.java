@@ -83,6 +83,8 @@ public class User {
          //this.saldo=saldo;
 	//}
 
+	
+
 	public User(int idUser2) {
 		// TODO Auto-generated constructor stub
 	}

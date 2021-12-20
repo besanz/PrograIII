@@ -88,7 +88,7 @@ public class Users extends JFrame {
 				dispose();
 			}
 		});
-		btnBack.setBounds(340, 406, 115, 29);
+		btnBack.setBounds(365, 406, 115, 29);
 		contentPane.add(btnBack);
 		
 		JButton btnAddBalance = new JButton("Add Balance");
@@ -101,7 +101,7 @@ public class Users extends JFrame {
 				dispose();
 			}
 		});
-		btnAddBalance.setBounds(48, 406, 134, 29);
+		btnAddBalance.setBounds(34, 406, 134, 29);
 		contentPane.add(btnAddBalance);
 	}
 }

@@ -302,19 +302,31 @@ public class MainWindow extends JFrame {
 					}
 					list.setModel(model1);
 
-				} else if (cbOrden.getSelectedItem() == "PRICE ASC") {
-					DBProducts.sort(Comparator.comparing(p -> ((Product) p).getPrice()));
-					DefaultListModel<Product> model1 = new DefaultListModel<Product>();
-					for (Product a : DBProducts) {
-						model1.addElement(a);
+				} // if (cbOrden.getSelectedItem() == "PRICE ASC") {
+					//DBProducts.sort(Comparator.comparing(p -> ((Product) p).getPrice()));
+					//DefaultListModel<Product> model1 = new DefaultListModel<Product>();
+					//for (Product a : DBProducts) {
+						//model1.addElement(a);
+				//	}
+					//list.setModel(model1);
+		//		}
+				if(cbOrden.getSelectedItem() == "Price"){
+					DefaultListModel<Product> model3 = new DefaultListModel<Product>();
+					ArrayList<Product> pro = db.SelectProduct.selectProduct();
+					for (Product a: pro){
+						System.out.println(a);
 					}
-					list.setModel(model1);
+					ArrayList<Product> products3 =new ArrayList<Product>();
+					products3= recursividad.Recursion.mergeSortNum(pro);
+					for(Product a:products3){
+						model3.addElement(a);
+					}
+					list.setModel(model3);
 				}
 
 			}
 		});
-		cbOrden.setModel(new DefaultComboBoxModel(
-				new String[] { "Sort by", "NAME ASC", "PRICE ASC" }));
+		cbOrden.setModel(new DefaultComboBoxModel(new String[] {"Sort by", "NAME ASC", "PRICE ASC", "Price"}));
 		cbOrden.setBounds(250, 119, 140, 32);
 		contentPane.add(cbOrden);
 
